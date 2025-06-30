@@ -2144,13 +2144,7 @@ This is the <span class="emphasis"><em>preferred method</em></span> for acquirin
 Otherwise, if you are trying to duplicate a cygwin release then you should
 download the corresponding source package
 (<code class="literal">cygwin-x.y.z-n-src.tar.bz2</code>). </p><p>
-<span class="bold"><strong>Tip:</strong></span> ensure Perl's XML::SAX module knows 
-about installed parsers by running:
-</p><pre class="screen">perl -MXML::SAX -e 'XML::SAX-&gt;add_parser(q(XML::SAX::Expat)); XML::SAX-&gt;save_parsers()'</pre><p>
-in the cygwin terminal. If an error appears, stating: 
-<code class="code">could not find ParserDetails.ini ...</code>, then running the command 
-once more should resolve this.
-</p><p>You <span class="emphasis"><em>must</em></span> build cygwin in a separate directory from
+<p>You <span class="emphasis"><em>must</em></span> build cygwin in a separate directory from
 the source, so create something like a <code class="literal">build/</code> directory.
 Assuming you checked out the source to
 <code class="literal">/oss/src/newlib-cygwin/</code>, and you want to install to the
