@@ -1,8 +1,0 @@
-<Configuration>
-  <MappedFolders>
-    <MappedFolder>
-      <HostFolder>_PATH_</HostFolder>
-      <ReadOnly>false</ReadOnly>
-    </MappedFolder>
-  </MappedFolders>
-</Configuration>
