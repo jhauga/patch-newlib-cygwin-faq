@@ -1,0 +1,10 @@
+
+ 0  ->  exit
+ 1  ->  run :_default       in env.bat
+ 2  ->  run :_cygwin_gcc    in env.bat (current default)
+ 3  ->  run :_curl_cygwin   in env.bat
+ 
+ NOTE - to use custom script (if exist)
+        if it does not exist, then default (:_cygwin_gcc)is used
+ 200  ->  run :_call_script in env.bat calling _customScript.bat
+ 
