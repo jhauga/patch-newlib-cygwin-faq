@@ -1,34 +1,55 @@
 # patch-newlib-cygwin-faq
 
-This is a support repo for newlib-cygwin patch **cygwin: 6.21 faq-programming.xml edits**. 
-Included is the:
+This is a support repo for newlib-cygwin patch **cygwin: faq-resources.xml add 3.4 reproduce local site**. 
 
-- [doc build faq.html](https://jhauga.github.io/patch-newlib-cygwin-faq/faq.html) from newlib-cygwin build,
-- [modified index.html file](https://jhauga.github.io/patch-newlib-cygwin-faq/) to mimic the faq.html changes.
+Since this patch focuses on reproducing the website locally, there are three areas of interest:
 
-Below is the current section 6.21 on faq.html page of the website. The next set of
-links navigate directly to the changes for each patch, highlighting relevant area.
+1. The tool used (`sandbox`) to reproduce the site locally in a sandbox environment.
+   
+   - The tool utilizes:
+      - the example `httpd.conf` (`cygwin: faq-resources-3.4 example httpd.conf`), 
 
-## Current faq.html
+      ```
+      EXAMPLE HTTPD.CONF:
+       sandbox/scripts/newlib-cygwin-current.bat
+       - lines 99 to 130
+      ```
 
-[6.21 faq.html](https://cygwin.com/faq.html#faq.programming.building-cygwin)
+      - instructions on reproducing newlib docs (`cygwin: faq-resources-3.4 reproduce site docs`), 
 
-## [PATCH v2] faq-programming.xml edits
+      ```
+      INSTALL REQUIRED PACKAGES:
+       sandbox/scripts/newlib-cygwin.bat
+       - lines 81 to 88
+      
+      INSTALL NEWLIB-CYGWIN:
+       sandbox/scripts/newlib-cygwin-install.bat
+       - lines 11 to 43
+      ```
+      
+      - and the command for starting a local host(`cygwin: faq-resources-3.4 start local server`).
 
-`Ctrl + click` each link below to go directly to the relevant changes.
+      ```
+      RUN LOCAL SITE:
+       sandbox/scripts/newlib-cygwin-current.bat
+       - lines 137 to 141
+      ```
 
-### [PATCH v2 1/4] cygwin: faq-programming-6.21 add 5 required packages
+   - See the [sandbox/README.md](sandbox/README.md) for instructions on reproducing the local
+   site in a Sandbox environment.
 
-[add 5 required packages](https://jhauga.github.io/patch-newlib-cygwin-faq/#:~:text=make%20sure%20you%20have%20the%20necessary%20build%20tools%20installed).
+2. The local site that was reproduced from running the tool, with two alterations:
+   
+   - the `httpd.conf` built was renamed to `SANDBOX-httpd.conf`.
+   - the current `httpd.conf` has been modified to account for GitHub Codespace so results can be
+   seen running codespace in the browser. See [cygwin-htdocs/README.md](cygwin-htdocs/README.md)
+   for running reporoduced local site in GitHub Codespaces.
 
-### [PATCH v2 2/4] cygwin: faq-programming-6.21 ready-made download commands
+3. The focal point of the patch; the built `faq.html`.
+   
+   - [doc build faq.html](https://jhauga.github.io/patch-newlib-cygwin-faq/faq.html) from newlib-cygwin build,
+   - [modified index.html file](https://jhauga.github.io/patch-newlib-cygwin-faq/) to mimic the faq.html
+   after version update.
 
-[ready-made download commands](https://jhauga.github.io/patch-newlib-cygwin-faq/#:~:text=commands%20to%20download%20the%20required%20packages)
-
-### [PATCH v2 3/4] cygwin: faq-programming-6.21 para about process and time
-
-[para about process and time](https://jhauga.github.io/patch-newlib-cygwin-faq/#:~:text=There%20are%20two%20processes)
-
-### [PATCH v2 4/4] cygwin: faq-programming-6.21 unmatched parenthesis
-
-[unmatched parenthesis](https://jhauga.github.io/patch-newlib-cygwin-faq/#:~:text=check%20out%20the%20Cygwin%20sources%20from%20the%20Cygwin%20GIT%20source%20repository)
+Additionally, since running the site locally hinges on correctly configuring the `httpd.conf`
+file; a copy of the `httpd.conf` built from the `sandbox` tool is included in the root of the repo.

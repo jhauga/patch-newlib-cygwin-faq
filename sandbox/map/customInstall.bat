@@ -28,6 +28,10 @@ if EXIST "_customScript.bat" (
  set "_checkParOneCustomInstall=-200-"
 )
 
+:: Set cmdVar full path in variable, ensuring it can be used outside folder.
+set "cmdVar=%~dp0cmdVar.bat"
+setx cmdVar "%~dp0cmdVar.bat" /M
+
 call :_startCustomInstall 1
 goto:eof
 
@@ -37,6 +41,7 @@ if "%1"=="1" (
   echo Installing winget: & rem
   powershell.exe -ExecutionPolicy Bypass -File "C:\Users\WDAGUtilityAccount\Desktop\sandbox\install-winget.ps1"
   echo ready > initalize.txt
+  rem include current folder in path
   customInstall.bat
  ) else (
   if NOT EXIST skip.txt (
@@ -53,7 +58,7 @@ if "%1"=="1" (
    set PATH=C:\cygwin64\bin\;%PATH%
    
    echo Setting User Path to Include cygwin: & rem
-   setx PATH "C:\cygwin64\bin\;%PATH%"  
+   setx PATH "C:\cygwin64\bin\;%PATH%"
    
    if "%_checkParOneCustomInstall%"=="--" (
     call :_selectingCall 1 & goto:eof
@@ -68,11 +73,13 @@ if "%1"=="1" (
     )
    )
   ) else (
-   echo Download and Install Cygwin: & rem
-   curl https://www.cygwin.com/setup-x86_64.exe -o setup-x86_64.exe
-   setup-x86_64.exe
-   echo Install Complete & rem
-   call :_cleanCustomInstall 1 & goto:eof
+   if NOT EXIST "DEFAULT.txt" (
+    echo Download and Install Cygwin: & rem
+    curl https://www.cygwin.com/setup-x86_64.exe -o setup-x86_64.exe
+    setup-x86_64.exe
+    echo Install Complete & rem
+    call :_cleanCustomInstall 1 & goto:eof
+   )
   )
  )
 )

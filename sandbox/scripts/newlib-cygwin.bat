@@ -14,13 +14,8 @@ REM newlib-cygwin
 set "_helpLinesNewlib-cygwin=5" & rem change as needed
 
 :: Config variables
-set "_debugNewlib-cygwin=0" & rem 0 (default)
+set "_debugNewlib-cygwin=0"        & rem 0 (default)
 set "_quitePackageNewlib-cygwin=1" & rem 1 (default) 0 startu gui install
-
-:: Define path to current batch.
-set "_callRootNewlib-cygwin=%__BF__%\bin"
-set "_callLibraryNewlib-cygwin=%_callRootNewlib-cygwin%\lib"
-set "_newlib-cygwinPath=%__BF__%\bin"
 
 :: Define varibales from arguments.
 set "_parOneNewlib-cygwin=%~1"
@@ -78,22 +73,23 @@ goto:eof
 :_startNewlib-cygwinConditions
  if "%1"=="1" (
   if "%_quitePackageNewlib-cygwin%"=="0" (
-   call :_startNewlib-cygwinConditions --pkg "Build Tools" "pkg -P autoconf -P automake -P cocom -P gcc-g++ -P git -P libtool -P make -P patch -P perl"
-   call :_startNewlib-cygwinConditions --pkg "Dumper Utilities" "pkg -P gettext-devel -P libiconv -P libiconv-devel -P libiconv2 -P libzstd-devel -P zlib-devel"
-   call :_startNewlib-cygwinConditions --pkg "Cygwin Utilities" "pkg -P mingw64-x86_64-gcc-g++ -P mingw64-x86_64-zlib"
-   call :_startNewlib-cygwinConditions --pkg "Documentation Packages" "pkg -P dblatex -P docbook-utils -P docbook-xml45 -P docbook-xsl -P docbook2X -P perl-XML-SAX-Expat -P xmlto"
+   call :_startNewlib-cygwinConditions --pkg "Build Tools" "pkg -P autoconf,automake,cocom,gcc-g++,git,libtool,make,patch,perl"
+   call :_startNewlib-cygwinConditions --pkg "Dumper Utilities" "pkg -P gettext-devel,libiconv,libiconv-devel,libiconv2,libzstd-devel,zlib-devel"
+   call :_startNewlib-cygwinConditions --pkg "Cygwin Utilities" "pkg -P mingw64-x86_64-gcc-g++,mingw64-x86_64-zlib"
+   call :_startNewlib-cygwinConditions --pkg "Documentation Packages" "pkg -P dblatex,docbook-utils,docbook-xml45,docbook-xsl,docbook2X,perl-XML-SAX-Expat,xmlto"   
   ) else (
+   rem -------------------------------------------------------------------------------------------------
+   rem INSTALL REQUIRED PACKAGES
    call :_startNewlib-cygwinConditions --pkg "Build Tools" "pkg -q -P autoconf,automake,cocom,gcc-g++,git,libtool,make,patch,perl"
    call :_startNewlib-cygwinConditions --pkg "Dumper Utilities" "pkg -q -P gettext-devel,libiconv,libiconv-devel,libiconv2,libzstd-devel,zlib-devel"
    call :_startNewlib-cygwinConditions --pkg "Cygwin Utilities" "pkg -q -P mingw64-x86_64-gcc-g++,mingw64-x86_64-zlib"
    call :_startNewlib-cygwinConditions --pkg "Documentation Packages" "pkg -q -P dblatex,docbook-utils,docbook-xml45,docbook-xsl,docbook2X,perl-XML-SAX-Expat,xmlto"
+   rem INSTALL REQUIRED PACKAGES
+   rem -------------------------------------------------------------------------------------------------
   )
   call :_startNewlib-cygwinConditions 2 & goto:eof
  )
  if "%1"=="2" (
-  call :_startNewlib-cygwinConditions 3 & goto:eof
- )
- if "%1"=="3" (
   echo Beginning Installation: & rem
   echo:
   call :_runNewlib-cygwin 1 & goto:eof

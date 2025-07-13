@@ -1,30 +1,27 @@
 @echo off & title "CLOSE AFTER SANDBOX CLOSED - cygwin"
 REM cygwin
 :: Set the path for InstallWinget.wsb
-::
 :: useage: cygwin [1]
 ::  [1]  =  custome_script | initalize | mapped_script
-:: 
 ::  custome_script =  Files in "scripts" folder used as "_customScript.bat" in sandbox.
 ::  initalize      =  Run only installing cygwin, and not winget.
 ::  mapped_script  =  Files mapped (usually with support repo) in "mapped
 ::                    NOTE - mapped files will have option appeded with "_runInstall.bat", 
 ::                           and/or "_current.bat" i.e. "curl_runInstall.bat".
-::  
 :: Usage Example:
 ::  > cygwin "cygwin-htdocs"
 ::    - Use cygwin-htdocs as "_customScript.bat" in sandbox.
 ::  > cygwin "curl"
 ::    - Use mapped scripts for "curl" in sandbox environment.
 ::      i.e. "curl_runInstall.bat" and "curl_current.bat".
-:: 
-:: Available Options for Custom Scripts:
-set "_helpLinesCygwin=20" & rem change as needed
+set "_helpLinesCygwin=16" & rem change as needed
 
-rem Change to current folder where file is located.
+:: Change to current folder where file is located.
 cd /D "%~dp0"
 
-set "_defaultParCygwin=newlib-cygwin"
+:: Default or current sandbox run.
+set "_defaultRun=newlib-cygwin"
+
 set "_parOneCygwin=%~1"
 set "_checkParOneCygwin=-%_parOneCygwin%-"
 set "_parTwoCygwin=%~2"
@@ -59,40 +56,42 @@ sed -i "s/\\/-:-/g" tmpFileCygwinInstall.txt
 :: Store current directory in variable - see cmdVar.bat
 call cmdVar "type tmpFileCygwinInstall.txt" _curDir
 
-:: Use default parameter.
-if "%_checkParOneCygwin%"=="--" (
- set "_parOneCygwin=%_defaultParCygwin%"
-)
-call :_conditionsCygwinInstall 1
-goto:eof
-
-:_conditionsCygwinInstall
- if "%1"=="1" (
-  rem check if custom script passed as parOne.
-  if EXIST "scripts\%_parOneCygwin%.bat" (
-   copy "scripts\%_parOneCygwin%.bat" "map\_customScript.bat" >nul 2>nul
-   if EXIST "scripts\%_parOneCygwin%-install.bat" (
-    copy "scripts\%_parOneCygwin%-install.bat" "map\install.bat"
-   )
-  )
-
-  rem copy any include files.
-  if EXIST "include\*" (
-   if NOT EXIST "map\include" mkdir map\include
-   copy "include\*" map\include
-  )
-
-  rem remove prior config if exists.
-  call :_prepForNewRun 1 start
-
-  if "%_checkParOneCygwin%"=="--" (
-   set "_noParCygwin=1"
-  )
-
-  rem tart process for Sandbox.
-  call :_startCygwinInstall 1 & goto:eof
+:: Check if custom script passed as parOne.
+if EXIST "scripts\%_parOneCygwin%.bat" (
+ copy "scripts\%_parOneCygwin%.bat" "map\_customScript.bat" >nul 2>nul
+ if EXIST "scripts\%_parOneCygwin%-install.bat" (
+  copy "scripts\%_parOneCygwin%-install.bat" "map\install.bat"
  )
-goto:eof
+ if EXIST "scripts\%_parOneCygwin%-current.bat" (
+  copy "scripts\%_parOneCygwin%-current.bat" "map\current.bat"
+ )
+ rem Add "scripts\current_A.bat" as needed
+) else if EXIST "scripts\%_defaultRun%.bat" (
+ copy "scripts\%_defaultRun%.bat" "map\_customScript.bat" >nul 2>nul
+ if EXIST "scripts\%_defaultRun%-install.bat" (
+  copy "scripts\%_defaultRun%-install.bat" "map\install.bat"
+ )
+ if EXIST "scripts\%_defaultRun%-current.bat" (
+  copy "scripts\%_defaultRun%-current.bat" "map\current.bat"
+ )
+ rem Add "scripts\current_A.bat" as needed
+)
+
+:: Copy any include files.
+if EXIST "include\*" (
+ if NOT EXIST "map\include" mkdir map\include
+ copy "include\*" map\include
+)
+
+:: Remove prior config if exists.
+call :_prepForNewRun 1 start
+
+if "%_checkParOneCygwin%"=="--" (
+ set "_noParCygwin=1"
+)
+
+:: Start process for Sandbox.
+call :_startCygwinInstall 1 & goto:eof
 
 :: ***************************************************************************
 :: START SCRIPT
@@ -113,9 +112,9 @@ goto:eof
    if "%_parOneCygwin%"=="curl" (
     set "_runFileCygwin=curl_runInstall.bat"
     call :_startCygwinInstall --out-run
-    echo * Do you also want to install Notepad++ for debugging in Sandox?
-    echo * input - yes or no
-    echo:
+    call instructLine /I "Do you also want to install Notepad++ for debugging in Sandox?"
+    call instructLine /I " input - yes or no"
+    call instructLine /B
     set /P _installNotepad=
    ) 
    rem *** CUSTOM SCRIPTS - add new conditions as needed ***
@@ -144,23 +143,24 @@ goto:eof
  )
  if "%1"=="2" (
   rem output final notes on process
-  echo Wait for Sandbox Process to Finish, then Press Enter to Close this Window:        & rem
+  call instructLine /I "Wait for Sandbox Process to Finish, then Press Enter to Close this Window:"       & rem
+  TIMEOUT /T 3 >nul 2>nul
   if "%_parOneCygwin%"=="curl" (
-   echo  NOTE - closing after Sandbox session has ended will remove temp files of build. & rem
-   echo  NOTE - the entire install process should take around 15 minutes.                & rem
-   echo  NOTE - if needed delete runStartSandbox.wsb and sandbox folder after install.   & rem
+   call instructLine /I "NOTE - closing after Sandbox session has ended will remove temp files of build." & rem
+   call instructLine /I "NOTE - the entire install process should take around 15 minutes."                & rem
+   call instructLine /I "NOTE - if needed delete runStartSandbox.wsb and sandbox folder after install."   & rem
   )
-  echo:
+  call instructLine /B
   pause
-  echo Delay of 15 seconds for Sandbox Task to Close
+  call instructLine /I "Delay of 15 seconds for Sandbox Task to Close"
   Timeout 15 >nul 2>nul
-  echo:
+  call instructLine /B
   rem next part of process
   call :_startCygwinInstall 3 & goto:eof
  )
  if "%1"=="3" (
   rem if no sandbox process, delete folders used for build, keeping install
-  echo Cleaning Sandbox: & rem
+  call instructLine /I "Cleaning Sandbox:" & rem
   
   rem ensure sandbox is not running
   tasklist /fi "imagename eq WindowsSandboxServer.exe" | findstr "WindowsSandboxServer.exe" >nul 2>nul
@@ -181,7 +181,10 @@ goto:eof
   goto:eof
  )
  if "%1"=="--out-run" (
-  echo When Sandbox Opens, open the mapped folder and double click "%_runFileCygwin%". & rem
+  call instructLine /H "INSTRUCTIONS:"  
+  call instructLine /I "When Sandbox Opens, open the mapped folder and double click '%_runFileCygwin%'." & rem
+  call instructLine /B
+  TIMEOUT /T 3 >nul 2>nul
   goto:eof
  )
 goto:eof
@@ -202,26 +205,30 @@ goto:eof
   
   rem if starting procedure, give option to specify config option
   if "%2"=="start" (
-   if "%_parOneCygwin%"=="curl" (
-    rem select configuration option
-    echo Enter Corresponding DIGIT to Select Config Option:
-    echo ***************************************************
-    echo NOTE - press enter to use default --without-ssl option.
-    echo:
-    type config-options.txt
-    echo:
-    set /P _configOption=
-    
-    rem store number of lines in a variable
-    FOR /F %%A in ('find /v /c "" ^< config-options.txt') DO set _numberOfOptions=%%A
+   if "%_checkParOneCygwin%"=="--" (
+    set "_parOneCygwin=%_defaultRun%"
+   ) else (
+    if "%_parOneCygwin%"=="curl" (
+     rem select configuration option
+     call instructLine /I "Enter Corresponding DIGIT to Select Config Option:" & rem
+     call instructLine /I "NOTE - press enter to use default --without-ssl option." & rem
+     call instructLine /D
+     call instructLine /B
+     type config-options.txt
+     call instructLine /B
+     set /P _configOption=
+     
+     rem store number of lines in a variable
+     FOR /F %%A in ('find /v /c "" ^< config-options.txt') DO set _numberOfOptions=%%A
 
-    rem step 2 - allow batch to process variable change
-    call :_prepForNewRun 2 & goto:eof
-   )
-   if "%_parOneCygwin%"=="initalize" (
-    echo ready > sandbox\initalize.txt
-    echo skip  > sandbox\skip.txt
-   )
+     rem step 2 - allow batch to process variable change
+     call :_prepForNewRun 2 & goto:eof
+    )
+    if "%_parOneCygwin%"=="initalize" (
+     echo ready > sandbox\initalize.txt
+     echo skip  > sandbox\skip.txt
+    )
+   )  
   ) else (
    rem remove variables for process
    goto _removeBatchVariablesCygwin
@@ -261,14 +268,18 @@ goto:eof
 
 :_makeShiftHelpCygwin
  if "%1"=="1" (
-  echo:
-  head -n %_helpLinesCygwin% "%~dp0%~n0.bat" | sed -e 1d -e "s/REM /   /" -e "s/::/  /"
-  rem echo ************************************************
-  ls -1 scripts | sed -E -e "s/^/   - /g" -e "s/.bat//g"
-  echo:
+  call instructLine /B
+  setlocal EnableDelayedExpansion
+  FOR /F "tokens=1* delims=:" %%a IN ('findstr /n "^" %~n0.bat') DO (
+   if %%a LEQ %_helpLinesCygwin% (
+    echo %%b
+   )
+  )  
+  call instructLine /B
   set _muteOutCygwin=1
-  goto _removeBatchVariablesCygwin
+  endlocal
  )
+ goto _removeBatchVariablesCygwin
 goto:eof
 :: END SCRIPT
 :: ***************************************************************************
@@ -276,7 +287,7 @@ goto:eof
 
 :_removeBatchVariablesCygwin
  if NOT DEFINED _muteOutCygwin (
-  echo Removing Variables from Process: & rem
+  call instructLine /I "Removing Variables from Process:" & rem
  ) else (
   set _muteOutCygwin=
  )
