@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Remote sessions via XDMCP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"/><LINK
+REL="HOME"
+TITLE="Cygwin/X User's Guide"
+HREF="cygwin-x-ug.html"/><LINK
+REL="UP"
+TITLE="Using Cygwin/X"
+HREF="using.html"/><LINK
+REL="PREVIOUS"
+TITLE="Displaying remote clients"
+HREF="using-remote-apps.html"/><LINK
+REL="NEXT"
+TITLE="OpenGL (GLX)"
+HREF="using-glx.html"/><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;charset=utf-8"/></HEAD
+><BODY
+CLASS="sect1"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Cygwin/X User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-remote-apps.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using Cygwin/X</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using-glx.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="using-remote-session"
+>Remote sessions via XDMCP</A
+></H1
+><P
+>Cygwin/X can be used login to one or several remote sessions
+using XDMCP (X Display Manager Control Protocol).</P
+><P
+>Start Cygwin/X with a command similar to the following to login
+to a single remote session using XDMCP:</P
+><P
+>&#13;<KBD
+CLASS="userinput"
+>X -query
+<TT
+CLASS="replaceable"
+><I
+>remote_hostname_or_ip_address</I
+></TT
+></KBD
+>
+</P
+><P
+>You may login to several remote sessions with a single or
+multiple hosts using XDMCP.  Each session will need a separate display
+number, specified by the <CODE
+CLASS="parameter"
+>:display_number</CODE
+>
+parameter, such as <CODE
+CLASS="parameter"
+>:0</CODE
+>.  A display number is not
+the same as a screen number, as a single display can have multiple
+screens associated with it.  Each display listens on a different
+network port number, so each display can connect to multiple machines.
+Start Cygwin/X with command lines similar to the following to login
+to several remote sessions using XDMCP:</P
+><P
+>&#13;<KBD
+CLASS="userinput"
+>X :0 -query
+<TT
+CLASS="replaceable"
+><I
+>remote_hostname_or_ip_address_0</I
+></TT
+></KBD
+>
+</P
+><P
+>&#13;<KBD
+CLASS="userinput"
+>X :1 -query
+<TT
+CLASS="replaceable"
+><I
+>remote_hostname_or_ip_address_1</I
+></TT
+></KBD
+>
+</P
+><P
+>Note that the <CODE
+CLASS="parameter"
+>:display_number</CODE
+> parameter
+is a general X Server parameter, not specific to Cygwin/X.  Further
+documentation of the <CODE
+CLASS="parameter"
+>:display_number</CODE
+> parameter
+can be found in the <A
+HREF="http://x.cygwin.com/docs/man1/Xserver.1.html"
+TARGET="_top"
+>X Server
+manual page</A
+>.  XDMCP is a complex system that is not specific
+to Cygwin/X; further discussion of XDMCP is beyond the scope of this
+document.  You may wish to read the <A
+HREF="http://en.tldp.org/HOWTO/XDMCP-HOWTO/"
+TARGET="_top"
+>Linux XDMCP HOWTO</A
+> or the
+<A
+HREF="http://x.cygwin.com/docs/man1/Xserver.1.html#lbAH"
+TARGET="_top"
+>X Server
+XDMCP Options</A
+> for more information.</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+For security reasons, XDMCP is not enabled by default on most modern UNIX distributions.
+You will have to enable remote logins to your X Display Manager (<B
+CLASS="command"
+>xdm</B
+>,
+<B
+CLASS="command"
+>kdm</B
+>, <B
+CLASS="command"
+>gdm</B
+>, etc.).
+See the configuration documentation for your X Display Manager and/or UNIX distribution.
+The <A
+HREF="http://x.cygwin.com/docs/faq/cygwin-x-faq.html#xdmcp"
+TARGET="_top"
+>Cygwin/X FAQ section on XDMCP</A
+> may also be helpful.
+</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+XDMCP suffers from some of the same security problems noted in the previous section, but
+unfortunately cannot be tunnelled over <B
+CLASS="command"
+>ssh</B
+> due to it's use of UDP.  A
+similar effect can be achieved with a command like
+<KBD
+CLASS="userinput"
+>&#13;ssh -Y <TT
+CLASS="replaceable"
+><I
+>remote_hostname_or_ip_address</I
+></TT
+> Xnest :1 -query localhost
+</KBD
+>
+</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+In some cases, e.g. if you have multiple network interfaces, it may be necessary
+to use the <CODE
+CLASS="parameter"
+>-from <TT
+CLASS="replaceable"
+><I
+>local_ip</I
+></TT
+></CODE
+>
+parameter to specify the local IP address to be used.
+</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-remote-apps.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="cygwin-x-ug.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using-glx.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Displaying remote clients</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>OpenGL (GLX)</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

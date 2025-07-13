@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<title>Package build service</title>
+</head>
+<body>
+
+<!--#include virtual="/navbar.html" -->
+<div id="main">
+<!--#include virtual="/top.html" -->
+
+<h1>Package build service</h1>
+
+<p>
+  After pushing to a package <a href="repos.html">git repository</a>, an
+  automatic build of the package is queued:
+</p>
+
+<pre>
+  remote: scallywag: build <i>nnnn</i> queued
+  remote: scallywag: https://cygwin.com/cgi-bin2/jobs.cgi?id=<i>nnnn</i>
+</pre>
+
+<p>
+  The results will appear (some time later) at
+  <a href="https://cygwin.com/cgi-bin2/jobs.cgi">https://cygwin.com/cgi-bin2/jobs.cgi</a>
+  (URL subject to change).
+</p>
+
+<h2 class="cartouche">Caveats</h2>
+
+<p>
+  Packages may fail to build correctly due to:
+</p>
+
+<ul>
+  <li>missing or insufficient <code>BUILD_REQUIRES</code></li>
+  <li>missing prerequisites implied by an <code>inherit</code></li>
+  <li>other bugs in this service</li>
+  <li>resource limits imposed by the free service used to perform the actual
+  builds</li>
+</ul>
+
+<p>
+  (Note that a successful build doesn't always mean that you have reproduced
+  your local build: You'll also need to check the configuration step output
+  and/or dependencies of the produced packages are the same. Consider explicitly
+  enabling the functionality you are expecting in the options to the configure
+  script, if it supports that (e.g. <code>CYGCONF_ARGS</code>, etc.), to avoid it
+  potentially silently turning off in future, if it's requirements change.)
+</p>
+
+<h2 class="cartouche">Controlling the build service</h2>
+
+The behaviour of the build service can be controlled, with the tokens described
+below:
+
+<ul>
+  <li>for an individual push<br/>
+
+  <p>with <code>git push --push-option="<i>token [token...]"</i></code></p>
+
+  </li>
+
+  <li>for a package<br/>
+
+  <p>by setting the value of the <code>SCALLYWAG</code> variable in
+  the <code>.cygport</code> file</p>
+
+  </li>
+
+  <li>per-maintainer<br/>
+
+  <p>
+    The default value may be specified in a <code>!scallywag</code> file in the root
+    of a maintainer's upload directory tree.
+  </p>
+
+  <p>
+    Additionally, if that file contains <code>disable</code>, this service is
+    completely disabled for all of that maintainer's pushes.
+  </p>
+  </li>
+</ul>
+
+<p>
+  Tokens from all the sources above are collected together, along with the
+  default set of <code>build test</code>.  The presence of a negated token takes
+  priority over the presence of an unnegated token.
+  </p>
+
+<h2 class="cartouche">Interacting with build service jobs</h2>
+
+<p>
+  Interactions with build service jobs which require authentication can be done
+  with <code>ssh cygwin@cygwin.com jobs</code>. Available sub-commands are:
+</p>
+
+<ul>
+  <li>
+    <code>cancel</code><br/>
+    request termination of a build job.
+  </li>
+
+  <li>
+    <code>deploy</code><br/>
+    hand-off built packages from a job to the package uploader
+    (if it's suitable: i.e. successfully built, from master, etc.).
+  </li>
+
+  <li>
+    <code>rerun</code><br/>
+    rerun a job (e.g. if it failed due to some transient condition, or
+    optionally with different tokens).
+  </li>
+</ul>
+
+<h2 class="cartouche">Build service tokens</h2>
+
+<ul>
+  <li>
+    <code>build</code><br/>
+    Enables building packages.
+  </li>
+  <li>
+    <code>nobuild</code><br/>
+    Disables building packages.
+  </li>
+  <li>
+    <code>label</code><br/>
+    Label the packages as <code>test:</code> using <code>cygport
+    package-test</code>.
+  </li>
+  <li>
+    <code>test</code><br/>
+    Enables running <code>cygport test</code>.
+  </li>
+  <li>
+    <code>notest</code><br/>
+    Disables running <code>cygport test</code>.
+  </li>
+  <li>
+    <code>deploy</code><br/>
+    For the master branch, after a successful build, the built packages are
+    handed-off to the package uploader.
+  </li>
+  <li>
+    <code>nodeploy</code><br/>
+    Take no action after a successful build.
+  </li>
+  <li>
+    <code>announce</code><br/>
+    After a successful deploy, send a mail to the cygwin-announce mailing list.
+  </li>
+  <li>
+    <code>noannounce</code><br/>
+    Do not send an announce mail.
+  </li>
+  <li>
+    <code>mock</code><br/>
+    Any announcement mail will only be sent to the uploader, not the announce list.
+  </li>
+</ul>
+
+</div>
+
+</body>
+</html>

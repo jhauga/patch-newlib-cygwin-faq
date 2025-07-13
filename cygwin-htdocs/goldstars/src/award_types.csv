@@ -1,0 +1,13 @@
+# Blank lines and comment lines in this file are ignored.
+# The first non-blank, non-comment line must be a list of field names.
+# Otherwise the order of entries in this file doesn't matter, but there has
+# to be an entry for each type of award given in awards.csv.
+
+Name,Image,Alt,Default Count,Field Order
+Gold star,img/goldstar.webp,*,1,1
+Plush hippo,img/plush_hippo.webp,@,0,2
+Gold watch,img/goldwatch.webp,$,0,3
+Platinum watch,img/platinumwatch.webp,$$,0,4
+Silver star,img/silverstar.webp,*,0,5
+Stinkbomb,img/dungbomb.webp,&amp;,0,6
+Pink plush watch,img/pinkwatch.webp,&num;,0,7

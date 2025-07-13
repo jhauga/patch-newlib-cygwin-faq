@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <title>Cygwin Packages</title>
+  </head>
+
+<body>
+<!--#include virtual="/navbar.html" -->
+<div id="main">
+<!--#include virtual="/top.html" -->
+<h1>Cygwin Packages</h1>
+<ul>
+  <li>
+Search package contents for a
+<a href="https://www.gnu.org/software/grep/manual/grep.html">grep</a>
+<a href="https://www.gnu.org/software/grep/manual/grep.html#Basic-vs-Extended">basic</a>
+<a href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a>
+pattern
+<form method="get" action="/cgi-bin2/package-grep.cgi">
+<p>
+<input type="text" size="40" name="grep"/>
+<input type="submit" value="Go"/>
+</p>
+</form>
+  </li>
+  <li>
+    View the <a href="package_list.html">full list of packages</a>
+  </li>
+  <li>
+    View the <a href="src_package_list.html">full list of source packages</a>
+  </li>
+</ul>
+
+<h2>Reports</h2>
+<!--#include virtual="reports_list.inc" -->
+
+<h2>Data Feeds</h2>
+<ul>
+  <li>
+    Package information is also available in
+     <a href="packages.json.xz">a machine readable format</a> (compressed JSON),
+     consumed by e.g.
+    <a href="https://repology.org/projects/?inrepo=cygwin">repology.org</a>.
+  </li>
+</ul>
+
+</div>
+</body>
+</html>

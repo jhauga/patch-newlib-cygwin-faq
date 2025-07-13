@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <title>Cygwin Contribution</title>
+  </head>
+<body>
+<!--#include virtual="/navbar.html" -->
+<div id="main">
+<!--#include virtual="/top.html" -->
+<h1>Contributing to the Cygwin DLL</h1>
+
+<p>This document deals with contributions to the Cygwin DLL and
+Cygwin-specific utilities<a href="#cygwin-utilities">*</a>.</p>
+
+<p>
+<i>Note:</i> The <a href="https://sourceware.org/newlib/">newlib library</a>
+(used by Cygwin for some common "libc"-like functions) has different
+contribution rules. See their project page for more information.</p>
+
+<h2 class="cartouche">Building the development version of Cygwin</h2>
+
+<p>The code corresponding to cygwin1.dll is mostly in the winsup
+directory with additional code coming from newlib/libc and newlib/libm.
+Any changes you make should be to the <a href="/git.html">current
+development sources</a>.  This makes it much easier to integrate your
+changes once they're completed and tested.  Note that the current Git
+tree should compile, but it should always be assumed to be unstable
+since it contains potentially untested, experimental code.</p>
+
+<p>Build instructions are included in
+the <a href="https://cygwin.com/faq.html#faq.programming.building-cygwin">FAQ</a>
+under "How do I build Cygwin on my own?".</p>
+
+<p>Basically, just clone the newlib-cygwin Git repository as mentioned on the
+Cygwin <a href="/git.html">Git page</a>.</p>
+
+<h2 class="cartouche">Before you get started</h2>
+
+<p>Once you've checked out the sources, you will be able to avail
+yourself of the "how*" files in the <code>winsup/cygwin/DevDocs</code> directory.
+These are developer-written files which summarize various implementation
+details in cygwin.  You should familiarize yourself with
+their content before making changes to the subsystems that they describe.
+</p>
+
+<p>If your change is going to be a significant one in terms of the
+size of your code changes, be aware that for changes to all source
+files under the "winsup" directory you will have to license your code
+changes under the 2-clause BSD license before we can include your
+changes in the main source tree. (This is necessary for the next few
+years so that Red Hat can meet its continuing obligations to Cygwin
+buyout license customers while Cygwin transitions away from this
+licensing model.).</p>
+
+<p>To do this, just make a public statement that you provide your
+patches to the Cygwin sources under the 2-clause BSD license.</p>
+
+<p>You can do that with your first patch submission.  After your first
+patch has been approved and applied, your name and email address will be
+added to the new winsup/CONTRIBUTORS file.</p>
+
+<p>For the wording of the 2-clause BSD license, see the
+winsup/CONTRIBUTORS file in the <a href="/git.html">Cygwin git
+repository</a>.</p>
+
+<p>If you already have a Cygwin Copyright Assignment signed and
+submitted, you can ignore this procedure.  If you're not sure if you
+already signed the Copyright Assignment, see the list of signees in the
+winsup/CONTRIBUTORS file.</p>
+
+<p>Finally, before you start modifying anything for real, you should
+probably join the cygwin-developers mailing list and send it mail
+describing what you want to do and how you want to do it so you
+don't waste time working on something we can't integrate.  This also
+allows us to keep track of what's being worked on so efforts aren't
+duplicated.</p>
+
+<p>It should go without saying but when you start coding your change,
+make sure that you adhere to the brace, indentation, and whitespace
+style of the surrounding code.  For the most part, that means following
+the
+<a href="https://www.gnu.org/prep/standards/html_node/Writing-C.html#Writing-C">
+GNU coding standards</a> but some parts of the code which have been imported
+from other sources use other styles.  Just pay close attention to the
+formatting of the surrounding code and don't, e.g., add K&amp;R style coding
+to a file which uses GNU formatting.</p>
+
+<p>If you want to keep track of who's doing what to the sources, you can
+subscribe to the cygwin-cvs and newlib-cvs mailing lists using the standard
+subscription techniques employed for the <a href="/lists.html">other
+mailing lists</a>.</p>
+
+<h2 class="cartouche">When you have finalized your changes</h2>
+
+<p>Once you've finished making and testing your changes, send your patches to
+the <a href="mailto:cygwin-patches@cygwin.com">cygwin-patches mailing list</a>
+in git format-patch format.</p>
+
+<p>As an example, if you have modified several files in
+/oss/newlib-cygwin/winsup, then do the following in bash:</p>
+
+<pre>
+      [hack, hack, hack]
+      git add
+      git commit
+      [hack, hack, hack]
+      git add
+      git commit
+      git format-patch [--cover-letter]
+</pre>
+
+<p>This will produce files with all of your changes newer than origin,
+making it easy for someone to review and, if you don't have write
+access, push.  Give them a final once-over.  Ideally you include a good
+description of your change with details what it does, how it works, what
+bug it fixes (if any) and generally lend a hand to readers of the git
+logs.  Adding URLs to mailing list postings referencing the problem your
+patch solves might be a good idea, too.</p>
+
+<p>Patchsets with smaller, self-contained patches are preferred over a
+single, huge patch.  Add a cover letter (--cover-letter option) if you're
+sending a patch series to simplify discussing it on the mailing list.</p>
+
+<p>If you're satisfied with the patch and the log message, send the
+patches as they got created by git format-patch.  The git send-email
+command will usually do the right thing:</p>
+
+<pre>
+      git send-email --to="cygwin-patches@cygwin.com" &lt;format-patch-files&gt;
+</pre>
+
+<p>Note that you must be subscribed to cygwin-developers and
+cygwin-patches to send email to those lists.</p>
+
+<p>Please feel free to ask questions about any of this.  We
+would love it if more people made useful contributions -- this can be
+one of the big advantages of free software; we all benefit from
+everyone else's work as well as our own.</p>
+
+<h2 class="cartouche">What needs doing</h2>
+
+<p>You can get a good idea of the current bugs and problem areas by
+browsing the cygwin mailing list archives. In addition, you can look at
+the list of unimplemented functions in the API reference portion of the
+documentation.
+</p>
+
+<p>Remember that the cygwin-developers and cygwin-patches mailing lists are
+intended only for people who are serious about augmenting the cygwin
+DLL.  These lists are not intended as a vehicle for getting general
+cygwin questions answered, for announcing ports of any utilities, or for
+providing patches for anything other than the files in the "winsup"
+directory.  And, again, you will first have to join the lists before you
+are able to send email.</p>
+
+<p>(If you just want to send email to the cygwin-patches mailing list
+without receiving email you can send email to cygwin-patches-allow-subscribe
+<b>at</b> cygwin <b>dot</b> com.  This will allow you to send email to
+the list without receiving any of the email traffic.  Be advised,
+however, that you may miss some messages about your patch if you do
+this.)</p>
+
+<p class="smaller"><a id="cygwin-utilities">*</a>Here by "Cygwin-specific
+utilities" we mean any executable or shared libraries generated from the
+winsup/{cygwin,cygserver,utils} source directories.</p>
+</div>
+</body>
+</html>

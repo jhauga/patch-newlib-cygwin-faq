@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<title>Uploading Packages to cygwin.com</title>
+</head>
+<body>
+
+<!--#include virtual="navbar.html" -->
+<div id="main">
+<!--#include virtual="top.html" -->
+
+<h1>Uploading Packages to cygwin.com</h1>
+
+<p>
+This page documents how package maintainers can upload packages to cygwin.com,
+after they have provided an <a href="packaging/key.html#sshkey">SSH key</a>.
+</p>
+
+<h2 class="cartouche" id="uploadingfiles">Uploading packages using cygport</h2>
+
+<p>If you have a <a href="https://cygwin.com/cygport/README">cygport</a> build
+script for your packages, you can upload your finished packages
+using <a href="https://cygwin.github.io/cygport/pkg_upload_cygpart.html">
+<code>cygport up</code></a>, e.g.:</p>
+
+<pre>    cygport pkg.cygport up</pre>
+
+<p><code>calm</code> will scan the upload directories for packages that are ready,
+verify them, and, if there are no errors, move the packages into the real
+release area.  New directories in the release area will be created as needed.
+If there are errors then <code>setup.ini</code> will not be updated and the release
+area will remain unchanged.</p>
+
+<h2 class="cartouche" id="reports">Getting reports</h2>
+
+<p>
+  The <code>!email</code> file in the root of your upload directory contains a list
+  of email address (one per line) where any <code>calm</code> reports on your
+  packages should be sent.  This file is initially created containing the
+  email address from which the <a href="packaging/key.html#sshkey">SSH key</a>
+  was sent.
+</p>
+
+<p>
+  If this file is empty or missing, you won't get email when <code>calm</code> finds
+  issues with what was uploaded.
+</p>
+
+<p>
+  For historical reasons, this file can also be named <code>!mail</code>.
+</p>
+
+<h2 class="cartouche" id="untest">Removing the test label from a package</h2>
+
+Package maintainers can promote their own packages from test to current using:
+
+<pre>    ssh cygwin@cygwin.com untest <i>package-version-release</i></pre>
+
+Historical alternatives were:
+
+<ul>
+  <li>Ask on the <code>#cygwin-developers</code> IRC channel, or the
+  <code>cygwin-apps</code> mailing list, for the package to be <code>untest</code>-ed.
+  </li>
+
+  <li>If you still have the cygport build directory from when you built the test
+  packages, you can amend all the <code>.hint</code> files under
+  <code><i>PVR</i>.<i>arch</i>/dist/</code> to remove the <code>test:</code> line, and
+  <code>cygport upload</code> again.
+  </li>
+
+  <li>The package can be rebuilt with a bumped release number, and without using
+  <code>cygport package-test</code> (although this should be a last resort, because
+  unless the build is reproducible, this invalidates some of the testing your
+  package has received).</li>
+</ul>
+
+<h2 class="cartouche" id="deleting">Removing files from the Cygwin distribution</h2>
+
+<p>
+Removing files is not normally needed, as old versions (as determined by the
+package expiry settings, which can be configured
+with <a href="packaging-hint-files.html#override.hint"> keep*: lines in
+override.hint</a>) will be removed automatically.
+</p>
+
+<p>
+  However, if you do need to remove file(s) from the distribution:
+</p>
+
+<ul>
+  <li>
+    <code>ssh cygwin@cygwin.com
+    vault <i>sourcepackage-version-release</i></code> requests the removal of
+    the given source package, and all install packages derived from it,
+    <br/>or
+  </li>
+
+  <li>
+upload an empty
+file with the name of the file that you want deleted, prefixed with a
+"<code>-</code>", in the same directory as the file that you want deleted.
+</p>
+
+<p>For example, if you want to delete the file <code>foo-1.2-1.tar.xz</code> then upload an empty file named <code>-foo-1.2-1.tar.xz</code></p>
+  </li>
+</ul>
+
+<p>
+  Note that this will <b>not</b> cause setup to automatically downgrade to the
+  previous version of <code>foo</code>, if <code>foo-1.2-1</code> was installed before
+  it was removed.  If a superseding version does not (yet) exist, downgrading
+  can be configured by using
+  a <a href="packaging-hint-files.html#override.hint">replace-versions: line in
+  override.hint</a>.
+</p>
+
+<p>
+  Note that files are not actually deleted; they are moved to a vault. Current
+  policy is to retain those files indefinitely to ensure we are able to comply
+  with our GPL obligation to provide sources for binaries we have previously
+  distributed.
+</p>
+
+<h2 class="cartouche" id="manualupload">Uploading packages manually</h2>
+
+<p>You may also upload files directly, using an sftp client such as sftp or lftp. An upload
+directory on cygwin.com will look like this:</p>
+
+<pre>
+       Your Name                          # directory is currently your full name (you won't actually see this)
+        x86_64    noarch                  # arch directory
+         release   release                # release directory
+          pkg                             # package directory
+           pkg-debuginfo                  # package subdirectories
+</pre>
+
+<h4>Example using <a href="http://lftp.yar.ru/">lftp</a> to upload packages:</h4>
+
+<pre>
+    % lftp sftp://cygwin@cygwin.com
+    cd ok, cwd=/
+
+    lftp cygwin.com:/> ls
+    drwxrwsr-x   4 root     cygstage     4096 Sep  1 05:16 .
+    drwxrwxr-x  61 cygwin   root         4096 Sep  1 05:12 ..
+    drwxrwsr-x.  3 cygwin   cygstage     4096 May  9 19:00 noarch
+    drwxrwsr-x   3 cygwin   cygstage     4096 Aug 10 19:04 x86_64
+
+    lftp cygwin.com:/> cd x86_64/release
+    cd ok, cwd=/x86_64/release
+
+    lftp cygwin.com:/x86_64/release> ls
+    drwxrwsr-x   3 cygwin   cygstage     4096 Oct 12 18:28 .
+    drwxrwsr-x   3 cygwin   cygstage     4096 Oct 12 19:35 ..
+    drwxrwsr-x   3 cygwin   cygstage     4096 Oct 12 19:36 grep
+
+    lftp cygwin.com:/x86_64/release> mirror -eR grep
+    Total: 2 directories, 3 files, 0 symlinks
+    New: 3 files, 0 symlinks
+    2311396 bytes transferred in 14 seconds (166.2K/s)
+
+    lftp cygwin.com:/x86_64/release> ls grep
+    drwxrwsr-x   3 cygwin   cygstage     4096 Oct 12 19:47 .
+    drwxrwsr-x   3 cygwin   cygstage     4096 Oct 12 18:28 ..
+    -rw-r--r--   1 cygwin   cygstage      356 Oct 12 19:47 grep-2.14-3.hint
+    -rw-r--r--   1 cygwin   cygstage   229284 Oct 12 19:47 grep-2.14-3.tar.xz
+    -rw-r--r--   1 cygwin   cygstage  1204708 Oct 12 19:46 grep-2.14-3-src.tar.xz
+    drwxrwsr-x   2 cygwin   cygstage     4096 Oct 12 19:47 grep-debuginfo
+
+    lftp cygwin.com:/x86_64/release> ls grep/grep-debuginfo
+    drwxrwsr-x   2 cygwin   cygstage     4096 Oct 12 19:47 .
+    drwxrwsr-x   3 cygwin   cygstage     4096 Oct 12 19:47 ..
+    -rw-r--r--   1 cygwin   cygstage      356 Oct 12 19:47 grep-debuginfo-2.14-3.hint
+    -rw-r--r--   1 cygwin   cygstage   877404 Oct 12 19:47 grep-debuginfo-2.14-3.tar.xz
+
+    lftp cygwin.com:/x86_64/release> put /dev/null -o !ready
+</pre>
+
+<h4>Example <code>lftp</code> upload command line</h4>
+
+<pre>
+    # command line to upload the time packages
+    cd wherever
+    lftp -c 'connect sftp://cygwin@cygwin.com/; cd x86_64/release; mirror -eR time; put /dev/null -o !ready'
+</pre>
+
+<p>The package directories should exactly mirror what is currently in
+the release directory.  So, it should be a hierarchy containing
+<code>.tar.xz</code> files and <code>.hint</code> files.</p>
+
+<p>The <code>!ready</code> file is used to tell
+<code>calm</code> (the script which creates setup.ini) that any files older
+than this file in or under the given directory should be processed.  The
+intent is that you create <code>!ready</code> when you have finished
+uploading everything that you plan on uploading.</p>
+
+<h2 class="cartouche" id="FAQ">Frequently Asked Questions</h2>
+
+<h3 id="cantlogin">Q) Why can't I login via sftp?</h3>
+<p>A) There are two likely reasons for login failures:</p>
+<ol>
+<li>You're not using the SSH key provided when you set up your account.</li>
+<li>You are not logging in as the <code>cygwin</code> user.  You need to login as user <code>cygwin</code> with no password.</li>
+</ol>
+
+<h3 id="confused">Q) I don't understand the errors in an emailed calm upload report!</h3>
+
+<p>A) Ask on the <code>cygwin-apps</code> mailing list, or the #cygwin-developers IRC channel.</p>
+
+</div>
+
+</body>
+</html>

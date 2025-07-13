@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Cygwin Installation</title>
+  </head>
+
+<body>
+<!--#include virtual="navbar.html" -->
+<div id="main">
+<!--#include virtual="top.html" -->
+<h1>Installing and Updating Cygwin Packages</h1>
+
+<h2 class="cartouche">Installing and Updating Cygwin for 64-bit versions of Windows</h2>
+
+<p>Run <a href="setup-x86_64.exe">setup-x86_64.exe</a> any time you want to
+update or install a Cygwin package for 64-bit windows.</p>
+
+<p>The gpg <a href="setup-x86_64.exe.sig">signature</a>
+for <a href="setup-x86_64.exe">setup-x86_64.exe</a> can be used to verify the
+validity of this binary using the public
+key <a href="key/pubring.asc">here</a>.</p>
+
+<h2 class="cartouche" id="general">General installation notes</h2>
+
+<p>When installing packages for the first time, the setup program
+<em>does not install every package</em>.  Only the <b>minimal base packages</b>
+from the Cygwin distribution are installed by default, which takes up about 100 MB.
+</p>
+
+<p>
+Clicking on categories and packages in the setup program package installation
+screen allows you to select what is installed or updated.
+</p>
+
+<p>Individual packages like <em>bash</em>, <em>gcc</em>, <em>less</em>, etc.
+are released independently of the Cygwin DLL, so the Cygwin DLL version is not
+useful as a general Cygwin release number.  The setup program
+tracks the versions of all installed components and provides the mechanism
+for <b>installing</b> or <b>updating</b> everything available from this site for
+Cygwin.</p>
+
+<p>Once you've installed your desired subset of the Cygwin distribution,
+the setup program will remember what you selected, so re-running it
+will update your system with any new package releases.</p>
+
+<p>The setup program will check by default if it runs with administrative
+privileges and, if not, will try to elevate the process.  If you want to avoid
+this behaviour and install under an unprivileged account just for your own
+usage, run setup with the <code>--no-admin</code> option.</p>
+
+<h2 class="cartouche" id="add-package">Q: How do I add a package to my existing Cygwin installation?</h2>
+
+<p>
+A: Run the setup program and select the package you want to add.
+</p>
+
+<p>
+<b>Tip:</b> If you don't want to also upgrade existing packages, select 'Keep'
+at the top-right of the package chooser page.
+</p>
+
+<h2 class="cartouche" id="cli">Q: Is there a command-line installer?</h2>
+
+<p>A: Yes and no.  The setup program understands
+<a href="faq/faq.html#faq.setup.cli">command-line
+arguments</a> which allow you to control its behavior and choose
+individual packages to install.  While this provides some functionality
+similar to such tools as <code>apt-get</code> or <code>yum</code> it is not as
+full-featured as those package managers.</p>
+
+<p>
+<b>Tip:</b> Performing an automated installation can be done using
+the <code>-q</code> and
+<code>-P package1,package2,...</code> options.
+</p>
+
+<h2 class="cartouche" id="why-not">Q: Why not use <code>apt</code>, <code>yum</code>, my
+favourite package manager, etc.?</h2>
+
+<p>A: The basic reason for not using a more full-featured package manager is that
+such a program would need full access to all of Cygwin's POSIX functionality.  That
+is, however, difficult to provide in a Cygwin-free environment, such as exists on
+first installation.  Additionally, Windows does not easily allow overwriting of
+in-use executables so installing a new version of the Cygwin DLL while a package
+manager is using the DLL is problematic.
+</p>
+
+<h2 class="cartouche" id="everything">Q: How do I install everything?</h2>
+
+<p>
+A: You do not want to do this!  This will install an enormous number of packages
+that you will never use, including debuginfo and source for every package.
+</p>
+<p>
+If you really <i>must</i> do this, clicking on the "Default" label next to the
+"All" category to change it to "Install" will mark every Cygwin package for
+installation.  Be advised that this will download and install tens of gigabytes
+of files to your computer.
+</p>
+
+<h2 class="cartouche" id="packages">Q: What packages are available?</h2>
+
+<p>
+A: To find available packages, and view what package contains <i>X</i> see the
+<a href=" https://cygwin.com/packages/">package search</a> page.
+</p>
+
+<p>
+<b>Tip:</b> Perform a search from the command-line using
+<a href="https://cygwin.com/cygwin-ug-net/cygcheck.html"><code>cygcheck</code></a>
+using <code>-p package</code> or <code>-e package1 package2 ...</code> options.
+</p>
+
+<h2 class="cartouche" id="verify-sig">Q: How do I verify the signature of setup?</h2>
+
+<p>A: e.g.</p>
+
+<pre>
+$ gpg --recv-key 1A698DE9E2E56300
+gpg: requesting key 1A698DE9E2E56300 from hkp server keys.gnupg.net
+gpg: key 1A698DE9E2E56300: "Cygwin &lt;cygwin@cygwin.com&gt;" imported
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   8  signed:   2  trust: 0-, 0q, 0n, 0m, 0f, 8u
+gpg: depth: 1  valid:   2  signed:   0  trust: 2-, 0q, 0n, 0m, 0f, 0u
+gpg: Total number processed: 1
+gpg:               imported: 1  (RSA: 1)
+
+$ gpg --keyid-format=long --with-fingerprint --verify setup-x86_64.exe.sig setup-x86_64.exe
+[...]
+gpg: Signature made 12 Mar 2020 16:26:58 GMT
+gpg:                using RSA key 1A698DE9E2E56300
+gpg: Good signature from "Cygwin &lt;cygwin@cygwin.com&gt;"
+Primary key fingerprint: 5640 5CF6 FCC8 1574 682A  5D56 1A69 8DE9 E2E5 6300
+</pre>
+
+<h2 class="cartouche" id="hash">Q: What's the hash of setup?</h2>
+
+<p>
+A: See <a href="https://cygwin.com/sha512.sum">here</a>
+</p>
+
+<h2 class="cartouche" id="offline">Q: How can I do an offline install?</h2>
+
+<p>A1: Install without access to the internet, using a local package
+  repository</p>
+
+<ul>
+  <li>
+    Create a local copy of the package repository e.g. by
+    using <a href="package-server.html#local-mirror"><code>rsync</code> on one
+    of the mirrors</a>.
+  </li>
+  <li>
+    Move that copy to an accessible location, or copy it to removable media.
+  </li>
+  <li>
+    Run setup, and enter the URL, path or UNC path of that repository when
+    prompted to "Choose A Download Site".
+  </li>
+</ul>
+
+<p>A2: Install without access to the internet, using setup's separate download
+  and install actions.</p>
+
+<ul>
+  <li>
+    Run setup in "Download without installing" mode somewhere it can access a
+    mirror, with the desired packages selected.
+  </li>
+  <li>
+    Run setup again in "Install from local directory" mode, with the same "Local
+    package directory", and set of packages selected.
+  </li>
+</ul>
+
+<h2 class="cartouche" id="unsupported">Q: How can I install the last Cygwin
+version for an old, unsupported Windows version?</h2>
+
+<p>
+  A: Run setup with the options <code>--allow-unsupported-windows
+  --site <i>circa_URL</i></code>:
+</p>
+
+<table class="deben">
+  <tr>
+    <th>
+      Windows version
+    </th>
+    <th>
+      Setup version
+    </th>
+    <th>
+      Cygwin DLL version
+    </th>
+    <th>
+      circa URL
+    </th>
+  </tr>
+  <tr>
+    <td>
+      Windows 7<br/>Windows Server 2008 R2<br/>(NT 6.1)<br/>
+      Windows 8<br/>Windows Server 2012<br/>(NT 6.2)<br/>
+    </td>
+    <td>
+      current
+    </td>
+    <td>
+      3.4.10
+    </td>
+    <td>
+      <p>
+        64-bit: http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/circa/64bit/2024/01/30/231215
+      </p>
+      <p>
+        Also use <code>--no-verify</code> with this URL.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Windows Vista<br/>Windows Server 2008<br/>(NT 6.0)<br/>
+      <a href="https://cygwin.com/pipermail/cygwin-announce/2022-November/010810.html">
+        All 32-bit Windows
+      </a>
+    </td>
+    <td>
+      current
+    </td>
+    <td>
+      3.3.6
+    </td>
+    <td>
+      <p>
+        32-bit: http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/circa/2022/11/23/063457<br>
+        or the URL for any <a href="https://sourceware.org/mirrors.html">sourceware mirror</a>, followed by cygwin-archive/20221123
+      </p>
+      <p>
+        64-bit: http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/circa/64bit/2022/11/23/063529
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://cygwin.com/ml/cygwin/2016-11/msg00071.html">Windows XP SP3<br/> Windows Server 2003<br/>(NT 5.1)</a>
+    </td>
+    <td>
+      2.932<br/>
+      (<a href="https://cygwin.com/setup/setup-2.932.x86_64.exe">32-bit</a>,
+      <a href="https://cygwin.com/setup/setup-2.932.x86.exe">64-bit</a>)
+    </td>
+    <td>
+      2.5.2
+    </td>
+    <td>
+      32-bit: http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/circa/2016/08/30/104223<br/>
+      64-bit: http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/circa/64bit/2016/08/30/104235
+      <p>
+        Also use <code>--no-verify</code> with these URLs.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Windows 2000<br/>
+      (NT 5.0)<br/>
+      Windows XP SP2<br/>
+    </td>
+    <td>
+      <a href="http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/setup/snapshots/setup-2.774.exe">2.774</a>
+    </td>
+    <td>
+      1.7.18
+    </td>
+    <td>
+      32-bit: http://ctm.crouchingtigerhiddenfruitbat.org/pub/cygwin/circa/2013/06/04/121035
+      <p>
+        Also use <code>--no-verify</code> with these URLs.
+        Use <code>--only-site</code> rather than <code>--allow-unsupported-windows</code> with this setup version.
+      </p>
+    </td>
+  </tr>
+</table>
+
+<p>
+  Thanks to
+  the <a href="http://www.crouchingtigerhiddenfruitbat.org/Cygwin/timemachine.html">Cygwin
+  Time Machine</a> for providing this archive.
+</p>
+
+  <h4>A note about 32-bit Cygwin</h4>
+
+  <p>
+    The limited address space of 32-bit Windows means that
+    <a href="/faq.html#faq.using.fixing-fork-failures">random
+    failures in the fork(2) system call</a> are more likely.  Therefore, we
+    recommend using 32-bit Cygwin only in limited scenarios, with only a minimum
+    of necessary packages installed, and only if there's no way to run 64-bit
+    Cygwin instead.
+  </p>
+
+  <p>
+    <b>You have been warned.</b>  If you're still sure you really need a 32-bit
+    Cygwin, and there's absolutely no way around it, you may use
+    the <a href="setup-x86.exe">setup-x86.exe</a> installer, following the
+    instructions above.  The gpg <a href="setup-x86.exe.sig">signature</a> can be
+    used to verify the validity of this binary.
+  </p>
+
+<h2 class="cartouche" id="source">Q: How do I help improve setup?</h2>
+
+<p>
+A: See the <a href="https://sourceware.org/cygwin-apps/setup.html">setup</a>
+project page for more information.
+</p>
+
+<p>
+  GUI translations can be made and updated at
+  <a href="https://hosted.weblate.org/projects/cygwin-setup/cygwin-setup/">weblate</a>.
+</p>
+
+</div>
+</body>
+</html>

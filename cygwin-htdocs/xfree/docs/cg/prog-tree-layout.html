@@ -1,0 +1,415 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Source Code Tree Layout</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"/><LINK
+REL="HOME"
+TITLE="Cygwin/X Contributor's Guide"
+HREF="cygwin-x-cg.html"/><LINK
+REL="UP"
+TITLE="Programming"
+HREF="programming.html"/><LINK
+REL="PREVIOUS"
+TITLE="Programming"
+HREF="programming.html"/><LINK
+REL="NEXT"
+TITLE="Cygwin/X X Server
+Architecture"
+HREF="prog-server-architecture.html"/><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;charset=utf-8"/></HEAD
+><BODY
+CLASS="sect1"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Cygwin/X Contributor's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="programming.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Programming</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="prog-server-architecture.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="prog-tree-layout"
+>Source Code Tree Layout</A
+></H1
+><P
+>&#13;A brief overview of the <TT
+CLASS="filename"
+>xserver</TT
+> source
+tree layout, highlighting the parts of important and interest for Cygwin/X development:
+</P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>dix</TT
+> contains [drawing]
+<A
+HREF="glossary.html#gloss-dix-layer"
+><I
+CLASS="glossterm"
+>device independent X</I
+></A
+>
+routines.  <TT
+CLASS="filename"
+>main.c</TT
+> contains the
+<CODE
+CLASS="function"
+>main</CODE
+> entry-point function for the Cygwin/X X
+Server.  The X Server startup procedure can be followed by examining
+<CODE
+CLASS="function"
+>main</CODE
+>.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>fb</TT
+> contains the modern
+framebuffer drawing procedures used by Cygwin/X.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>hw</TT
+> contains [drawing]
+hardware dependent functions.</P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>kdrive</TT
+>
+<UL
+><LI
+><P
+><TT
+CLASS="filename"
+>ephyr</TT
+> contains the Xephyr X Server
+which uses a window on a host X Server as its framebuffer.
+Unlike Xnest it supports modern X extensions such as Composite, Damage, randr, etc.
+</P
+></LI
+></UL
+>
+</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>vfb</TT
+> contains the Virtual
+Framebuffer X Server.  The vfb server draws to a system memory
+framebuffer. Xvfb is primarly used for testing, or for running X clients
+which require an X server but there is no interest in seeing the content
+of it's windows.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>xfree86</TT
+> contains source
+code for the X Window System servers that run on various operating systems
+that generally have low-level access to the graphics hardware.
+Cygwin/X does not have low-level access to the graphics hardware,
+thus Cygwin/X is not able to utilize the X Window System server.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>xnest</TT
+> contains source
+code for the Nested X Server which runs inside of another X Server.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>xquartz</TT
+> contains the source
+code for the XQuartz X Server, which runs on Mac OS X.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>xwin</TT
+> contains the source
+code for the Cygwin/X X Server.  This is the primary directory that
+Cygwin/X programmers will be interested in.</P
+></LI
+></UL
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>include</TT
+> contains header
+files specific to the X Server program, such as graphics context
+structures.  This directory is useful to Cygwin/X programmers when
+they need to lookup the name or data type of members of various X
+Server structures.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>mi</TT
+> contains <A
+HREF="glossary.html#gloss-mi-layer"
+><I
+CLASS="glossterm"
+>machine independent</I
+></A
+> drawing
+routines.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>miext</TT
+> contains various
+machine independent X extensions.</P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>shadow</TT
+> contains source
+code for the <A
+HREF="glossary.html#gloss-shadow-layer"
+><I
+CLASS="glossterm"
+>shadow</I
+></A
+>
+framebuffer layer that the Cygwin/X X Server depends
+upon.  This directory is of primary importance to Cygwin/X, but it is
+maintained by other programmers and is only of direct interest to
+Cygwin/X programmers when it fails to build.  The shadow layer
+does three things:</P
+><OL
+TYPE="1"
+><LI
+><P
+>Allows the <TT
+CLASS="filename"
+>fb</TT
+> graphics routines to draw to an
+offscreen framebuffer.</P
+></LI
+><LI
+><P
+>Keeps track of the regions of the offscreen framebuffer that
+have been drawn on.</P
+></LI
+><LI
+><P
+>Calls one of Cygwin/X's engine dependent ShadowUpdate ()
+functions to transfer the updated regions of the offscreen framebuffer
+to the screen.</P
+></LI
+></OL
+></LI
+></UL
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>os</TT
+> contains <A
+HREF="glossary.html#gloss-os-layer"
+><I
+CLASS="glossterm"
+>operating system dependent</I
+></A
+> X
+Server functions.  However, the functions in the <TT
+CLASS="filename"
+>os</TT
+> have been written in such a way that
+they are actually compatible with most <ACRONYM
+CLASS="acronym"
+>UNIX</ACRONYM
+>-style operating systems,
+include Cygwin.</P
+></LI
+></UL
+><P
+>Other packages of interest in the X.Org Release</P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>xorg-docs</TT
+>
+contains documentation for various components of the X Window System.
+Cygwin/X-specific documentation is not contained in this directory.
+</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>xorgproto</TT
+>
+contains the various X Window System protocol headers.</P
+></LI
+><LI
+><P
+>The various X client and X Server libraries.
+Cygwin/X programmers occasionally need to fix Cygwin-related build errors that occur in
+these libraries.</P
+></LI
+><LI
+><P
+>The various standard X utility and test applications (e.g. <B
+CLASS="command"
+>xeyes</B
+>,
+<B
+CLASS="command"
+>xhost</B
+>, <B
+CLASS="command"
+>xinit</B
+>, <B
+CLASS="command"
+>xlogo</B
+>, etc.).
+Cygwin/X programmers occasionally need to fix Cygwin-related build errors that occur in
+these applications.
+</P
+></LI
+><LI
+><P
+>The various font packages that contain font definition files used to compile fonts.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="programming.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="cygwin-x-cg.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="prog-server-architecture.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Programming</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="programming.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Cygwin/X X Server
+Architecture</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

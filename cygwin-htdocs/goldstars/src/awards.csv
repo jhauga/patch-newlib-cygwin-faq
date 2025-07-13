@@ -1,0 +1,441 @@
+# Blank lines and comment lines in this file are ignored.  The first non-blank,
+# non-comment line must be a list of field names.  Otherwise the order of
+# entries in this file doesn't matter.  make_awards_list.pl will sort the awards
+# for output.
+#
+# Note: The URL field may contain just a bare date (i.e. the date of a git
+# commit) as YYYY-MM-DD, if there's no web URL that refers to the award.
+
+Awardee,URL,Description,Gold star,Plush hippo,Gold watch,Platinum watch,Silver star,Elfyns star,Stinkbomb
+
+AB,https://cygwin.com/ml/cygwin/2005-10/msg00416.html,For &quot;a nice comeback&quot; (<i>a.k.a.</i> seeing that <i>fiddler crab</i>).
+
+AB1,https://cygwin.com/ml/cygwin-apps/2003-07/msg00053.html,For being the first to recompile his package for Cygwin 1.5.0.
+
+AD,https://cygwin.com/ml/cygwin-apps/2015-07/msg00253.html,For helping with the Great Perl Update of 2015.
+AD,https://cygwin.com/ml/cygwin-apps/2014-08/msg00133.html,For adopting the `git` package.
+AD,https://cygwin.com/ml/cygwin/2014-03/msg00207.html,For good reading skills.
+
+AG,https://cygwin.com/pipermail/cygwin-apps/2023-May/042910.html,For strange and subtle manipulations.,,1
+AG,https://cygwin.com/pipermail/cygwin-apps/2021-December/041739.html,For packaging `autoconf2.7` for Cygwin.
+AG,https://cygwin.com/pipermail/cygwin-apps/2021-April/041146.html,For updating the URLs in cygport to https.
+AG,https://cygwin.com/ml/cygwin-apps/2019-07/msg00025.html,For adopting the `openldap` package.
+AG,https://cygwin.com/ml/cygwin-apps/2017-10/msg00057.html,"For adopting the `gnuplot`, `liblzo2`, and `xfig` packages.",3
+AG,https://cygwin.com/ml/cygwin-apps/2017-07/msg00049.html,For a heroic 1-2 punch on a bug.
+AG,https://cygwin.com/ml/cygwin-apps/2017-06/msg00033.html,For adopting the `protobuf` package.
+AG,https://cygwin.com/ml/cygwin-apps/2015-08/msg00016.html,For adopting the `gnucap` package.
+AG,https://cygwin.com/ml/cygwin-apps/2015-08/msg00015.html,For adopting the `md5deep` package.
+AG,https://cygwin.com/ml/cygwin-apps/2015-07/msg00246.html,For organizing the Great Perl Update of 2015.,,1
+AG,https://cygwin.com/ml/cygwin-apps/2015-05/msg00023.html,For adopting the `mosh` package.
+AG,https://cygwin.com/ml/cygwin-apps/2015-03/msg00069.html,For adopting the `maxima` package.
+AG,https://cygwin.com/ml/cygwin-apps/2015-02/msg00293.html,For adopting a whole pile of orphaned perl packages.,,1
+AG,https://cygwin.com/ml/cygwin-apps/2015-02/msg00248.html,For adopting the `groff` package.
+AG,https://cygwin.com/ml/cygwin-apps/2015-01/msg00069.html,For overhauling autorebase in setup.
+AG,https://cygwin.com/ml/cygwin/2014-07/msg00035.html,For adopting and fixing a longstanding problem in the `rcs` package.
+AG,https://cygwin.com/ml/cygwin-apps/2014-06/msg00036.html,For adopting the `run` package.
+AG,https://cygwin.com/ml/cygwin/2014-04/msg00181.html,For adopting the essential `base-files` package.
+AG,https://cygwin.com/ml/cygwin-apps/2013-04/msg00258.html,"For adopting the `gmp`, `mpfr`, `mpclib`, `ppl`, and `cloog-ppl` packages.",6
+
+AH,https://cygwin.com/ml/cygwin-xfree/2005-08/msg00081.html,For the offer to take over Cygwin/X maintainership.,2
+
+AK,https://cygwin.com/ml/cygwin-apps/2011-11/msg00088.html,For integrating Mintty shortcuts into setup.
+AK,https://cygwin.com/ml/cygwin-apps/2010-07/msg00177.html,For overhauling automatic dependency selection in setup.
+
+AL,https://cygwin.com/ml/cygwin-apps/2017-05/msg00069.html,For adopting the `libatomic_ops` and `libgc` packages.,2
+
+AP,https://cygwin.com/ml/cygwin/2009-05/msg00180.html,"For adding the package search feature in setup (hear, hear)."
+
+AS,https://cygwin.com/pipermail/cygwin-apps/2023-August/043137.html,For adopting the `jq` package.
+AS,https://cygwin.com/ml/cygwin-apps/2017-10/msg00043.html,For adopting the `multitail` package.
+AS,https://cygwin.com/ml/cygwin-apps/2015-10/msg00074.html,For inventing the stinkbomb award.,,,,,,1
+AS,https://cygwin.com/ml/cygwin-apps/2015-07/msg00253.html,For helping with the Great Perl Update of 2015.
+AS,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+AS,https://cygwin.com/ml/cygwin/2011-12/msg00302.html,For responsiveness in maintaining the gold star page.
+AS,https://cygwin.com/ml/cygwin/2009-07/msg00451.html,For volunteering to maintain the gold star page.
+AS,https://cygwin.com/ml/cygwin/2007-07/msg00282.html,For packaging `screen` for Cygwin.
+AS,https://cygwin.com/ml/cygwin-apps/2007-02/msg00045.html,For adopting the `stunnel` package.
+AS,https://cygwin.com/ml/cygwin-apps/2006-07/msg00064.html,For adopting the `lftp` package.
+AS,https://cygwin.com/ml/cygwin/2005-08/msg01182.html,"For patience, bravery, manliness, etc. in maintaining the `unison*` packages."
+
+BD,https://cygwin.com/ml/cygwin/2008-12/msg00193.html,"For patience, insight, and helpfulness on the mailing lists."
+BD,https://cygwin.com/ml/cygwin/2006-06/msg00536.html,For explaining why we all need to test Cygwin snapshots.
+BD,https://cygwin.com/ml/cygwin/2005-04/msg00363.html,For good advice and determination to help on the Cygwin list.,2
+BD,https://cygwin.com/ml/cygwin/2004-09/msg00463.html,For solving an Apache startup failure.
+BD,https://cygwin.com/ml/cygwin/2004-05/msg00871.html,For adopting the `apache` package.
+
+BF,https://cygwin.com/ml/cygwin/2004-11/msg00830.html,For spearheading the dwarf-2 effort for Cygwin.,2
+BF,https://cygwin.com/ml/cygwin/2004-06/msg00847.html,For fixing a mailing list gateway breakage.
+BF,https://cygwin.com/ml/cygwin/2003-11/msg00601.html,For explaining why people should help out.
+
+BI,https://cygwin.com/pipermail/cygwin/2025-May/258121.html,"For giving quick, concise, and helpful answers on the Cygwin lists."
+BI,https://cygwin.com/ml/cygwin-apps/2017-04/msg00071.html,For adopting the `units` package.
+
+CB,https://cygwin.com/ml/cygwin/2014-06/msg00295.html,For packaging `man-db`.
+
+CGF,https://cygwin.com/ml/cygwin/2014-08/msg00012.html,For lifetime achievement and contributions to the Cygwin project.,,,,1
+CGF,https://cygwin.com/ml/cygwin/2009-12/msg00708.html,For releasing Cygwin 1.7.,3
+CGF,https://cygwin.com/ml/cygwin/2008-07/msg00396.html,For keeping the Cygwin list on topic.
+CGF,https://cygwin.com/ml/cygwin/2005-02/msg00156.html,For fixing hyperthreading.
+CGF,https://cygwin.com/ml/cygwin/2004-04/msg00008.html,For good work on Cygwin for the past 7 years and being mean only when it's absolutely necessary.,20
+
+CS,https://cygwin.com/ml/cygwin-apps/2016-02/msg00075.html,For adopting the `astyle` package.
+CS,https://cygwin.com/ml/cygwin-apps/2016-02/msg00043.html,For adopting the `mksh` package.
+CS,https://cygwin.com/ml/cygwin/2014-09/msg00291.html,For maintaining lots of packages over the years.,2
+CS,https://cygwin.com/ml/cygwin-apps/2012-08/msg00029.html,For maintaining the w32api package for 9 years.,,,1
+CS,https://cygwin.com/ml/cygwin-apps/2007-07/msg00171.html,For adopting the `hexedit` package.
+CS,https://cygwin.com/ml/cygwin-apps/2007-04/msg00030.html,For cleaning up the `mingw-runtime` package.
+CS,https://cygwin.com/ml/cygwin-apps/2006-11/msg00092.html,For adopting the `astyle` package.
+
+CV,https://cygwin.com/pipermail/cygwin/2025-June/258366.html,For finding and fixing her own 16-year-old bug.
+CV,https://cygwin.com/pipermail/cygwin-apps/2023-May/042910.html,For strange and subtle manipulations.,,1
+CV,https://cygwin.com/pipermail/cygwin/2021-November/249855.html,For overhauling the Cygwin pipe code to make XEmacs unusable.
+CV,http://cygwin.com/ml/cygwin/2019-03/msg00273.html,For fixing a long-standing bug in screen.
+CV,https://cygwin.com/ml/cygwin-apps/2015-03/msg00037.html,For inventing the plush hippo award.,,1
+CV,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+CV,https://cygwin.com/ml/cygwin/2014-10/msg00495.html,For finding and fixing a nasty CPU register corruption bug.
+CV,https://cygwin.com/ml/cygwin/2012-03/msg00706.html,For getting autorebase working in setup.
+CV,https://cygwin.com/ml/cygwin-apps/2011-11/msg00088.html,For integrating Mintty shortcuts into setup.
+CV,https://cygwin.com/ml/cygwin/2009-12/msg00708.html,For releasing Cygwin 1.7.,3
+CV,https://cygwin.com/ml/cygwin/2004-12/msg00727.html,"For combining fileutils, sh-utils, and textutils into coreutils.",2
+CV,https://cygwin.com/ml/cygwin/2003-07/msg00248.html,For adding 64-bit I/O to Cygwin 1.5.,5
+
+CW,https://cygwin.com/ml/cygwin/2011-10/msg00302.html,For supporting `libiconv`.
+CW,https://cygwin.com/ml/cygwin-apps/2010-08/msg00163.html,For adopting the `sunrpc` package.
+CW,https://cygwin.com/ml/cygwin/2009-03/msg00151.html,For obviating the dreaded TS hack.
+CW,https://cygwin.com/ml/cygwin/2008-04/msg00524.html,For adopting the `login` package.
+CW,https://cygwin.com/ml/cygwin/2008-04/msg00443.html,For creating the `csih` package.
+CW,https://cygwin.com/ml/cygwin-apps/2007-06/msg00018.html,For adopting the `ssmtp` package.
+CW,https://cygwin.com/ml/cygwin/2006-12/msg00506.html,For years of service and dedicated maintainership of important Cygwin packages.,5
+
+Cygwin,https://cygwin.com/pipermail/cygwin/2020-October/246538.html,For providing a Linux-like environment in Windows for 25 years.,,,1
+
+DA,https://cygwin.com/ml/cygwin/2003-05/msg01117.html,For being an example of reasonable discussion on the list.
+
+DB,https://cygwin.com/ml/cygwin-apps/2015-04/msg00012.html,For adopting the `inetutils` package.
+
+DD,https://cygwin.com/ml/cygwin-apps/2010-09/msg00046.html,For adopting the `ocaml` package.
+
+DF,https://cygwin.com/pipermail/cygwin-apps/2023-June/042977.html,For adopting ruby and its many associated packages.,3
+
+DK,https://cygwin.com/ml/cygwin-apps/2010-08/msg00012.html,"For recording zero-size tarballs as successfully installed in setup, thereby de-annoying CGF."
+DK,https://cygwin.com/ml/cygwin/2009-07/msg00453.html,For persistence to fix the Cygwin problems which turned up by working on the new gcc4 libstdc++ and libgfortran problems.
+DK,https://cygwin.com/ml/cygwin/2007-03/msg00908.html,For fixing a broken build of gcc 4.3.0.
+DK,https://cygwin.com/ml/cygwin-apps/2006-11/msg00071.html,For uploading an experimental version of `gcc`.
+DK,https://cygwin.com/ml/cygwin-talk/2006-q1/msg00201.html,For succinctly summarizing how to fix a bug.
+DK,https://cygwin.com/ml/cygwin/2005-06/msg00052.html,For coining a new acronym.
+DK,https://cygwin.com/ml/cygwin/2004-09/msg00149.html,"For giving sensible advice, non-meanly."
+DK,https://cygwin.com/ml/cygwin/2004-03/msg00548.html,For exemplary use of reasoning powers.
+DK,https://cygwin.com/ml/cygwin/2004-01/msg01000.html,For trenchant commentary.
+
+DK1,https://cygwin.com/ml/cygwin/2004-10/msg00622.html,"For going above and beyond the expected volunteer effort (with the `chere` package)."
+
+DL,https://cygwin.com/ml/cygwin-apps/2013-08/msg00101.html,For adopting the `par` package.
+
+DR,https://cygwin.com/ml/cygwin-apps/2020-01/msg00004.html,For maintaining subversion for the last 12 (!) years.
+DR,https://cygwin.com/ml/cygwin-apps/2015-07/msg00253.html,For helping with the Great Perl Update of 2015.
+DR,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+DR,https://cygwin.com/ml/cygwin-apps/2013-08/msg00220.html,For adopting the `whois` package.
+DR,https://cygwin.com/ml/cygwin/2013-05/msg00379.html,"For providing short, simple, easy to reproduce testcases in plain C."
+DR,https://cygwin.com/ml/cygwin-apps/2010-07/msg00033.html,For adopting the `cyrus-sasl` package.
+DR,https://cygwin.com/ml/cygwin-apps/2007-07/msg00234.html,For updating the `libao` packages.
+DR,https://cygwin.com/ml/cygwin/2005-06/msg00417.html,For finding a mistake in a package upload before the announcement was even sent.
+DR,https://cygwin.com/ml/cygwin/2003-07/msg01475.html,For tracking down the fseeko() after fdopen() problem in source code.
+
+DR1,https://cygwin.com/ml/cygwin/2003-10/msg01311.html,For being a great package coordinator on `cygwin-apps`.
+
+DS,https://cygwin.com/ml/cygwin-apps/2011-03/msg00061.html,For adopting and revamping the vital `base-files` package.
+
+DSt,https://cygwin.com/ml/cygwin-apps/2018-06/msg00039.html,For maintaining lots of packages over the years.,,,1
+DSt,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+DSt,https://cygwin.com/ml/cygwin-apps/2015-02/msg00244.html,For adopting the `mscgen` package.
+DSt,https://cygwin.com/ml/cygwin-apps/2014-06/msg00079.html,For adopting the `xloadimage` package.
+DSt,https://cygwin.com/ml/cygwin/2013-11/msg00484.html
+DSt,https://cygwin.com/ml/cygwin-apps/2013-08/msg00049.html,For adopting the `ninvaders` package.
+DSt,https://cygwin.com/ml/cygwin-apps/2012-09/msg00195.html,For adopting the `doxygen` package.
+
+EB,https://cygwin.com/ml/cygwin-announce/2014-10/msg00029.html,For adopting the `gperf` package.
+EB,https://cygwin.com/ml/cygwin-announce/2014-10/msg00025.html,For adopting the `grep` package.
+EB,https://cygwin.com/ml/cygwin-announce/2014-10/msg00021.html,For adopting the `gzip` package.
+EB,https://cygwin.com/ml/cygwin-announce/2014-10/msg00003.html,For adopting the `bison` package.
+EB,https://cygwin.com/ml/cygwin-announce/2014-09/msg00042.html,For adopting the `diffutils` package.
+EB,https://cygwin.com/ml/cygwin/2009-07/msg00455.html,For obsoleting ash with its attendant stone-age code.
+EB,https://cygwin.com/ml/cygwin-apps/2006-11/msg00069.html,For adopting the `wget` package.
+EB,https://cygwin.com/ml/cygwin/2006-02/msg00088.html,"For offering a nice summation of the problems with mismatched dlls, along with a cogent suggestion for dealing with the problem."
+EB,https://cygwin.com/ml/cygwin-apps/2005-05/msg00270.html,For packaging `bash` for Cygwin.
+EB,https://cygwin.com/ml/cygwin/2005-01/msg00727.html,For adopting and updating the `coreutils` package.,2
+
+EF,https://cygwin.com/ml/cygwin/2000-04/msg00261.html,For enlightening people on the properties of `/cygdrive`.
+
+EMB,https://cygwin.com/ml/cygwin/2003-03/msg01932.html,For standing up and enforcing the GPL.
+EMB,https://cygwin.com/ml/cygwin/2003-03/msg01907.html,For pointing out how to subscribe to the Cygwin list without receiving all the mail.
+
+EZ,https://cygwin.com/ml/cygwin/2014-10/msg00495.html,For finding and fixing a nasty CPU register corruption bug.
+
+FF,https://cygwin.com/ml/cygwin-apps/2013-06/msg00081.html,For adopting the `shutdown` package.
+
+FR,https://cygwin.com/ml/cygwin-apps/2003-11/msg00044.html,For making Cygwin `setup` resizeable.,7
+
+GP,https://cygwin.com/ml/cygwin/2003-04/msg02305.html,For educating the community on `gcc` versioning.
+
+GPH,https://cygwin.com/ml/cygwin-apps/2003-10/msg00413.html,For heroically taking over `gcc`.,5
+
+GRVS,https://cygwin.com/ml/cygwin-apps/2003-11/msg00044.html,For numerous Cygwin `setup` contributions leading to resizeability.,3
+
+HLH,https://cygwin.com/ml/cygwin-apps/2003-11/msg00314.html,For taking over `links`.
+
+IP,https://cygwin.com/ml/cygwin/2006-01/msg00225.html,For tracking down incorrect identification of <i>non-</i>Cygwin processes and sticking by it.
+IP,https://cygwin.com/ml/cygwin-apps/2003-11/msg00305.html,For adopting the `pdksh` package.
+IP,https://cygwin.com/ml/cygwin-apps/2003-07/msg00057.html,For I can't really tell what.
+IP,https://cygwin.com/ml/cygwin/2003-04/msg00170.html,For conspicuous service on behalf of the Cygwin community.
+
+JA,https://cygwin.com/ml/cygwin-apps/2007-08/msg00086.html,For adopting the `tnef` package.
+JA,https://cygwin.com/ml/cygwin-apps/2006-11/msg00073.html,For adopting the `ncftp` and `keychaing` packages.,2
+JA,https://cygwin.com/ml/cygwin-apps/2005-11/msg00182.html,For adopting the `naim` package.
+
+JAa,https://cygwin.com/ml/cygwin-apps/2015-07/msg00253.html,For helping with the Great Perl Update of 2015.
+JAa,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+JAa,https://cygwin.com/ml/cygwin-apps/2014-06/msg00066.html,For adopting the `tnef` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2014-06/msg00062.html,For adopting the `rsync` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2012-10/msg00169.html,For adopting the `ncftp` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2012-10/msg00133.html,For adopting the `keychain` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-12/msg00150.html,For adopting the `joe` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-12/msg00127.html,For adopting the `editrights` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00229.html,For adopting the `indent` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00208.html,For adopting the `chkconfig` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00190.html,For adopting the `splint` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00174.html,For adopting the `xterm` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00171.html,For adopting the `fvwm` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00128.html,For adopting the `xgraph` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00076.html,For adopting the `xmlto` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00071.html,For adopting the `figlet` package.
+JAa,https://cygwin.com/ml/cygwin-apps/2007-08/msg00030.html,For adopting the `antiword` package.
+
+JC,https://cygwin.com/ml/cygwin-developers/2011-03/msg00010.html,For kicking butt on CWD handling.
+
+JD,https://cygwin.com/ml/cygwin/2009-11/msg00631.html,For reminding us of the right way to handle a FAQ.
+
+JDF,https://cygwin.com/ml/cygwin-apps/2006-12/msg00019.html,For his highly appreciated commitment to maintaining Cygwin documentation over the last couple of years.,2
+JDF,https://cygwin.com/ml/cygwin-apps/2006-12/msg00011.html,For improving Cygwin documentation.,2
+JDF,https://cygwin.com/ml/cygwin/2003-03/msg01935.html,For improving Cygwin documentation.
+
+JH,https://cygwin.com/ml/cygwin/2004-06/msg00115.html,For volunteering to take over `cURL`.
+
+JJ,https://cygwin.com/ml/cygwin-apps/2015-07/msg00061.html,For adopting the `iperf` package.
+
+JM,https://cygwin.com/ml/cygwin-apps/2010-09/msg00084.html,For years of service maintaining the `base-files` and `base-passwd` packages.,,,1
+
+JN,https://cygwin.com/ml/cygwin-apps/2007-07/msg00166.html,For quietly taking over the `libfontconfig1` and `libfontconfig-devel` packages (slightly retroactive).,2
+
+JRP,https://cygwin.com/ml/cygwin-apps/2006-02/msg00119.html,For adopting the `ghostscript` package.
+
+JT,https://cygwin.com/ml/cygwin-apps/2015-01/msg00086.html,For 14 years of contributions to Cygwin.,,,1
+JT,https://cygwin.com/ml/cygwin-apps/2004-10/msg00050.html,"For years of supporting `postgres`, and for just being a long time contributor to Cygwin.",2
+
+JTy,https://cygwin.com/pipermail/cygwin-apps/2023-May/042916.html,For maintaining the Cygwin infrastructure.,,1
+JTy,https://cygwin.com/pipermail/cygwin-apps/2023-May/042910.html,For strange and subtle manipulations.,,1
+JTy,2019-12-29,For adopting the `xclip` package.
+JTy,https://cygwin.com/ml/cygwin-apps/2019-08/msg00012.html,For creating a central archive of package build repositories.
+JTy,https://cygwin.com/ml/cygwin-apps/2019-06/msg00005.html,For automating away the manual work in identifying noarch packages .,2
+JTy,https://cygwin.com/ml/cygwin-apps/2018-10/msg00031.html,For dragging `setup` into the 1990s.,,1
+JTy,https://cygwin.com/ml/cygwin-apps/2017-03/msg00026.html,For overhauling the <a href='https://cygwin.com/packages.html'>Cygwin packaging guide</a>.
+JTy,https://cygwin.com/ml/cygwin/2016-06/msg00142.html,"For debugging a ""fun"" problem in `llvm`."
+JTy,https://cygwin.com/ml/cygwin-apps/2016-03/msg00050.html,For developing `calm` as a replacement for `upset`.,1,1
+JTy,https://cygwin.com/ml/cygwin-apps/2016-01/msg00039.html,"For coding a replacement for incver_ifdep in setup. No, I don't know what that does but people seem to be very happy about it. Inquiring Minds will have to read the thread."
+JTy,https://cygwin.com/ml/cygwin-apps/2015-10/msg00023.html,For spontaneously fixing a bug in upset.
+JTy,https://cygwin.com/ml/cygwin-apps/2015-09/msg00017.html,For adopting the `dmalloc` package.
+JTy,https://cygwin.com/ml/cygwin-apps/2015-07/msg00253.html,For helping with the Great Perl Update of 2015.
+JTy,https://cygwin.com/ml/cygwin/2015-07/msg00101.html,"For creating a modern, spec-compliant solution in xwin-xdg-menu."
+JTy,https://cygwin.com/ml/cygwin-apps/2015-03/msg00132.html,For adopting the `cygwin-doc` package.,,1
+JTy,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+JTy,https://cygwin.com/ml/cygwin/2014-10/msg00495.html,For finding and fixing a nasty CPU register corruption bug.
+JTy,https://cygwin.com/ml/cygwin-apps/2013-08/msg00100.html,For adopting the `xmon` package.
+JTy,https://cygwin.com/ml/cygwin-apps/2011-11/msg00088.html,For integrating Mintty shortcuts into setup.
+JTy,https://cygwin.com/ml/cygwin-apps/2011-11/msg00057.html,For adopting the `ddd` package.
+JTy,https://cygwin.com/ml/cygwin-apps/2010-12/msg00031.html,For dramatically improving the speed of `setup`.
+JTy,https://cygwin.com/ml/cygwin-apps/2010-07/msg00190.html,For taking over maintainership of `setup`.
+JTy,https://cygwin.com/ml/cygwin/2009-07/msg00451.html,For taking over maintainership of Cygwin/X after years of neglect.,5
+
+JY,https://cygwin.com/ml/cygwin-apps/2012-10/msg00199.html,For adopting the `w32api` package.
+JY,https://cygwin.com/ml/cygwin-apps/2012-08/msg00029.html
+
+KB,https://cygwin.com/pipermail/cygwin-apps/2025-April/044264.html,For long service maintaining many packages for Cygwin.,,,1
+KB,https://cygwin.com/pipermail/cygwin-apps/2023-May/042910.html,For strange and subtle manipulations.,,1
+KB,https://cygwin.com/pipermail/cygwin/2021-November/249855.html,For overhauling the Cygwin pipe code to make XEmacs unusable.
+KB,https://cygwin.com/ml/cygwin/2019-12/msg00132.html,For revamping the FIFO code in Cygwin.,,1
+KB,https://cygwin.com/ml/cygwin-apps/2018-11/msg00006.html,"For adopting the `doxygen`, `gd`, and `freeglut` packages.",3
+KB,https://cygwin.com/ml/cygwin-apps/2017-12/msg00015.html,For adopting the `lcms2` package.
+KB,https://cygwin.com/ml/cygwin-apps/2017-11/msg00083.html,"For adopting the `libXpm-noX` package. (Whatever that is. Only Ken and Jon know.)"
+KB,https://cygwin.com/ml/cygwin-apps/2017-10/msg00171.html,"For adopting the `ghostscript`, `ghostscript-fonts-std`, and `ghostscript-fonts-other` packages.",3
+KB,https://cygwin.com/ml/cygwin-apps/2017-10/msg00049.html,For adopting the `xpdf` package.
+KB,https://cygwin.com/ml/cygwin-apps/2017-07/msg00049.html,For a heroic 1-2 punch on a bug.
+KB,https://cygwin.com/ml/cygwin-apps/2017-03/msg00012.html,For adopting the `potrace` package.
+KB,https://cygwin.com/ml/cygwin/2016-06/msg00016.html,For going to great lengths to track down a regression.
+KB,https://cygwin.com/ml/cygwin/2015-09/msg00309.html,For getting a `luajit` patch in upstream.
+KB,https://cygwin.com/ml/cygwin-apps/2015-07/msg00253.html,For helping with the Great Perl Update of 2015.
+KB,https://cygwin.com/ml/cygwin-apps/2015-03/msg00069.html,For reviving the abandoned `clisp` package.,,1
+KB,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+KB,https://cygwin.com/ml/cygwin-apps/2015-02/msg00238.html,For adopting the `fcgi` package.
+KB,https://cygwin.com/ml/cygwin-apps/2015-02/msg00219.html,For adopting the `icu` package.
+KB,https://cygwin.com/ml/cygwin/2014-10/msg00495.html,For finding and fixing a nasty CPU register corruption bug.
+KB,https://cygwin.com/ml/cygwin/2011-12/msg00290.html,For improving the project documentation on his own initiative.
+
+KM,https://cygwin.com/ml/cygwin/2005-06/msg00052.html,For the &quot;Cygwin night at the OSCAs&quot; concept (need I say more?).
+KM,https://cygwin.com/ml/cygwin/2003-05/msg00182.html,For creating new mean slogans for CGF to use.
+
+KPR,https://cygwin.com/ml/cygwin/2004-06/msg00115.html,For years of `cURL` service (<i>retroactive</i>).
+
+KT,https://cygwin.com/ml/cygwin/2014-10/msg00495.html,For finding and fixing a nasty CPU register corruption bug.
+
+LH,https://cygwin.com/ml/cygwin/2005-06/msg00767.html,For the most on-topic and painful pun.
+LH,https://cygwin.com/ml/cygwin/2005-04/msg00372.html,"For long service, good advice, and a determination to help.",3
+
+LL,https://cygwin.com/ml/cygwin-apps/2007-12/msg00163.html,For adopting the `nano` package.
+LL,https://cygwin.com/ml/cygwin-apps/2007-08/msg00003.html,For adopting the `pinfo` package.
+LL,https://cygwin.com/ml/cygwin-apps/2006-01/msg00216.html,For reworking the setup.html page.
+
+Lem,https://cygwin.com/pipermail/cygwin-apps/2021-April/041146.html,For updating the URLs in cygport to https.
+
+MA,2024-01-03,For (silently) adopting the `librsvg2` package.
+MA,https://cygwin.com/pipermail/cygwin-apps/2023-December/043337.html,"For adopting the `alternatives`, `bzip2`, `gdbm`, and `libffi` packages.",4
+MA,https://cygwin.com/pipermail/cygwin-apps/2023-May/042910.html,For strange and subtle manipulations.,,1
+MA,2019-12-26,For adopting the `aspell` package.
+MA,https://cygwin.com/ml/cygwin-apps/2016-05/msg00088.html,For adopting the `flex` package.
+MA,https://cygwin.com/ml/cygwin-apps/2016-04/msg00007.html,For adopting the `xgraph` package.
+MA,https://cygwin.com/ml/cygwin-apps/2016-03/msg00070.html,For adopting the `wtf` package.
+MA,https://cygwin.com/ml/cygwin-apps/2015-07/msg00253.html,For helping with the Great Perl Update of 2015.
+MA,https://cygwin.com/ml/cygwin-apps/2015-07/msg00024.html,"For taking over YA orphaned, non-64 bit package.",,1
+MA,https://cygwin.com/ml/cygwin-apps/2015-05/msg00025.html,For adopting and rebuilding the `singular` package.
+MA,https://cygwin.com/ml/cygwin/2015-04/msg00421.html,For adopting the `lilypond` package.
+MA,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+MA,https://cygwin.com/ml/cygwin-apps/2015-02/msg00155.html,For adopting the `less` package.
+MA,https://cygwin.com/ml/cygwin-apps/2015-01/msg00061.html,"For rebuilding pure-ftpd, to allow dropping libopenssl098."
+MA,https://cygwin.com/ml/cygwin-apps/2014-08/msg00134.html,For adopting the `ed` package.
+MA,https://cygwin.com/ml/cygwin-apps/2014-08/msg00029.html,For showing initiative wrt Cygwin infrastructure at this juncture.
+MA,https://cygwin.com/ml/cygwin-apps/2014-05/msg00015.html,For adopting the `ping` package.
+MA,https://cygwin.com/ml/cygwin-apps/2013-01/msg00120.html,For adopting the `postgresql` package.
+MA,https://cygwin.com/ml/cygwin-apps/2012-03/msg00235.html,For adopting the `ccrypt` package.
+MA,https://cygwin.com/ml/cygwin-apps/2012-03/msg00225.html,For adopting the `TeXmacs` package.
+MA,https://cygwin.com/ml/cygwin-apps/2012-02/msg00130.html,For adopting the `gnupg` package.
+MA,https://cygwin.com/ml/cygwin-apps/2011-07/msg00162.html,For adopting the `mc` package.
+MA,https://cygwin.com/ml/cygwin-apps/2010-01/msg00093.html,For adopting the `plotutils` package.
+
+MB,https://cygwin.com/ml/cygwin-apps/2008-04/msg00351.html,For lifetime contribution to the Cygwin project.,,,1
+MB,https://cygwin.com/ml/cygwin-apps/2003-11/msg00279.html,For adopting the `patchutils` package.
+
+MB1,https://cygwin.com/ml/cygwin/2003-08/msg01237.html,For volunteering to maintain `lftp`.
+
+MC,https://cygwin.com/pipermail/cygwin/2025-January/257222.html,For adopting the `astyle` package.
+
+MG,https://cygwin.com/ml/cygwin-apps/2015-10/msg00067.html,For adopting the `cygutils` package.,2
+MG,https://cygwin.com/ml/cygwin/2015-08/msg00327.html,For finding a 13-year-old bug in getservent.,,,,,1
+MG,https://cygwin.com/ml/cygwin/2013-09/msg00098.html,For being observant.
+
+MK,https://cygwin.com/ml/cygwin-patches/2005-q2/msg00109.html,For the truly heroic effort of understanding and documenting how `cygtls` works.
+
+MOP,https://cygwin.com/ml/cygwin/2004-04/msg00947.html,"For &quot;sheer cleverness&quot; (<i>a.k.a.</i> saying it with sheet music)."
+
+MW,https://cygwin.com/ml/cygwin/2008-06/msg00504.html,For pointing out what should have been obvious.
+
+MWe,https://cygwin.com/ml/cygwin-talk/2006-q3/msg00348.html,For wisely redirecting what could have been an HTML email flame war into the <a href='https://cygwin.com/ml/cygwin-talk/'>hippo zone</a>.
+MWe,https://cygwin.com/ml/cygwin/2006-07/msg00741.html,For explaining things.
+
+PAH,https://cygwin.com/ml/cygwin-apps/2007-04/msg00055.html,For taking over `cron`.,2
+PAH,https://cygwin.com/ml/cygwin/2004-05/msg00502.html,For high quality contributions that touched many parts of the Cygwin DLL.,5
+PAH,https://cygwin.com/ml/cygwin/2003-06/msg00344.html,For providing data to help track down a bug.
+
+PB,https://cygwin.com/ml/cygwin/2007-03/msg00863.html,For not being afraid to climb on that ol' soapbox re: <a href='https://cygwin.com/acronyms/#3PP'>3PPs</a>.
+
+PBL,https://cygwin.com/pipermail/cygwin-apps/2025-April/044138.html,For adopting the `nano` package.
+
+PC,http://cygwin.com/ml/cygwin/2017-03/msg00413.html,For shocking and audacious disservice to the community.
+
+PF,https://cygwin.com/ml/cygwin-apps/2015-01/msg00089.html,For adopting the `rpm` package.
+PF,https://cygwin.com/ml/cygwin/2013-06/msg00250.html,For offering a simple solution to a long-standing problem.
+
+PR,https://cygwin.com/ml/cygwin/2003-12/msg00411.html,For actually testing a snapshot unbidden and reporting that it fixed a problem.
+
+RH,https://cygwin.com/ml/cygwin/2009-07/msg00579.html,For tireless support of the setup command line.
+
+RLC,https://cygwin.com/ml/cygwin-apps/2003-11/msg00314.html,For taking over `splint`.
+
+RRS,https://cygwin.com/ml/cygwin/2003-04/msg00915.html,For suggesting &quot;`cygcheck` as an attachment&quot;.
+RRS,https://cygwin.com/ml/cygwin/2003-04/msg00170.html,For conspicuous service to the Cygwin community.
+
+RRSMC,https://cygwin.com/ml/cygwin/2004-10/msg00512.html,For an attempt to apply a creative solution to a problem.
+RRSMC,https://cygwin.com/ml/cygwin-apps/2004-01/msg00041.html,For adopting the `ssmtp` package.
+
+RU,https://cygwin.com/ml/cygwin-apps/2007-07/msg00090.html,For being mentally prepared to take over maintainership of `perl`.
+RU,https://cygwin.com/ml/cygwin-apps/2006-08/msg00005.html,For adopting the `clisp` package.
+RU,https://cygwin.com/ml/cygwin-apps/2004-10/msg00093.html,For adopting the `mhash` package.
+RU,https://cygwin.com/ml/cygwin-apps/2004-10/msg00050.html,For adopting the `postgresql` package.
+
+SB,https://cygwin.com/ml/cygwin/2014-05/msg00320.html,For tracking down and fixing a screen corruption bug in `screen`.
+SB,https://cygwin.com/ml/cygwin-apps/2013-11/msg00026.html,For patching setup to allow it to run as non-admin.
+SB,https://cygwin.com/ml/cygwin/2009-09/msg00395.html,For explaining why we need `C:\cygwin`.
+
+SS,https://cygwin.com/ml/cygwin-apps/2007-07/msg00121.html,For efforts in adopting a tough package (`emacs`).
+
+TK,https://cygwin.com/ml/cygwin-apps/2015-02/msg00044.html,For adopting the `cmake` package.
+TK,https://cygwin.com/ml/cygwin-apps/2014-08/msg00011.html,For adopting the `p7zip` package.
+
+TW,https://cygwin.com/ml/cygwin/2018-02/msg00053.html,For maintaining the workhorse `mintty` package.,,1
+TW,https://cygwin.com/ml/cygwin/2015-07/msg00110.html,For adopting the `mintty` package.
+
+TY,https://cygwin.com/pipermail/cygwin-apps/2025-April/044176.html,For patching and debugging screen version 5 for Cygwin.
+TY,https://cygwin.com/pipermail/cygwin-patches/2025q1/013457.html,For fixing complex and difficult to reproduce bugs.,,1
+TY,2024-01-03,"For (silently) adopting the `atk1.0`, `fribidi`, `gtk3`, `libdatrie`, `libthai`, and `pango1.0` packages.",6
+TY,https://cygwin.com/pipermail/cygwin-apps/2024-January/043348.html,For adopting the `pocl` package.
+TY,https://cygwin.com/pipermail/cygwin-apps/2023-September/043150.html,"For adopting the `libsamplerate`, `soxr`, and `wavpack` packages.",3
+TY,https://cygwin.com/pipermail/cygwin-apps/2023-January/042535.html,"For adopting the `libsndfile`, `mpg123`, `opus`, `opus-tools`, `opusfile`, and `SDL2` packages.",6
+TY,https://cygwin.com/pipermail/cygwin/2021-November/249855.html,For overhauling the Cygwin pipe code to make XEmacs unusable.
+TY,https://cygwin.com/ml/cygwin/2019-12/msg00132.html,"For adding support for pseudo-consoles in the Cygwin DLL, so console applications can work in PTYs like mintty, ssh, GNU screen, or tmux.",,1
+TY,http://cygwin.com/ml/cygwin/2019-03/msg00273.html,For fixing a long-standing bug in screen.
+TY,https://cygwin.com/ml/cygwin-apps/2018-07/msg00030.html,"For adopting the `inetutils`, `rsh` and `tcp_wrappers` packages.",3
+
+VQ,https://cygwin.com/ml/cygwin-apps/2006-11/msg00029.html,For picking up the problematic `ImageMagick` package and making it functional.
+
+VZ,https://cygwin.com/ml/cygwin-apps/2015-04/msg00029.html,For adopting the `xclip` package.
+VZ,https://cygwin.com/ml/cygwin-apps/2013-08/msg00239.html,For adopting the `bsflite` package.
+VZ,https://cygwin.com/ml/cygwin-apps/2012-04/msg00037.html,For adopting the `tcm` package.
+VZ,https://cygwin.com/ml/cygwin-apps/2008-03/msg00122.html,For being the go-to guy (GTG) for GTG.
+VZ,https://cygwin.com/ml/cygwin-apps/2007-12/msg00100.html,For adopting the `rcs` package.
+VZ,https://cygwin.com/ml/cygwin-apps/2007-12/msg00092.html,For adopting the `squid` package.
+VZ,https://cygwin.com/ml/cygwin-apps/2007-12/msg00081.html,For adopting the `enscript` package.
+VZ,https://cygwin.com/ml/cygwin-apps/2007-07/msg00068.html,For adopting the `db` package.
+VZ,https://cygwin.com/ml/cygwin-apps/2007-04/msg00030.html,For cleaning up the `mingw-runtime` package.
+VZ,https://cygwin.com/ml/cygwin-apps/2005-09/msg00035.html,For packaging `texi2html` for Cygwin.
+VZ,https://cygwin.com/ml/cygwin-apps/2003-11/msg00286.html,For packaging `man` for Cygwin.
+
+WY,https://cygwin.com/ml/cygwin-apps/2012-03/msg00222.html,For redesigning the Cygwin logo in setup.
+WY,https://cygwin.com/ml/cygwin/2007-09/msg00525.html,For clearly explaining why security is hard.
+
+YS,https://cygwin.com/pipermail/cygwin-apps/2020-March/039883.html,"For maintaining <em>a lot</em> of packages for many years. Like, more than everyone else put together. Really.",,,,,,,1
+YS,https://cygwin.com/ml/cygwin-apps/2015-07/msg00253.html,For helping with the Great Perl Update of 2015.
+YS,https://cygwin.com/ml/cygwin-apps/2015-03/msg00001.html,For helping to clean obsolete packages from the distro.
+YS,https://cygwin.com/ml/cygwin-apps/2013-01/msg00010.html,For adopting the `grace` package.
+YS,https://cygwin.com/ml/cygwin-apps/2012-07/msg00062.html,For adopting the `dejagnu` package.
+YS,https://cygwin.com/ml/cygwin-apps/2012-03/msg00239.html,For everything.
+YS,https://cygwin.com/ml/cygwin-apps/2012-03/msg00234.html,For adopting the `fribidi` package.
+YS,https://cygwin.com/ml/cygwin-apps/2012-03/msg00187.html,For adopting the `fvwm` package.
+YS,https://cygwin.com/ml/cygwin-apps/2012-03/msg00057.html,For adopting the `robodoc` package.
+YS,https://cygwin.com/ml/cygwin-apps/2011-11/msg00031.html,For adopting the `a2ps` package.
+YS,https://cygwin.com/ml/cygwin/2011-03/msg00377.html,For creating a repository of Linux-to-Cygwin cross-compilers for Fedora.
+YS,https://cygwin.com/ml/cygwin-apps/2010-06/msg00175.html,For adopting the `e2fsprogs` and `e2fsimage` packages.
+YS,https://cygwin.com/ml/cygwin-apps/2010-06/msg00170.html,For adopting the `cppunit` package.
+YS,https://cygwin.com/ml/cygwin-apps/2010-06/msg00078.html,For adopting the `boost` package.
+YS,https://cygwin.com/ml/cygwin-apps/2010-02/msg00004.html,For adopting the `docbook` package.
+YS,https://cygwin.com/ml/cygwin/2009-12/msg01053.html,For cleaning up some ugly old scripts.
+YS,https://cygwin.com/ml/cygwin-apps/2009-12/msg00039.html,For adopting the `openbox` package.
+YS,https://cygwin.com/ml/cygwin/2009-07/msg00451.html,For taking over maintainership of Cygwin/X after years of neglect.,5
+YS,https://cygwin.com/ml/cygwin-apps/2007-07/msg00155.html,For adopting the `libexif` package.
+YS,https://cygwin.com/ml/cygwin-apps/2005-09/msg00051.html,For adopting the `libpcre` package.
+
+YST,https://cygwin.com/ml/cygwin/2006-01/msg01193.html,For pointing out that package maintainers should use snapshots.,2
+YST,https://cygwin.com/ml/cygwin-apps/2005-01/msg00083.html,For adopting the `fortune` package.,2
+YST,https://cygwin.com/ml/cygwin/2004-07/msg00671.html,For a clever use of utilities.
+
+anonymous,https://cygwin.com/ml/cygwin/2004-04/msg00321.html,For contributing a brand new 64-bit Windows system.,10
+
+our_wives,https://cygwin.com/ml/cygwin-talk/2006-q1/msg00228.html,For their invaluable efforts in bringing <a href='https://people.redhat.com/eblake/Evelyn_Joyce_Blake.jpg'>future cygwin users</a> into the world.
+our_wives,https://cygwin.com/ml/cygwin-patches/2005-q3/msg00029.html
+

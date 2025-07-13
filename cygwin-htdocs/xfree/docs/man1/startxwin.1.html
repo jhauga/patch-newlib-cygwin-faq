@@ -1,0 +1,277 @@
+<HTML><HEAD><TITLE>Manpage of STARTXWIN</TITLE>
+</HEAD><BODY>
+<H1>STARTXWIN</H1>
+Section: User Commands  (1)<BR>Updated: xinit 1.3.4<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+startxwin - initialize an X multiwindow session
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>startxwin</B>
+
+[ [
+<I>client</I>
+
+]
+<I>options</I>
+
+... ] [
+<B>--</B>
+
+[
+<I>server</I>
+
+] [
+<I>display</I>
+
+] [
+<I>-listen</I>
+
+]
+<I>options</I>
+
+... ]
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <B>startxwin</B> script is a front end to
+<B>xinit</B>(1)
+
+that provides a
+somewhat nicer user interface for running a single session of the X
+Window System in multiwindow mode.  It is often run with no arguments.
+<P>
+
+Arguments immediately following the
+<I>startxwin</I>
+
+command are used to start a client in the same manner as
+<B>xinit</B>(1).
+
+The special argument
+'--'
+
+marks the end of client arguments and the beginning of server options.
+By default startxwin passes
+'-nolisten&nbsp;tcp'
+
+to the server, the special server option
+'-listen'
+
+can be used to stop startxwin from doing this.
+It may be convenient to specify server options with startxwin to change on a
+per-session basis the
+default color depth, the server's notion of the number of dots-per-inch the
+display device presents, or take advantage of a different server layout, as
+permitted by the
+<B><A HREF="../man1/XWin.1.html">XWin</A></B>(1)
+
+server and specified in the
+<B><A HREF="../man5/XWinrc.5.html">XWinrc</A></B>(5)
+
+configuration.  Some examples of specifying server arguments follow; consult
+the manual page for your X server to determine which arguments are legal.
+<DL COMPACT><DT><DD>
+<P>
+
+startxwin -- -depth 16
+<P>
+
+startxwin -- -dpi 100
+</DL>
+
+
+
+
+<P>
+
+To determine the client to run,
+<B>startxwin</B>
+
+first looks for a file called
+<I>.startxwinrc</I>
+
+in the user's home directory.  If that is not found, it uses
+the file
+<I>startxwinrc</I>
+
+in the
+<I>xinit</I>
+
+library directory.
+
+If command line client options are given, they override this
+behavior and revert to the
+<B>xinit</B>(1)
+
+behavior.
+To determine the server to run,
+<B>startxwin</B>
+
+first looks for a file called
+<I>.xserverrc</I>
+
+in the user's home directory.  If that is not found, it uses
+the file
+<I>xserverrc</I>
+
+in the
+<I>xinit</I>
+
+library directory.
+If command line server options are given, they override this
+behavior and revert to the
+<B>xinit</B>(1)
+
+behavior.  Users rarely need to provide a
+<I>.xserverrc</I>
+
+file.
+See the
+<B>xinit</B>(1)
+
+manual page for more details on the arguments.
+<P>
+
+The system-wide
+<I>startxwinrc</I>
+
+and
+<I>xserverrc</I>
+
+files are found in the
+<I>/etc/X11/xinit</I>
+
+directory.
+<P>
+
+The
+<I>.startxwinrc</I>
+
+is typically a shell script which starts many clients according to the
+user's preference.  When this shell script exits,
+<B>startxwin</B>
+
+kills the server and performs any other session shutdown needed.
+Most of the clients started by
+<I>.startxwinrc</I>
+
+should be run in the background.  The last client should run in the
+foreground; when it exits, the session will exit.  People often choose
+a session manager, window manager, or <I>xterm</I> as the ''magic'' client.
+<A NAME="lbAE">&nbsp;</A>
+<H2>EXAMPLE</H2>
+
+<P>
+
+Below is a sample <I>.startxwinrc</I> that starts several applications and
+leaves the panel running as the ''last'' application.  Assuming that
+the window manager has been configured properly, the user
+then chooses the ''Exit'' menu item to shut down X.
+<P>
+
+<PRE>
+xrdb -load $HOME/.Xresources
+xbiff -geometry -430+5 &amp;
+oclock -geometry 75x75-0-0 &amp;
+xload -geometry -80-0 &amp;
+xterm -geometry +0+60 -ls &amp;
+xterm -geometry +0-100 &amp;
+xconsole -geometry -0+0 -fn 5x7 &amp;
+exec fbpanel -profile multiwindow
+</PRE>
+
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>ENVIRONMENT VARIABLES</H2>
+
+<DL COMPACT>
+<DT>DISPLAY<DD>
+This variable gets set to the name of the display to which clients should
+connect.  Note that this gets
+<I>set</I>,
+
+not read.
+<DT>XAUTHORITY<DD>
+This variable, if not already defined, gets set to
+<I>$(HOME)/.Xauthority</I>.
+
+This is to prevent the X server, if not given the
+<I>-auth</I>
+
+argument, from automatically setting up insecure host-based authentication
+for the local host.  See the
+<B><A HREF="../man1/Xserver.1.html">Xserver</A></B>(1)
+
+and
+<I>Xsecurity</I>(7)
+
+manual pages for more information on X client/server authentication.
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>FILES</H2>
+
+<DL COMPACT>
+<DT><I>$(HOME)/.startxwinrc</I>
+
+<DD>
+Client to run.  Typically a shell script which runs many programs in
+the background.
+<DT><I>$(HOME)/.xserverrc</I>
+
+<DD>
+Server to run.  The default is
+<I>X</I>.
+
+<DT><I>/etc/X11/xinit/startxwinrc</I>
+
+<DD>
+Client to run if the user has no
+<I>.startxwinrc</I>
+
+file.
+<DT><I>/etc/X11/xinit/xserverrc</I>
+
+<DD>
+Server to run if the user has no
+<I>.xserverrc</I>
+
+file.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B>xinit</B>(1),
+
+<B>X</B>(7),
+
+<B><A HREF="../man1/Xserver.1.html">Xserver</A></B>(1),
+
+<B><A HREF="../man1/XWin.1.html">XWin</A></B>(1),
+
+<B><A HREF="../man5/XWinrc.5.html">XWinrc</A></B>(5)
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">EXAMPLE</A><DD>
+<DT><A HREF="#lbAF">ENVIRONMENT VARIABLES</A><DD>
+<DT><A HREF="#lbAG">FILES</A><DD>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://savannah.nongnu.org/projects/man2html/">man2html</A>,
+using the manual pages.<BR>
+Time: 19:03:11 GMT, December 12, 2021
+</BODY>
+</HTML>

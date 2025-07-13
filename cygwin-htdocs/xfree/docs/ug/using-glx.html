@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>OpenGL (GLX)</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"/><LINK
+REL="HOME"
+TITLE="Cygwin/X User's Guide"
+HREF="cygwin-x-ug.html"/><LINK
+REL="UP"
+TITLE="Using Cygwin/X"
+HREF="using.html"/><LINK
+REL="PREVIOUS"
+TITLE="Remote sessions via XDMCP"
+HREF="using-remote-session.html"/><LINK
+REL="NEXT"
+TITLE="Input internationalization"
+HREF="using-i18n.html"/><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;charset=utf-8"/></HEAD
+><BODY
+CLASS="sect1"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Cygwin/X User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-remote-session.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using Cygwin/X</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using-i18n.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="using-glx"
+>OpenGL (GLX)</A
+></H1
+><P
+>&#13;The Cygwin/X X Server supports both software OpenGL rendering (using the mesa
+software renderer), and hardware accelerated OpenGL rendering (using the native
+Windows OpenGL (WGL) interface).
+</P
+><P
+>&#13;The X server command line options <CODE
+CLASS="parameter"
+>-wgl</CODE
+> and
+<CODE
+CLASS="parameter"
+>-nowgl</CODE
+> turn on and off the use of the native Windows
+OpenGL implementation.
+
+Currently <CODE
+CLASS="parameter"
+>-wgl</CODE
+> is only supported in multiwindow mode, and
+is on by default in that mode.
+
+<CODE
+CLASS="parameter"
+>-wgl</CODE
+> has no effect if your display driver does not
+support hardware-accelerated OpenGL.
+</P
+><P
+>&#13;The creation of indirect GLX contexts is disabled by default.
+The <CODE
+CLASS="option"
+>+iglx</CODE
+> option is required to allow them.
+</P
+><DIV
+CLASS="table"
+><A
+NAME="table-opengl-rendering-options"
+></A
+><P
+><B
+>Table 3-1. Summary of OpenGL rendering options</B
+></P
+><TABLE
+BORDER="1"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><COL
+WIDTH="33%"/><COL
+WIDTH="33%"/><COL
+WIDTH="33%"/><THEAD
+><TR
+><TH
+>&#13;          <P
+>&#13;          </P
+>
+        </TH
+><TH
+>&#13;          <P
+>&#13;            software rendering
+            <SUP
+>a</SUP
+>
+          </P
+>
+        </TH
+><TH
+>&#13;          <P
+>&#13;            hardware-accelerated rendering
+          </P
+>
+        </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;          <P
+>&#13;            indirect
+          </P
+>
+          <P
+>&#13;            (Uses GLX protocol, limited to OpenGL 1.4)
+          </P
+>
+        </TD
+><TD
+>&#13;          <P
+>&#13;            start server with <CODE
+CLASS="parameter"
+>+iglx -nowgl</CODE
+> options
+          </P
+>
+          <P
+>&#13;            <B
+CLASS="command"
+>export LIBGL_ALWAYS_INDIRECT=1</B
+>
+          </P
+>
+        </TD
+><TD
+>&#13;          <P
+>&#13;            start server with <CODE
+CLASS="parameter"
+>+iglx -wgl</CODE
+> options
+          </P
+>
+          <P
+>&#13;            <B
+CLASS="command"
+>export LIBGL_ALWAYS_INDIRECT=1</B
+>
+          </P
+>
+        </TD
+></TR
+><TR
+><TD
+>&#13;          <P
+>&#13;            direct
+          </P
+>
+        </TD
+><TD
+>&#13;          <B
+CLASS="command"
+>export LIBGL_ALWAYS_SOFTWARE=1</B
+>
+        </TD
+><TD
+>&#13;          <P
+>&#13;            start server with <CODE
+CLASS="parameter"
+>-wgl</CODE
+> option (default)
+          </P
+>
+          <P
+>&#13;            (local clients only)
+          </P
+>
+        </TD
+></TR
+></TBODY
+><TR
+><TD
+COLSPAN="3"
+>Notes:<BR/><A
+NAME="FTN.footnote-software-rendering"
+>a. </A
+>
+                The software renderer used (e.g. llvmpipe, softpipe, swr) can be
+                selected using the GALLIUM_DRIVER environment variable.
+              <BR/></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;Currently the default configurations are:
+<UL
+><LI
+><P
+>&#13;For local clients the default is direct, hardware-accelerated rendering.
+</P
+><P
+>&#13;To use software rendering, you must do <B
+CLASS="command"
+>export
+LIBGL_ALWAYS_SOFTWARE=1</B
+> before starting the client application.
+</P
+></LI
+><LI
+><P
+>&#13;For remote clients, Mesa's libGL prefers to use client-side software rendering
+and then transfer the rendered image to the server.
+</P
+><P
+>&#13;To force indirect rendering
+(which takes place on the server), you must start the server with the
+<CODE
+CLASS="parameter"
+>+iglx</CODE
+> option and do <B
+CLASS="command"
+>export
+LIBGL_ALWAYS_INDIRECT=1</B
+> before starting the client application.
+</P
+><P
+>&#13;There is a performance trade-off between rendering performance and network
+latency, so you might wish to try both direct and indirect rendering and see which
+performs best in your specific circumstances.
+</P
+></LI
+></UL
+>
+</P
+><P
+>&#13;If <B
+CLASS="command"
+>glxinfo | grep OpenGL</B
+> outputs something mentioning your
+graphics card vendor, you have hardware-accelerated rendering. If it mentions
+Mesa, you have software rendering.
+</P
+><P
+>&#13;Please ensure you are using the latest display drivers for your graphics
+hardware before reporting any visual issues with WGL.
+</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+Please report problems with specific OpenGL applications to the cygwin mailing
+list.
+</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;Known issues:
+<UL
+><LI
+><P
+>&#13;OpenGL drawing is just drawn on top of the X window. This works well enough
+when the OpenGL window is a top-level window, or is non-top-level and has no
+occluding relatives and is drawn after anything it occludes, but can mis-render
+in more complex scenarios.
+</P
+></LI
+><LI
+><P
+>&#13;OpenGL windows with static contents aren't re-drawn when occluded by a
+native Window and then exposed.  Workaround: force the window to redraw, e.g.
+by resizing it.
+</P
+></LI
+><LI
+><P
+>&#13;When an OpenGL window is behind a native application window which uses
+layered windows for translucency, the OpenGL rendering is drawn over the top,
+flickering.
+</P
+></LI
+><LI
+><P
+>&#13;Rendering to GLX pixmaps is only partially implemented due to WGL limitations.
+</P
+></LI
+></UL
+>
+</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-remote-session.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="cygwin-x-ug.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using-i18n.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Remote sessions via XDMCP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Input internationalization</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

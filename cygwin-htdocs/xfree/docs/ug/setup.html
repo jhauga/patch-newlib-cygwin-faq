@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Setting Up Cygwin/X</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"/><LINK
+REL="HOME"
+TITLE="Cygwin/X User's Guide"
+HREF="cygwin-x-ug.html"/><LINK
+REL="PREVIOUS"
+TITLE="Windowing mode"
+HREF="overview-windowing-modes.html"/><LINK
+REL="NEXT"
+TITLE="Using Cygwin/X"
+HREF="using.html"/><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;charset=utf-8"/></HEAD
+><BODY
+CLASS="chapter"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Cygwin/X User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="overview-windowing-modes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="setup"
+></A
+>Chapter 2. Setting Up Cygwin/X</H1
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="setup-cygwin-x-installing"
+>Installing Cygwin/X</A
+></H1
+><P
+>Cygwin has a nice setup program that downloads and installs
+the necessary Cygwin packages for you.</P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;Open the <A
+HREF="https://cygwin.com/"
+TARGET="_top"
+>Cygwin home page</A
+> in your web
+browser.
+</P
+></LI
+><LI
+><P
+>Click on the <A
+HREF="https://cygwin.com/setup-x86_64.exe"
+TARGET="_top"
+><TT
+CLASS="filename"
+>setup-x86_64.exe</TT
+></A
+>
+link to download the setup program.
+</P
+></LI
+><LI
+><P
+>Run the Cygwin setup program and you will see the welcome
+screen:</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi01welcome.png"/></P
+></DIV
+></LI
+><LI
+><P
+>Click <SPAN
+CLASS="guibutton"
+>Next</SPAN
+> to proceed to the next
+screen.</P
+></LI
+><LI
+><P
+>Choose, <SPAN
+CLASS="guilabel"
+>Install from Internet</SPAN
+>, this will
+still save the package files to your download directory so that you
+can install Cygwin on any number of machines:</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi02installoption.png"/></P
+></DIV
+></LI
+><LI
+><P
+>Click <SPAN
+CLASS="guibutton"
+>Next</SPAN
+> to proceed to the next
+screen.</P
+></LI
+><LI
+><P
+>The default <SPAN
+CLASS="guilabel"
+>Root Directory</SPAN
+> should be fine for most
+installations. Leave <SPAN
+CLASS="guilabel"
+>Install For</SPAN
+> set to <SPAN
+CLASS="guilabel"
+>All Users
+</SPAN
+> unless you lack local administrative privileges.
+</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi03installto.png"/></P
+></DIV
+></LI
+><LI
+><P
+>Click <SPAN
+CLASS="guibutton"
+>Next</SPAN
+> to proceed to the next
+screen.</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="guilabel"
+>Local Package Directory</SPAN
+> should default to
+the directory that you ran the setup program from:</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi04directory.png"/></P
+></DIV
+></LI
+><LI
+><P
+>Click <SPAN
+CLASS="guibutton"
+>Next</SPAN
+> to proceed to the next
+screen.</P
+></LI
+><LI
+><P
+>Choose your proxy setup, or, just choose <SPAN
+CLASS="guilabel"
+>Direct
+Connection</SPAN
+> if no proxy is needed:</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi05proxy.png"/></P
+></DIV
+></LI
+><LI
+><P
+>Click <SPAN
+CLASS="guibutton"
+>Next</SPAN
+> to proceed to the next
+screen.</P
+></LI
+><LI
+><P
+>Select your nearest mirror for downloading:</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi06mirror.png"/></P
+></DIV
+></LI
+><LI
+><P
+>Click <SPAN
+CLASS="guibutton"
+>Next</SPAN
+> to proceed to the next screen;
+setup will download a list of available packages as it moves to the
+next screen.</P
+></LI
+><LI
+><P
+>On the next screen you will select the packages that will be
+downloaded and installed.  A listing of the Cygwin/X packages is
+given below; a listing of the general Cygwin packages would be
+beyond the scope of this document.</P
+><P
+>Cygwin/X packages are located in the <TT
+CLASS="literal"
+>X11</TT
+>
+category.</P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>xorg-server</TT
+> (required, the Cygwin/X X Server)</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>xinit</TT
+> (required, scripts for starting the X server: <B
+CLASS="command"
+>xinit</B
+>, 
+<B
+CLASS="command"
+>startx</B
+>, <B
+CLASS="command"
+>startwin</B
+> (and a shortcut
+on the Start Menu to run it), <B
+CLASS="command"
+>startxdmcp.bat</B
+> )</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>xorg-docs</TT
+> (optional, <B
+CLASS="command"
+>man</B
+> pages)</P
+></LI
+><LI
+><P
+>&#13;    <TT
+CLASS="filename"
+>xlaunch</TT
+> (optional, a wizard for starting X sessions)
+  </P
+></LI
+><LI
+><P
+>You may also select any X client programs you want to use, any X Window
+Manager or Desktop Environment you want to use (see <A
+HREF="using.html#using-starting-session"
+>the Section called <I
+>Starting an X desktop environment session or X window manager in windowed mode</I
+> in Chapter 3</A
+>), and any fonts you would like to have
+available.
+</P
+></LI
+><LI
+><P
+>You may also want to ensure that
+the <TT
+CLASS="literal"
+>openssh</TT
+>
+package is selected if you wish to use
+<B
+CLASS="command"
+>ssh</B
+> connections to run remote X clients.</P
+></LI
+><LI
+><P
+>You may also want to ensure that
+the <TT
+CLASS="literal"
+>inetutils</TT
+> or <TT
+CLASS="literal"
+>rsh</TT
+>
+packages are selected if you wish to use <B
+CLASS="command"
+>telnet</B
+> or
+<B
+CLASS="command"
+>rsh</B
+> connections to run remote X clients. (not recommended)
+</P
+></LI
+></UL
+><P
+>&#13;  You can run setup again in the future to add more packages.
+</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi07packages.png"/></P
+></DIV
+></LI
+><LI
+><P
+>Click <SPAN
+CLASS="guibutton"
+>Next</SPAN
+> to begin the download process,
+you may want to try another mirror if you see a
+<SPAN
+CLASS="QUOTE"
+>"Connecting"</SPAN
+> message on this screen for a long period of
+time:</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi08downloading.png"/></P
+></DIV
+></LI
+><LI
+><P
+>After the packages are downloaded, setup will automatically
+begin to install them:</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi09installing.png"/></P
+></DIV
+></LI
+><LI
+><P
+>I highly recommend allowing Cygwin Setup to create Desktop and
+Start Menu icons for you; these icons simply launch a
+<SPAN
+CLASS="application"
+>bash</SPAN
+> shell:</P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyi10createicons.png"/></P
+></DIV
+></LI
+><LI
+><P
+>Click <SPAN
+CLASS="guibutton"
+>Finish</SPAN
+> to close the setup program.</P
+></LI
+><LI
+><P
+>&#13;    (optional but recommended) Install the cygserver service.  See the
+    instructions in <A
+HREF="using-shared-memory.html"
+>the Section called <I
+>Shared memory support</I
+> in Chapter 3</A
+>.
+  </P
+></LI
+></OL
+><P
+>You have now successfully installed Cygwin/X.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="overview-windowing-modes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="cygwin-x-ug.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Windowing mode</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using Cygwin/X</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Cygwin/X - Features</title>
+    <meta name="keywords" content="xfree86, Cygwin, Cygwin/X, X Window System, X, development, open source, free, software, free software, GPL, X11, X/Open, features" />
+    <meta name="description" content="Cygwin/X - Features" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="cygx.css" />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+</head>
+
+<body>
+    <!--#include virtual="cygx-leftbar.html"-->
+    <div id="main">
+    <!--#include virtual="cygx-header.html" -->
+
+    <h1>Features</h1>
+
+    <ul>
+        <li>
+            <p>Cost - Cygwin/X is free for use.</p>
+        </li>
+
+        <li>
+            <p>Modifiability - Cygwin/X source code is freely
+            available for modification.</p>
+        </li>
+
+        <li>
+            <p>Color Depths - Supports all color depths supported
+            by Windows.</p>
+        </li>
+
+        <li>
+            <p>Multi-Window Mode - Multi-Window mode allows each X
+            Client to be opened in, and managed by, its own Windows
+            window. This makes each X Client show up independently
+            in the task bar. Additionally, the icon hint provided
+            by the X Client is used for the Windows window
+            icon.</p>
+        </li>
+
+        <li>
+            <p>Rootless Mode - Rootless mode makes the root window
+            for the X Server be transparent, making all of the X
+            Clients float over the other Windows windows. Rootless
+            mode requires an external window manager, such as twm,
+            openbox, fvwm2, WindowMaker, etc.</p>
+        </li>
+
+        <li>
+            <p>Fullscreen Mode - Fullscreen mode allows the entire
+            display to be taken over by Cygwin/X, which works
+            particularly well when logging into a remote XDM
+            server.</p>
+        </li>
+
+        <li>
+            <p>No Decoration Mode - No Decoration mode creates a
+            full-sized root window (not to be used with Fullscreen,
+            Multi-Window, or Rootless modes) without any Windows
+            window decorations (title bar, border, etc.).</p>
+        </li>
+
+        <li>
+            <p>Clipboard Integration - Clipboard integration
+            between the X clipboard and the Windows clipboard.
+            Supports text only. Works with Unicode and MBCS strings
+            for non-U.S. locales.</p>
+        </li>
+
+        <li>
+            <p>Remote Logins - Remote logins to XDM (X Display
+            Manager) services are supported, allowing the entire
+            session to be managed by a remote machine. Coupled with
+            Full Screen mode, Cygwin/X can be used as an
+            alternative to a KVM switch for *nix machines on your
+            local network.</p>
+        </li>
+
+        <li>
+            <p>Remote Clients - Remote clients can be launched and
+            displayed in your Cygwin/X session either via telnet or
+            via X11 tunneling over ssh, using either Cygwin's
+            openssh package, PuTTY, or any other ssh client.</p>
+        </li>
+
+        <li>
+            <p>Remote Access - You can use Cygwin's openssh package
+            and its sshd daemon to allow X11 tunneling of
+            applications from your Windows machine to other
+            machines on your network. For example, you can launch
+            emacs on your Windows machine and use it to view and
+            edit files remotely from any other machine with an X
+            Server.</p>
+        </li>
+
+        <li>
+            <p>DirectDraw Acceleration - Every mode except for the
+            current Multi-Window mode supports acceleration via
+            DirectDraw.</p>
+        </li>
+
+        <li>
+            <p>OpenGL Graphics - The
+            <a href="http://www.mesa3d.org">Mesa 3D Graphics
+            Library</a> provides software-based OpenGL support.
+            There is experimental support for
+            hardware-accelerated OpenGL provided using the native
+            <a href="http://en.wikipedia.org/wiki/WGL_%28software%29">WGL</a>
+            interface.
+            </p>
+        </li>
+
+        <li>
+            <p>Non-U.S. Keyboard Layouts - Many non-U.S. keyboard
+            layouts are detected automatically, causing the
+            appropriate keyboard map to be loaded. Keyboard layouts
+            that are not automatically detected can be added to the
+            list of automatically supported layouts easily upon
+            request.  Command line configuration support is also provided to
+            allow manually specifying a keyboard layout.</p>
+        </li>
+
+        <li>
+            <p>AltGr Support - Cygwin/X properly handles the AltGr
+            key used in many non-U.S. keyboard layouts and passes
+            this key on to each particular X Client for further
+            processing.</p>
+        </li>
+
+        <li>
+            <p>Start Menu Icons - Windows Start Menu icons are
+            provided to launch installed X Clients (such as xterm,
+            xeyes, emacs, etc.).</p>
+        </li>
+
+        <li>
+            <p>Tray Icon - A tray icon is provided to indicate that
+            the server is running, to allow easy access to the Exit
+            command, and to toggle visibility of the root window in
+            Multiwindow mode.</p>
+        </li>
+
+        <li>
+            <p>Configurable Tray Icon Menu - Menu entries can be
+            added to the configurable tray icon menu via a .XWinrc
+            file in the user's home directory, or via a
+            system.XWinrc file in /etc/X11.</p>
+        </li>
+
+        <li>
+            <p>
+              Resize support - Integrates native Window or monitor
+              resizing with the RANDR extension.
+            </p>
+        </li>
+
+    </ul>
+
+    <h1>Maybe Features</h1>
+    <ul>
+
+        <li>
+            <p>Support - Free support may be available in the Cygwin/X
+            mailing list. The people answering questions are
+            usually the same people that wrote the software, so
+            they can often fix a problem if one is discovered.</p>
+        </li>
+
+        <li>
+            <p>
+            Windows Versions - Supports Windows 2000,
+            Windows XP, Windows Server 2003, Windows Vista, Windows Server 2008,
+            and Windows 7.
+            <i>
+            In theory, all Windows versions supported by Cygwin are supported by Cygwin/X.
+            In practice, it is untested with versions prior to Windows XP and possibly broken.
+            </i>
+            </p>
+        </li>
+
+    </ul>
+
+    <h1>Ex-Features</h1>
+    <ul>
+        <li>
+            <p>PseudoColor - 8 bit PseudoColor (palletized color)
+            support in Full Screen mode (-fullscreen) and when
+            running Windows in an 8 bit color depth.<i>Who knows if this
+            still works?</i></p>
+        </li>
+
+    </ul>
+
+    <h1>Non-Features</h1>
+    <p>Some things which Cygwin/X just can't do</p>
+    <ul>
+        <li>
+            <p>Make your Windows desktop accessible over the network.
+	       (This problem is solved by
+	       <a href="http://en.wikipedia.org/wiki/Virtual_Network_Computing">VNC</a> or
+	       <a href="http://en.wikipedia.org/wiki/Remote_Desktop_Protocol">RDP</a>)</p>
+        </li>
+
+        <li>
+            <p>Magically make native Windows applications be able to
+               <a href="http://en.wikipedia.org/wiki/Network_transparency">
+	       run on one computer and display on a different computer</a>.</p>
+        </li>
+
+    </ul>
+
+    </div>
+</body>
+</html>

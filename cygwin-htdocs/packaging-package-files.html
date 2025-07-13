@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Cygwin package files</title>
+  </head>
+
+<body>
+<!--#include virtual="navbar.html" -->
+<div id="main">
+<!--#include virtual="top.html" -->
+<h1>Cygwin package files</h1>
+
+<h2 class="cartouche">Contents</h2>
+
+<ul class="compact">
+  <li><a href="#naming">Package naming scheme</a></li>
+  <li><a href="#files">Package files</a></li>
+  <li><a href="#package_contents">Package contents (binary)</a></li>
+  <li><a href="#package_contents_src">Package contents (source)</a></li>
+  <li><a href="#postinstall">Package post-install and pre-remove scripts</a></li>
+</ul>
+
+<h2 class="cartouche" id="naming">Package naming scheme</h2>
+
+<p>
+  The character set for package naming consists of alphanumeric, dot, hyphen,
+  plus-sign and underscore characters.
+</p>
+
+<p>
+  A package name consist of a hyphen separated triplet of name, version and
+  release.
+</p>
+
+<ul class="compact">
+  <li>The name <b>must not</b> start with a digit.</li>
+  <li>The name <b>must not</b> contain a hyphen followed by a digit.</li>
+</ul>
+
+<p>
+  Use the upstream's version followed by a release suffix (i.e. findutils 4.5.12
+  becomes 4.5.12-1, 4.5.12-2, etc., until findutils 4.5.13 is packaged, which
+  would be 4.5.13-1, etc).
+</p>
+
+<p>
+  For upstream released versions, the release suffix counts from 1. A release
+  suffix starting with 0 and containing the pre-release identifier should be used
+  for upstream pre-release versions (as per
+  <a href="https://fedoraproject.org/wiki/Package_Versioning_Examples#Complex_versioning_examples">these examples</a>),
+  so they sort before released versions.
+</p>
+
+<ul class="compact">
+  <li>The version and release <b>must</b> start with a digit.</li>
+  <li>The version and release <b>must not</b> contain a hyphen.</li>
+</ul>
+
+<p>
+  Version and release sort according to the following rules (commonly known as
+  the <code>rpmvercmp</code> ordering):
+</p>
+
+  <ul class="compact">
+    <li>Contiguous chunks of digits or alphabetic characters are compared</li>
+    <li>Non-alphanumeric separators for these contiguous chunks are ignored</li>
+    <li>Alphabetic chunks sort before digit chunks</li>
+    <li>Digit chunks sort numerically and alphabetic chunks sort lexicographically</li>
+    <li>If all chunks are equal, the string with any suffix remaining is the greater</li>
+  </ul>
+
+<p>
+  A package with a higher version is greater, regardless of the release.  When
+  two packages have an identical version, the one with the higher release is
+  greater.
+</p>
+
+<h2 class="cartouche" id="files">Package files</h2>
+
+<p>A complete package currently consists of two files, either:</p>
+
+<ul class="compact">
+  <li>a binary tar file, named <code>package-version-release.tar.xz</code></li>
+  <li>a .hint file, named  <code>package-version-release.hint</code></li>
+</ul>
+
+<p>or:</p>
+
+<ul class="compact">
+  <li>a source tar file, named <code>package-version-release-src.tar.xz</code></li>
+  <li>a .hint file, named  <code>package-version-release-src.hint</code></li>
+</ul>
+
+<p>
+e.g.:
+</p>
+
+<pre>
+bash$ ls -1 release/boffo
+boffo-1.0-1-src.hint
+boffo-1.0-1-src.tar.xz
+boffo-1.0-1.hint
+boffo-1.0-1.tar.xz
+</pre>
+
+<p>Binary tar files contain the files that will be installed on a user's system.
+  'binary' here refers to the result of building a source package (using
+   <code>cygport</code>), even though it may contain no actual binaries.
+  See the <a href="#package_contents">package contents</a> section below for
+  more details on the contents of a binary tar file.
+</p>
+
+<p>Source tar files should contain the source files, patches and scripts needed
+  to rebuild the package.  Installing these files is always optional.
+  As an open source project, providing this tar file is <em>not</em> optional.
+  See the <a href="#package_contents_src">package contents</a> section below for more
+  details on the contents of a source tar file.
+</p>
+
+<p>
+  In some cases, there may be multiple binary packages generated from the same
+  source; for instance, one might have a "boffo" package and its associated
+  shared library in "libboffo7", where both are generated from the same source
+  package. See
+  the <a href="packaging-hint-files.html#advanced_pvr.hint">package-version-release.hint</a>
+  section for information on the "external-source:" option.
+</p>
+
+<p>
+  Note that package tar files may be .bz2, .gz, .xz or .zst compressed.
+  .gz is obsolete and .xz is preferred for new package submissions.
+</p>
+
+<p>
+  The <a href="packaging-hint-files.html">.hint</a> file contains package
+  metadata which is used to build the <a href="package-server.html">package
+  server manifest</a> read by the setup program.
+</p>
+
+<h2 class="cartouche" id="package_contents">Package contents (binary)</h2>
+
+<p>
+  The files paths within both the source and the binary package files are quite
+  important. Since setup extracts into a predetermined directory, you must
+  structure your package contents accordingly.
+</p>
+<ul class="spaced">
+  <li>
+    Binary packages are extracted in /, include all file paths from the root in
+    your archive, e.g.:
+<pre>
+usr/bin/boffo.exe
+usr/share/boffo/boffo.dat
+etc...
+</pre>
+  </li>
+  <li>
+    The package is configured using (at a minimum) the following paths:
+<pre>
+--prefix=/usr
+--sysconfdir=/etc
+--libexecdir=/usr/lib
+--localstatedir=/var
+--datadir=/usr/share
+--mandir=/usr/share/man
+--infodir=/usr/share/info
+</pre>
+  </li>
+  <li>All executables in your binary package are stripped.</li>
+
+  <li>In your binary package <i>boffo</i>, you may choose to include a file
+    <code>/usr/share/doc/Cygwin/boffo.README</code> containing any
+    Cygwin-specific notes on using or building the package. (You can
+    adapt <a href="packaging/generic-readme.txt">this generic README</a>.)
+  </li>
+  <li>In your binary package include the directory /usr/share/doc/boffo/ that
+  includes any binary-relevant upstream documentation, such as ChangeLogs,
+  copyright licences, READMEs etc. </li>
+  <li>If you are not creating your package from an installed virtual root, be
+  sure to check that the file permissions are appropriate. </li>
+  <li>If the package has any global settings (i.e. in files in /etc) that are
+  not overrideable on a per user basis (sshd, as a daemon, is an example of
+  this) do not include the relevant config files in your package. Instead
+  install the files into /etc/defaults and include in your post-install script
+  to install the settings files. Be sure that if you would overwrite an already
+  present file that the user is offered the choice of keeping their own or
+  overwriting with your defaults. </li>
+  <li>Ensure that your package handles being installed on binary and text mounts
+  correctly. </li>
+</ul>
+
+<h2 class="cartouche" id="package_contents_src">Package contents (source)</h2>
+
+<ul>
+  <li>Source packages are extracted in /usr/src (so the paths in your source tar
+  file should not include /usr/src). On extraction, the tar file should put the
+  sources in a directory with the same name as the package, e.g.:
+<pre>
+boffo-1.0-1/boffo.cygport
+boffo-1.0-1/boffo-1.0.tar.xz
+boffo-1.0-1/boffo-1.0-1.src.patch
+etc...
+</pre>
+  <p>Generally, this will contain the original source tar file, exactly as
+     downloaded from the original upstream, any needed patch files, and a
+     cygport script that drives the packaging process.</p>
+  </li>
+</ul>
+
+<h2 class="cartouche" id="postinstall">Package post-install and pre-remove scripts</h2>
+
+<h3>Post-install scripts</h3>
+<p>
+  If your package requires certain commands to be executed after the files in
+  the package are installed, include them in a file in the package called
+  /etc/postinstall/<var>&lt;package&gt;</var>.<var>&lt;suffix&gt;</var>.
+</p>
+<p>
+  The file is executed with the Cygwin bash shell if <var>suffix</var> is ".sh";
+  with the Cygwin dash shell if <var>suffix</var> is ".dash"; and with the
+  Windows cmd.exe command interpreter if <var>suffix</var> is ".bat" or ".cmd".
+  If <var>suffix</var> is unknown, the file is ignored.
+</p>
+<p>
+  After the script has been successfully run, it is renamed by appending the
+  suffix ".done" to its previous name, to prevent it from being run again the
+  next time the user runs the setup program.
+</p>
+<p>
+  Note that the setup program runs all the post-install scripts after all
+  desired packages have been installed, that is, it does not run each package's
+  post-install script immediately after installing that package.
+</p>
+<p>
+  Post-install scripts are run in dependency order.  If dependency loops exist,
+  the order in which those package's scripts are run is undefined.
+</p>
+
+<h3>Pre-remove scripts</h3>
+<p>
+  If your package requires certain commands to be executed before the files in
+  the package are removed, include them in a file in the package called
+  /etc/preremove/<var>&lt;package&gt;</var>.<var>&lt;suffix&gt;</var>.
+</p>
+<p>
+  Note that the setup program runs all the pre-remove scripts before any
+  packages have been uninstalled.  Note that when upgrading a package, the
+  pre-remove script for the currently installed version will be run before it is
+  removed, then the post-install script for the upgraded version will be run
+  after it is installed.
+</p>
+
+<h3>Perpetual post-install and pre-remove scripts</h3>
+<p>
+  In addition to the ordinary ("run-once") scripts described above,
+  the setup program supports "perpetual" post-install and pre-remove scripts.
+  These are run on every invocation of setup, as long as the package is still
+  installed.  Perpetual scripts are distinguished from run-once scripts by
+  having names that start with "0p_" or "zp_".  Those that start with "0p_" are
+  run before the run-once scripts, and those that start with "zp_" are run
+  after the run-once scripts.  Examples include
+  <code>postinstall/0p_000_autorebase.dash</code> (provided by the
+  <code>_autorebase</code> package),
+  <code>postinstall/0p_update-info-dir.dash</code> (provided by the
+  <code>info</code> package),
+  <code>postinstall/zp_zzz_etckeeper_post-install.sh</code> and
+  <code>preremove/0p_000_etckeeper_pre-install.sh</code> (provided by the
+  <code>etckeeper</code> package).
+</p>
+<p>
+  For those package maintainers wanting to employ perpetual scripts, the first
+  thing to keep in mind is to only use this feature for things that really
+  can't be done with run-once scripting.  Any perpetual script should minimize
+  the resources used (use dash instead of bash for instance) and exit at the
+  earliest possible moment if no action is required.  Post-install scripts of
+  type "0p_" must be able to run with the Base packages installed but the
+  remaining post-install scripts not yet executed; in practical terms that
+  rules out using bash scripts.  Pre-remove scripts of type "zp_" must be able
+  to run with the other pre-remove scripts already executed.  These limitations
+  do not apply to post-install scripts of type "zp_" and pre-remove scripts of
+  type "0p_".
+</p>
+<p>
+  See <a href="https://cygwin.com/ml/cygwin-apps/2014-12/msg00148.html">this
+  mailing list post</a> for more discussion and current limitations.
+</p>
+
+<h3>Environment Variables</h3>
+
+<p>
+  The following environment variables are used to communicate information from
+  the setup program to post-install and pre-remove scripts:
+</p>
+
+<ul>
+  <li>
+    <b>CYGWINFORALL</b> contains "-A" if installing for "All Users" (This also
+    implies setup is running with elevated permissions), and is unset otherwise.
+    This is intended to be used as an option to <code>cygpath</code>
+    or <code>mkshortcut</code>, or in shell conditionals such as <code>test -z</code>
+    or <code>test -n</code>.
+  </li>
+
+  <li>
+    <b>CYGWIN_START_MENU_SUFFIX</b> contains the suffix that setup used for
+    Start Menu folder names, including any leading white-space (e.g. " (32-bit)"
+    when installing x86 Cygwin under WoW64, " (x86_64)" when installing x86_64
+    Cygwin on ARM64).
+  </li>
+
+  <li>
+    <b>CYGWIN_SETUP_OPTIONS</b> contains the long-names of a selected subset of
+    the setup options that are in force. Currently, the only option reported is
+    <code>no-startmenu</code>, if the creation of Start Menu shortcuts is
+    disabled.
+  </li>
+</ul>
+
+</div>
+</body>
+</html>

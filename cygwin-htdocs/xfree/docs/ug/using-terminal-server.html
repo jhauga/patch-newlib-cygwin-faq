@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Terminal Server or Fast User Switching</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"/><LINK
+REL="HOME"
+TITLE="Cygwin/X User's Guide"
+HREF="cygwin-x-ug.html"/><LINK
+REL="UP"
+TITLE="Using Cygwin/X"
+HREF="using.html"/><LINK
+REL="PREVIOUS"
+TITLE="Input internationalization"
+HREF="using-i18n.html"/><LINK
+REL="NEXT"
+TITLE="Customizing the notification area icon menu"
+HREF="using-customizing-traymenu.html"/><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;charset=utf-8"/></HEAD
+><BODY
+CLASS="sect1"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Cygwin/X User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-i18n.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using Cygwin/X</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using-customizing-traymenu.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="using-terminal-server"
+>Terminal Server or Fast User Switching</A
+></H1
+><P
+>&#13;When multiple users may start X servers on same computer, each X server must
+have a unique display number.
+</P
+><P
+>&#13;Instead of specifying a display number using the <CODE
+CLASS="parameter"
+>:display_number</CODE
+>
+option, such as <CODE
+CLASS="parameter"
+>:0</CODE
+>,
+starting the X server with the <TT
+CLASS="literal"
+>-displayfd</TT
+> option, locates an
+unused display number and writes it to the specified file descriptor.
+</P
+><P
+>&#13;<B
+CLASS="command"
+>startx</B
+>, <B
+CLASS="command"
+>xinit</B
+> and <B
+CLASS="command"
+>startxwin</B
+>
+notice this option, and transparently use it to determine the display number for any
+clients they start, and then pass on the display number to the specified file descriptor.
+</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+It may be necessary to also use the <CODE
+CLASS="parameter"
+>-engine 1</CODE
+> option (GDI drawing) for the
+X server windows to draw correctly when connecting to a Terminal Server using
+RDP, depending on the Windows version and/or graphics driver in use.
+</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+Automatically communicating the allocated display number to all future
+X clients started by the user who started the X server is left as an exercise for the reader.
+</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-i18n.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="cygwin-x-ug.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using-customizing-traymenu.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Input internationalization</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Customizing the notification area icon menu</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

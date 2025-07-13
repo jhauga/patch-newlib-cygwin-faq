@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Displaying local clients</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"/><LINK
+REL="HOME"
+TITLE="Cygwin/X User's Guide"
+HREF="cygwin-x-ug.html"/><LINK
+REL="UP"
+TITLE="Using Cygwin/X"
+HREF="using.html"/><LINK
+REL="PREVIOUS"
+TITLE="Using Cygwin/X"
+HREF="using.html"/><LINK
+REL="NEXT"
+TITLE="Switching out of Cygwin/X"
+HREF="using-switching.html"/><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;charset=utf-8"/></HEAD
+><BODY
+CLASS="sect1"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Cygwin/X User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using Cygwin/X</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using-switching.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="using-local-apps"
+>Displaying local clients</A
+></H1
+><P
+>&#13;     You can start X clients for display on your X server by:
+  </P
+><UL
+><LI
+><P
+>&#13;        Right-clicking on the "X applications menu" icon in the notification
+        area, and choosing from the menu.
+      </P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cyu01appsmenu.png"/></P
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+          The <TT
+CLASS="filename"
+>alacarte</TT
+> package may be installed to edit the
+          menu via Preferences-&gt;Main Menu, or <B
+CLASS="command"
+>XDG_MENU_PREFIX="xwin-"
+          alacarte</B
+> from a terminal.
+        </P
+><P
+>&#13;         Similarly, for other menu editor applications
+         e.g. <TT
+CLASS="filename"
+>mozo</TT
+>.
+        </P
+></BLOCKQUOTE
+></DIV
+></LI
+><LI
+><P
+>&#13;        Running the client from a Cygwin shell, e.g.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#13;$ xterm &amp;
+</PRE
+></TD
+></TR
+></TABLE
+>
+      </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+          When starting from X clients from a shell, it may be necessary to
+          ensure the <CODE
+CLASS="envar"
+>DISPLAY</CODE
+> environment variable is set correctly.
+
+          This step is not necessary if you are entering your commands into an X
+          terminal, as DISPLAY must already be set in that case.
+
+          e.g. in a bash shell:
+        </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#13;          $ export DISPLAY=<TT
+CLASS="replaceable"
+><I
+>:0.0</I
+></TT
+>
+        </PRE
+></TD
+></TR
+></TABLE
+></BLOCKQUOTE
+></DIV
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="cygwin-x-ug.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using-switching.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using Cygwin/X</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Switching out of Cygwin/X</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

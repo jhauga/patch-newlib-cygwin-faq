@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Cygwin/X User's Guide</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"/><LINK
+REL="NEXT"
+TITLE="Cygwin/X Overview"
+HREF="overview.html"/><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;charset=utf-8"/></HEAD
+><BODY
+CLASS="book"
+><DIV
+CLASS="BOOK"
+><A
+NAME="cygwin-x-ug"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+><A
+NAME="book-info"
+>Cygwin/X User's Guide</A
+></H1
+><H3
+CLASS="author"
+><A
+NAME="AEN5"
+></A
+>Harold L Hunt, II</H3
+><H3
+CLASS="author"
+><A
+NAME="AEN10"
+></A
+>Jon Turney</H3
+><DIV
+CLASS="legalnotice"
+><A
+NAME="legal-notice"
+></A
+><A
+NAME="legal-notice-quote"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>&#13;Copyright (c)  2000  Harold L Hunt II.
+Copyright © 2009-2017 Jon Turney.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, with no
+Front-Cover Texts, and with no Back-Cover Texts.
+A copy of the license is included in the section entitled "GNU
+Free Documentation License".
+</P
+></BLOCKQUOTE
+></DIV
+><HR/></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>1. <A
+HREF="overview.html"
+>Cygwin/X Overview</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="overview.html#overview-quickstart"
+>Summary</A
+></DT
+><DT
+><A
+HREF="overview-windowing-modes.html"
+>Windowing mode</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="setup.html"
+>Setting Up Cygwin/X</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="setup.html#setup-cygwin-x-installing"
+>Installing Cygwin/X</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="using.html"
+>Using Cygwin/X</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="using.html#using-starting"
+>Starting Cygwin/X</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="using.html#using-starting-exe"
+>Starting in multiwindow mode (startxwin)</A
+></DT
+><DT
+><A
+HREF="using.html#using-starting-session"
+>Starting an X desktop environment session or X window manager in windowed mode</A
+></DT
+><DT
+><A
+HREF="using.html#using-starting-xlaunch"
+>Starting an X session with XLaunch</A
+></DT
+><DT
+><A
+HREF="using.html#using-starting-startx"
+>Starting in windowed mode (startx)</A
+></DT
+><DT
+><A
+HREF="using.html#using-starting-advanced"
+>Notes for advanced users</A
+></DT
+><DT
+><A
+HREF="using.html#using-starting-obsolete"
+>Obsolete startup methods</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="using-local-apps.html"
+>Displaying local clients</A
+></DT
+><DT
+><A
+HREF="using-switching.html"
+>Switching out of Cygwin/X</A
+></DT
+><DT
+><A
+HREF="using-stopping.html"
+>Stopping Cygwin/X</A
+></DT
+><DT
+><A
+HREF="using-window-managers.html"
+>Window managers</A
+></DT
+><DT
+><A
+HREF="using-clipboard-integration.html"
+>Windows Clipboard integration</A
+></DT
+><DT
+><A
+HREF="using-shared-memory.html"
+>Shared memory support</A
+></DT
+><DT
+><A
+HREF="using-remote-apps.html"
+>Displaying remote clients</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="using-remote-apps.html#using-remote-apps-ssh"
+>Secure ssh</A
+></DT
+><DT
+><A
+HREF="using-remote-apps.html#using-remote-apps-telnet"
+>Insecure telnet or rsh (Not recommended)</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="using-remote-session.html"
+>Remote sessions via XDMCP</A
+></DT
+><DT
+><A
+HREF="using-glx.html"
+>OpenGL (GLX)</A
+></DT
+><DT
+><A
+HREF="using-i18n.html"
+>Input internationalization</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="using-i18n.html#using-i18n-compose"
+>Compose key ('Multi_key')</A
+></DT
+><DT
+><A
+HREF="using-i18n.html#using-i18n-ime"
+>Input Method Editors (IMEs)</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="using-terminal-server.html"
+>Terminal Server or Fast User Switching</A
+></DT
+><DT
+><A
+HREF="using-customizing-traymenu.html"
+>Customizing the notification area icon menu</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="configure.html"
+>Configuring Cygwin/X</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="configure.html#configure-cygwin-x-overview"
+>Configuration overview</A
+></DT
+><DT
+><A
+HREF="configure-cygwin-x-options.html"
+>Command line parameters</A
+></DT
+><DT
+><A
+HREF="configure-cygwin-xwinrc.html"
+>XWinrc configuration file</A
+></DT
+></DL
+></DD
+><DT
+>A. <A
+HREF="gfdl.html"
+>GNU Free Documentation License</A
+></DT
+><DT
+><A
+HREF="colophon.html"
+>Colophon</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="LOT"
+><DL
+CLASS="LOT"
+><DT
+><B
+>List of Tables</B
+></DT
+><DT
+>3-1. <A
+HREF="using-glx.html#table-opengl-rendering-options"
+>Summary of OpenGL rendering options</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="overview.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Cygwin/X Overview</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

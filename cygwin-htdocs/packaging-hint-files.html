@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Cygwin package .hint files</title>
+  </head>
+
+<body>
+<!--#include virtual="navbar.html" -->
+<div id="main">
+<!--#include virtual="top.html" -->
+<h1>Cygwin package .hint files</h1>
+
+<h2 class="cartouche">Contents</h2>
+
+<ul class="compact">
+  <li><a href="#pvr.hint"><code>package-version-release.hint</code> file</a></li>
+  <li><a href="#advanced_pvr.hint"><code>external-source:</code></a></li>
+  <li><a href="#pvr-src.hint"><code>package-version-release-src.hint</code> file</a></li>
+  <li><a href="#override.hint"><code>override.hint</code> file</a></li>
+</ul>
+
+<h2 class="cartouche" id="pvr.hint"><code>package-version-release.hint</code> file</h2>
+
+<p>Lines in <code>package-version-release.hint</code> consist of one of the
+following:</p>
+
+<pre>
+# <i>comment</i>
+sdesc: <i>"some text"</i>
+ldesc: <i>"some text"</i>
+category: <i>name1[ name2...]</i>
+requires: <i>version-relation[ version-relation...]</i>
+obsoletes: <i>version-relation[ version-relation...]</i>
+provides: <i>package[, package...]</i>
+conflicts: <i>version-relation[, version-relation...]</i>
+external-source: <i>package</i>
+message: <i>id</i> <i>"some text"</i>
+test:
+version: <i>version-identifier</i>
+disable-check: <i>check-name [check-name...]</i>
+</pre>
+<p class="center">
+  <b>Note: Not all of the above lines are required. Please read the description
+  below for further details on how to construct a package-version-release.hint
+  file.</b>
+</p>
+
+<ul class="spaced">
+  <li>
+    <p>Use UTF-8 character encoding.</p>
+  </li>
+
+  <li>
+    <p>Lines that begin with '#' are comments and are ignored.</p>
+  </li>
+
+  <li>
+    <p>
+      <code>sdesc</code> is a one line description of the package, enclosed in
+      double-quotes.  This is the information that will be displayed when
+      installing packages via setup, e.g.
+    </p>
+
+<pre>
+sdesc: "A whackamole simulation in ASCII art"
+</pre>
+
+    <p>
+      Please note that the package name should <em>not</em> be part of the
+      description
+    </p>
+
+    <p>
+      <code>sdesc</code> is a mandatory line.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>ldesc</code> is a more descriptive, multi-line description of the
+      package, enclosed in double-quotes.  e.g.:
+    </p>
+
+<pre>
+ldesc: "A whackamole simulation in ASCII art.
+
+Intended for use on VT100 terminals at BAUD rates 1200 and
+above.  Uses arrow keys for positioning over moles.  Space
+bar whacks the mole.
+
+No actual moles will be harmed during execution of this game."
+</pre>
+
+    <p>
+      A very minimal subset of MarkDown-style markup can be used:
+    </p>
+    <ul class="compact">
+      <li>A blank line separates paragraphs</li>
+      <li>A line ending with two (or more) spaces is followed by a line break</li>
+      <li>Lines starting with <code>-</code>, <code>*</code>, or <code>+</code>
+      are bulleted lists. Nested lists are indented by four spaces</li>
+    </ul>
+
+    <p>
+      Note that there is currently no method for escaping double-quotes, so
+       there is no way to represent a double-quote embedded in
+       the <code>ldesc</code>.
+    </p>
+
+  </li>
+
+  <li>
+    <p>
+      The <code>category</code> line indicates the categories that this package
+      belongs to. One package can belong to multiple categories. Multiple
+      categories are separated by spaces.
+    </p>
+
+    <p>
+      Do not enclose multiple category names within quotation marks.
+    </p>
+
+    <p id="categories">
+      Please do not invent a new category without checking with the cygwin-apps
+      mailing list first. At the time of writing, the current categories are:
+    </p>
+
+    <div class="multicolumn-list">
+      <p>Accessibility</p>
+      <p>Admin</p>
+      <p>Archive</p>
+      <p>Audio</p>
+      <p>Base</p>
+      <p>Database</p>
+      <p>Debug</p>
+      <p>Devel</p>
+      <p>Doc</p>
+      <p>Editors</p>
+      <p>Fonts</p>
+      <p>Games</p>
+      <p>GNOME</p>
+      <p>Graphics</p>
+      <p>Interpreters</p>
+      <p>KDE</p>
+      <p>Libs</p>
+      <p>Lua</p>
+      <p>LXDE</p>
+      <p>Mail</p>
+      <p>MATE</p>
+      <p>Math</p>
+      <p>Net</p>
+      <p>Ocaml</p>
+      <p>Office</p>
+      <p>Perl</p>
+      <p>PHP</p>
+      <p>Publishing</p>
+      <p>Python</p>
+      <p>Ruby</p>
+      <p>Scheme</p>
+      <p>Science</p>
+      <p>Security</p>
+      <p>Shells</p>
+      <p>Sugar</p>
+      <p>System</p>
+      <p>Tcl</p>
+      <p>Text</p>
+      <p>Utils</p>
+      <p>Video</p>
+      <p>Virtual</p>
+      <p>Web</p>
+      <p>X11</p>
+      <p>Xfce</p>
+    </div>
+
+    <p>
+      As you can see, currently, all categories consist of only a single
+      word. We don't anticipate that this will change anytime soon.
+    </p>
+
+    <p>
+      <code>category</code> is a mandatory line.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      The <code>requires</code> line indicates the packages that this package relies
+      on. If your package is dependent on a file provided by another package
+      that other package should be included here. The requires field may be
+      missing or empty if your package truly does not require any other package.
+      A package can rely on multiple other packages.
+    </p>
+
+    <p>
+      Do not include transitive dependencies, unless they are also direct
+      dependencies. i.e. don't drop '<code>bar</code>' from your dependency list if
+      your package requires it, even if you are including '<code>foo</code>' which
+      also relies on '<code>bar</code>'.
+    </p>
+
+    <p>
+      If you think that another package has an incorrect dependency list, send
+      email to cygwin-apps noting that fact.
+    </p>
+
+    <ul>
+      <li>
+        Multiple packages may be separated by spaces or commas.
+      </li>
+      <li>
+        Do not enclose multiple package names within quotation marks.
+      </li>
+      <li>
+        See <a href="https://sourceware.org/cygwin-apps/setup.ini.html#relationship">relationship
+        fields</a> for details of the optional version-relation syntax.
+      </li>
+    </ul>
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>provides</code> indicates additional package <code>requires:</code>
+      and <code>depends:</code> that this package satisfies.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>conflicts</code> indicates the packages that this package conflicts with.
+      See <a href="https://sourceware.org/cygwin-apps/setup.ini.html#relationship">relationship
+      fields</a> for details of the syntax.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>obsoletes</code> indicates the packages that this package supersedes.
+      See <a href="https://sourceware.org/cygwin-apps/setup.ini.html#relationship">relationship
+      fields</a> for details of the syntax.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>external-source</code>. See the section
+      on <a href="#advanced_pvr.hint"><code>external-source</code></a>.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      The <code>message</code> line indicates text that will be displayed by the
+      setup program when the package is installed.
+    </p>
+    <p>
+      This should be used <i>extremely</i> sparingly, for example, if a 3rd
+      party driver or service needs to be installed in Windows for the package
+      to function.
+    </p>
+    <p>
+      The id used should be derived from the package name. Currently, the text
+      for a given id will be shown by setup exactly once, when the package is
+      first installed, even if the text subsequently changes.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>test</code> indicates this is a test package.  When the use of test
+      packages is enabled in setup, the highest version-release marked as a test package
+      will be installed.
+    </p>
+    <p>
+      It is not required that your package have a <code>test</code> version. Use of
+      a <code>test</code> version of a package is at the discretion of the package
+      maintainer.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>version</code> overrides the version-release, which is otherwise
+      inferred from the version-release part of the filename.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>disable-check</code> disables the named checks for this package.
+    </p>
+  </li>
+</ul>
+<p>Here's an example of a complete <i>release/boffo/boffo-1.0-1.hint</i>:</p>
+<pre>
+category: Games Text
+requires: libncurses6 cygwin
+sdesc:    "A whackamole simulation in ASCII art"
+ldesc:    "A whackamole simulation in ASCII art.
+Intended for use on VT100 terminals at BAUD rates 1200 and
+above.  Uses arrow keys for positioning over moles.  Space
+bar whacks the mole.
+No actual moles will be harmed during execution of this game."
+</pre>
+
+<h2 class="cartouche" id="advanced_pvr.hint"><code>external-source:</code></h2>
+
+<p>The <code>external-source</code> line is used when multiple installation packages are generated from a single source package. For example, suppose the <code>boffo</code> package contains the executables and documentation for boffo, but there is also a shared library <code>cygboffo-7.dll</code> that might be used by other packages; say, the <code>fobbo</code> program. It would be nice to separate that <code>cygboffo-7.dll</code> shared library into a second installation package, so that users of the <code>fobbo</code> program can install <em>just</em> the library, and not the entire <code>boffo</code> package. However, all of the <code>boffo</code> executables and the DLL are generated from the same source. To support this usage, the <code>boffo</code> maintainer would create three package files:</p>
+<ul class="compact">
+  <li><code>boffo-2.4.1-2.tar.xz</code>: an installable package that contains all of the normal contents of <code>boffo</code> -- except for the shared library.</li>
+  <li><code>libboffo7-2.4.1-2.tar.xz</code>: an installable package that contains only the shared library from <code>boffo</code></li>
+  <li><code>boffo-2.4.1-2-src.tar.xz</code>: the source package for boffo.</li>
+</ul>
+<p>
+  <code>boffo-2.4.1-2.tar.xz</code>, <code>boffo-2.4.1-2-src.tar.xz</code>, and <code>boffo-2.4.1-2.hint</code> would go into the <code>release/boffo/</code> subdirectory.
+  <code>libboffo7-2.4.1-2.tar.xz</code>, and <code>libboffo7-2.4.1-2.hint</code> would go into a separate subdirectory, such as <code>release/boffo/libboffo7/</code>.
+  The two <code>.hint</code> files would look something like this:</p>
+<div>
+  <table class="deben">
+    <tr>
+      <td>
+	<div class="center">
+	  <code>boffo-2.4.1-2.hint</code>
+	</div>
+      </td>
+      <td>
+	<div class="center">
+	  <code>libboffo7-2.4.1-2.hint</code>
+	</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+<pre class="prewrap">category: Games Text
+requires: libboffo7 libncurses6 cygwin
+sdesc: "A whackamole simulation in ASCII art"
+ldesc: "A whackamole simulation in ASCII art. Intended for use on VT100 terminals at BAUD rates 1200 and above. Uses arrow keys for positioning over moles. Space bar whacks the mole.
+
+No actual moles will be harmed during execution of this game."</pre>
+      </td>
+      <td>
+<pre class="prewrap">category: Games Text
+requires: cygwin
+<b>external-source: boffo</b>
+sdesc: "Runtime library for a whackamole simulation in ASCII art"
+ldesc: "A whackamole simulation in ASCII art. Intended for use on VT100 terminals at BAUD rates 1200 and above. Uses arrow keys for positioning over moles. Space bar whacks the mole.
+
+No actual moles will be harmed during execution of this game."</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>The setup.ini generated from these .hint files will include these lines (only relevant lines shown):</p>
+<pre>
+@ boffo
+requires: libboffo7 libncurses6 cygwin
+version: 2.4.1-2
+install: release/boffo/boffo-2.4.1-2.tar.xz
+source: release/boffo/boffo-2.4.1-2-src.tar.xz
+@ libboffo7
+requires: cygwin
+version: 2.4.1-2
+install: release/boffo/libboffo7/libboffo7-2.4.1-2.tar.xz
+source: release/boffo/boffo-2.4.1-2-src.tar.xz
+</pre>
+
+<p>
+  Note that both packages point to the same source tar file. Also, it is required
+  that the version-release matches (i.e. libboffo7-5.2-1 can't point to boffo-1.4-1-src).
+  The same logic is used to "match up" other versions with their external
+  sources.
+</p>
+
+<h2 class="cartouche" id="pvr-src.hint"><code>package-version-release-src.hint</code> file</h2>
+
+<pre>
+# <i>comment</i>
+build-depends: <i>dependency-atom[ dependency-atom...]</i>
+category: <i>name1[ name2...]</i>
+disable-check: <i>check-name [check-name...]</i>
+homepage: <i>url</i>
+ldesc: <i>"some text"</i>
+license: <i>license-expression</i>
+sdesc: <i>"some text"</i>
+skip:
+test:
+version: <i>version-identifier</i>
+</pre>
+
+<p>
+  As above, and:
+</p>
+
+<ul class="spaced">
+  <li>
+    <p>
+      <code>build-depends</code> is a list of packages that are
+      needed to build this source package.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>homepage</code> records the URL of the upstream homepage.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>license</code> is
+      an <a href="https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/">SPDX
+      license expression</a> for the <a href="https://spdx.org/licenses/">open
+      source license(s)</a> of the package source code.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>skip</code> is obsolete.
+    </p>
+
+    <p>
+      It was only useful for indicating directories which contain source-only
+      packages, which are now automatically recognized, irrespective
+      of <code>skip</code>.
+    </p>
+  </li>
+</ul>
+
+<h2 class="cartouche" id="override.hint"><code>override.hint</code> file</h2>
+
+<p>
+  An <code>override.hint</code> file may exist, for information not associated
+  with a specific <i>version-release</i>.
+</p>
+
+<pre>
+# <i>comment</i>
+keep: <i>version-identifier</i>[ <i>version-identifier</i>...]
+keep-count: <i>count</i>
+keep-count-test: <i>count</i>
+keep-days: <i>days</i>
+keep-superseded-test:
+disable-check: <i>check-name [check-name...]</i>
+replace-versions: <i>version-identifier [version-identifier...]</i>
+</pre>
+
+<ul class="spaced">
+  <li>
+    <p>Lines that begin with '#' are comments and are ignored.</p>
+  </li>
+
+  <li>
+    <p>
+      The various <code>keep*</code> keys can be used to override the default
+      package expiry settings, which control when old package versions are
+      automatically removed.
+    </p>
+    <ul class="compact">
+      <li>
+        <p>
+          All package version-releases listed in a <code>keep</code> line are always kept.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          A <code>keep-count</code> line causes the highest <i>count</i> non-test
+          versions to be kept.
+        </p>
+      </li>
+
+      <li>
+        <code>keep-count-test</code>, likewise, for test versions.
+      </li>
+
+      <li>
+        <p>
+          A <code>keep-days</code> line causes the first version which is less
+          than <i>days</i> days old, and all higher versions to be kept.
+        </p>
+      </li>
+
+      <li>
+        <p>
+          By default, a version labelled <code>test:</code> is expired when a
+          superseding non-test version exists. <code>keep-superseded-test</code>
+          disables that behaviour.
+        </p>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <p>
+      <code>disable-check</code> disables the named checks for all versions of this
+      package.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      <code>replace-versions</code> lists version-releases which should always be replaced.
+    </p>
+
+    <p>
+      This is intended for (temporarily) dealing with withdrawn versions, e.g.
+      those which have been removed (or relabelled as test), without a
+      superseding higher version existing, and indicates that the named
+      versions(s), if installed, should be replaced with by the current version,
+      even if lower.
+    </p>
+  </li>
+</ul>
+
+</div>
+</body>
+</html>

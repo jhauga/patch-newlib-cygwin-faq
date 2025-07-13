@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<title>git repositories for Cygwin packaging</title>
+</head>
+<body>
+
+<!--#include virtual="/navbar.html" -->
+<div id="main">
+<!--#include virtual="/top.html" -->
+
+<h1>git repositories for Cygwin packaging</h1>
+
+<p>
+Hosting is provided for a central collection of repositories used by package
+mantainers to keep their cygwin packaging under version control.
+</p>
+
+<p>
+After you have provided an <a href="key.html#sshkey">SSH key</a>,
+package maintainers can push to these git repositories, like so:
+</p>
+
+<code class="sample-preformat">
+  git push cygwin@cygwin.com:/git/cygwin-packages/<i>packagename</i>
+</code>
+
+<p>
+  or, you can configure that as the default URL for pushing with:
+</p>
+<code class="sample-preformat">
+  git remote set-url --push origin cygwin@cygwin.com:/git/cygwin-packages/<i>packagename</i>
+</code>
+
+<p>
+where <i>packagename</i> is a package name you are listed as a maintainer for in
+<a href="http://cygwin.com/cygwin-pkg-maint">http://cygwin.com/cygwin-pkg-maint</a>.
+</p>
+
+<p>
+These repositories are lazily created on the first push.
+</p>
+
+<p>
+If you are adopting a package, but the repository is empty or missing, ask on
+cygwin-apps for it's history to be imported
+with <a href="https://github.com/jon-turney/ctm2git">ctm2git</a>
+</p>
+
+<p>
+Since it's intended that these repositories will only contain cygport scripts,
+patches, and other packaging files, and to prevent the accidental committing of
+upstream archives, pushes containing large binary files are rejected.
+</p>
+
+<p>For testing and experimentation purposes:</p>
+
+<ul>
+  <li>
+    A repository for the package name <code>playground</code> exists, that all
+    maintainers can create, push, force-push, rewind and delete branches in.
+  </li>
+  <li>
+    All package repositories allow the maintainer(s) to create, push, rewind and
+    delete a branch named <code>playground</code>
+  </li>
+</ul>
+
+<p>
+These repositories are viewable via
+<a href="https://cygwin.com/cgit/cygwin-packages/">cgit</a>, and are cloneable
+via anonymous git or http with the URLs shown there.
+</p>
+
+</div>
+
+</body>
+</html>

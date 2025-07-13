@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="../style.css" />
+<title>Providing an SSH key</title>
+</head>
+<body>
+
+<!--#include virtual="/navbar.html" -->
+<div id="main">
+<!--#include virtual="/top.html" -->
+
+<h1>Providing an SSH key</h1>
+
+<p>
+If you are a package maintainer, you will need to provide an SSH key.
+</p>
+
+<h2 class="cartouche" id="sshkey">Providing or updating your SSH key</h2>
+
+<p>Send your SSH public key to the <a href="http://cygwin.com/lists.html#cygwin-apps">cygwin-apps</a> mailing list using this format:</p>
+
+<pre>
+    Name: Your Name
+    ---- BEGIN SSH2 PUBLIC KEY ----
+    &nbsp;&nbsp;&nbsp;<em>RFC 4716 format ssh public key here</em>
+    ---- END SSH2 PUBLIC KEY ----
+</pre>
+
+<p>An ssh key-pair can be generated, and the public key exported as follows:</p>
+<pre>
+    ssh-keygen -f ~/.ssh/cygwin
+    ssh-keygen -e -f ~/.ssh/cygwin.pub
+</pre>
+
+<p>
+  The format of this email is not optional.  It is read by a program, so please
+  do not deviate from the above.  In particular:
+</p>
+
+<ul>
+  <li>Don't indent.</li>
+  <li><code>Name:</code> must use only ASCII characters.</li>
+</ul>
+
+<p>
+  <b>Note: Also send email in this format if you need to update your SSH key.</b>
+  In that case, please use your name as recorded in
+  <a href="http://cygwin.com/cygwin-pkg-maint">http://cygwin.com/cygwin-pkg-maint</a>.
+</p>
+
+<p>Requests are handled manually and are acknowledged publicly in
+response to email to the <code>cygwin-apps</code> mailing list.</p>
+
+<h2 class="cartouche">Connecting to cygwin.com</h2>
+
+<p>
+When connecting, make sure that you use the user <code>cygwin</code> with no password,
+and that you are using the SSH private key corresponding to the SSH public key you
+provided.
+</p>
+
+<p>
+  Once the SSH public key has been installed on cygwin.com, you'll have limited
+  access:
+</p>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol#SFTP_client">SFTP</a> to upload packages.</li>
+  <li><a href="http://en.wikipedia.org/wiki/Git">git</a> to push to packaging repositories.</li>
+  <li><code>ssh cygwin@cygwin.com alive</code> to test connecting.</li>
+  <li>A few other commands are also available e.g.
+    <code>untest</code> to <a href="../package-upload.html#untest">remove test labels</a>,
+    <code>vault</code> to <a href="../package-upload.html#deleting">vault packages</a>,
+    <code>jobs</code> to interact with <a href="build.html">build service</a> jobs.
+    Use <code>ssh cygwin@cygwin.com help</code> for a list.
+</li>
+</ul>
+
+<p>
+  You may wish to:
+</p>
+
+<ul>
+  <li>
+    Add a section to <code>~/.ssh/config</code> selecting that SSH private key when
+    connecting to cygwin.com, e.g.:
+    <pre>
+Host cygwin.com
+  User cygwin
+  IdentityFile ~/.ssh/cygwin</pre>
+    and/or,
+  </li>
+  <li>
+    Set the value of <code>SSH_KEY</code>
+    in <a href="https://cygwin.github.io/cygport/cygport_conf.html"><code>~/.cygport.conf</code></a>
+    to the SSH private key file. e.g. <code>SSH_KEY=~/.ssh/cygwin</code>.
+  </li>
+</ul>
+
+<p>
+The first time you connect, you should verify that the host key fingerprint
+matches one of the following hashes:
+</p>
+
+<ul>
+<li>RSA
+<ul>
+<li>SHA256 (OpenSSH 6.8 or later): <code>SHA256:MFNiczzfX8/nvLSRZwR3CxMyycKtMan64Zm4C373FeM</code></li>
+<li>MD5 (OpenSSH pre-6.8): <code>1d:1e:46:7f:4d:73:8d:10:20:c3:4c:5a:34:14:44:23</code></li>
+</ul>
+</li>
+  <li>ECDSA
+  <ul>
+    <li>SHA256 (OpenSSH 6.8 or later): <code>SHA256:4bqfulMjMg7/L/38MJBw7mVMMu6EH+3MgMitrCRdFho</code></li>
+    <li>MD5 (OpenSSH pre-6.8): <code>MD5:b4:58:a4:51:c0:21:e8:10:61:da:3a:49:0b:c5:d6:63</code></li>
+  </ul>
+  </li>
+  <li>ED25519
+  <ul>
+    <li><code>SHA256:5DrqonN/NcBalJRSSpE86TZRuNiBYukggX/j02fe1qA</code></li>
+    <li><code>MD5:46:59:b6:91:19:6d:4f:9d:8f:79:c3:ff:6c:e3:85:f0</code></li>
+  </ul>
+  </li>
+</ul>
+
+</div>
+
+</body>
+</html>

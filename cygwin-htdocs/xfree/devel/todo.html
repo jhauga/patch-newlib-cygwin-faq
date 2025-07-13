@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Cygwin/X - Development - To-Do List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../cygx.css" />
+    <link rel="icon" type="image/ico" href="../favicon.ico" />
+</head>
+
+<body>
+    <!--#include virtual="../cygx-leftbar.html"-->
+    <div id="main">
+    <!--#include virtual="../cygx-header.html" -->
+
+    <h1>Development - To-Do List</h1>
+
+    <p>See also the
+    <a href="http://sourceware.org/bugzilla/buglist.cgi?product=cygwin&amp;component=Cygwin%2FX&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=SUSPENDED&amp;bug_status=WAITING&amp;bug_status=REOPENED">
+    Cygwin/X category in sourceware.org bugzilla</a>
+    </p>
+
+    <p>Following is a list of open tasks on the Cygwin/X project:</p>
+    <p>
+    <i>Please note that this list is in no particular order, and presence on this list doesn't guarantee that a task
+    is desirable, practical or even possible.  Feel free to get started, though...</i>
+    </p>
+
+    <table class="valigntop">
+        <thead>
+            <tr>
+                <td><b>Summary</b></td>
+
+                <td><b>Description</b></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- ToDo item template -->
+            <!--
+                        <tr>
+                        <td></td>
+
+                        <td></td>
+                        </tr>
+                        -->
+
+
+            <tr>
+              <td>Testing</td>
+
+              <td><p>
+                  There are always bugs.
+                  We need to find them and fix them.
+              </p></td>
+            </tr>
+
+            <tr>
+              <td>native IME - XIM bridge</td>
+
+              <td><p>Kensuke Matsuzaki wrote some
+                  <a href="http://www.cygwin.com/ml/cygwin-xfree/2005-01/msg00066.html">clever code</a>
+                  which provides a bridge between Windows native IME and XIM.
+                  This should be brought up to date and integrated.
+              </p></td>
+            </tr>
+
+            <tr>
+              <td>Animated cursors</td>
+
+              <td><p>Are we converting every frame of an animated cursor every time it appears?
+	          Build on the work in <a href="http://cgit.freedesktop.org/~ajax/xserver/commit/?h=dmx-2&amp;id=1d401db26613ccd24d6f218f459bf824710e7b44">this commit</a>
+	          to allow the XWin DDX visibility of the animated cursor, so it can do something cleverer.
+              </p></td>
+            </tr>
+
+            <tr>
+              <td>-mwextwm mode and xwinwm</td>
+
+              <td><p><del>Needs fixing to build, and work again</del>.
+	      Should build and work now, but needs looking at to see what it lacks compared to the internal WM.
+              Is it possible to replace the internal WM with this, in the long term?
+              </p></td>
+            </tr>
+
+            <tr>
+              <td>XVideo?</td>
+
+              <td><p>The XVideo extension is currently disabled.  There is some
+                skeleton code in the server, but it doesn't do anything yet.
+                Possible to map Xv/XvMC to some DirectX or DxVA API?
+              </p></td>
+            </tr>
+
+            <tr>
+                <td>Composite</td>
+
+                <td><p>Find and fix Composite bugs in rooted mode.
+                  Cunning plans for compositing in multiwindow mode (using Win2K+ window transparency)?
+                  (Integrated WM has to become composite-aware for this).
+                  <a href="http://sourceware.org/bugzilla/show_bug.cgi?id=10997">Bug #10997</a>
+                </p></td>
+            </tr>
+
+            <tr>
+                <td>Improve Windows clipboard integration</td>
+
+                <td><p>Stamp out remaining clipboard bugs.</p>
+
+                <p>Extend the
+                Cygwin/X clipboard manager, to handle data types
+                other than XA_STRING, COMPOUND_TEXT, and
+                UTF8_STRING; for example, BITMAP, PIXMAP, etc.</p></td>
+            </tr>
+
+            <tr>
+                <td>Crash reporting</td>
+
+                <td><p>
+                    Automated upload of crash reports.
+                </p></td>
+            </tr>
+
+            <tr>
+                <td>OpenGL acceleration</td>
+
+                <td><p>Testing of the implementation of indirect OpenGL acceleration using native WGL.
+		Additional information is in the
+		<a href="http://cygwin.com/ml/cygwin-xfree/2009-06/msg00088.html">email asking for testing</a>.
+                <a href="http://sourceware.org/bugzilla/show_bug.cgi?id=10472">Bug #10472</a>
+                </p>
+                <p>
+                Testing of the implementation of direct OpenGL acceleration using native WGL.
+                </p></td>
+            </tr>
+
+            <tr>
+                <td>MultiWindow DirectDraw and DirectDraw NL</td>
+
+                <td><p>Blit updates from a DirectDraw shadow
+                framebuffer to the updated Win32 window instead of
+                blitting from a GDI shadow framebuffer. This should
+                be easy to start and should require only
+                a single DirectDraw surface for the whole screen.
+                It would be very important to
+                just demonstrate that this can be done; clipping
+                the blits to properly handle window z-order and
+                such can be finished.</p></td>
+            </tr>
+
+            <tr>
+                <td>Emulate PseudoColor on TrueColor</td>
+
+                <td><p>Provide emulation of PseudoColor visuals
+                (typically 8-bit palette-based visuals) on top of
+                the default TrueColor visual (when running in 15,
+                16, 24, or 32 bit color depths). This will allow a
+                lot of CAD-type applications that require
+                PseudoColor to be run when Windows is in a color
+                mode higher than 8 bits per pixel. The general idea
+                here is to add checks to any copying of data
+                between offscreen and onscreen, as well as between
+                areas on the screen; these checks test for
+                differing visual types and convert the pixels and
+                colors accordingly.</p>
+
+                <p>
+                See also upstream bug <a href="http://bugs.freedesktop.org/show_bug.cgi?id=4770">#4770</a>.
+                </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>DirectDraw windowed PseudoColor</td>
+
+                <td><p>Figure out a satisfactory solution for enabling
+                DirectDraw engines to support PseudoColor visuals
+                when running in 8 bit color modes. DirectDraw
+                reserves the first ten and the last ten colors in
+                each DirectDrawPalette object when running in
+                windowed mode. Therefore, PseudoColor visuals are
+                only supported with DirectDraw engines when running
+                in fullscreen 8 bit color modes.</p></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

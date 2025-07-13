@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <title>Profiling Cygwin</title>
+</head>
+
+<body>
+<h1>Profiling Cygwin</h1>
+
+<p>There are a couple of steps you need to do to profile cygwin itself
+(newlib and winsup).  This is preliminary documentation but ought to
+be applicable to the Beta 20.1 net release.  Don't expect things to go
+smoothly.</p>
+
+<p>From the Cygwin development tools source distribution, configure,
+build, and install gprof.</p>
+
+<p>Delete all of your <code>.o</code>'s in newlib and winsup.  Rebuild
+them all with profiling options:</p>
+
+<pre>
+make -k -w CFLAGS='-pg -O2 -g' CXXFLAGS='-pg -O2 -g'
+</pre>
+
+<p>
+Note: the dll builds will fail; this is OK.  You're not going to use
+those dlls.  <b>Make sure</b> you have a working <code>cygwin.dll</code>
+available and <b>do not</b> touch or rename it.  You'll need it.</p>
+
+<p>OK, now go into winsup and <b>delete</b> <code>mcount.o</code>,
+<code>gcrt0.o</code>, <code>gmon.o</code>, and <code>profil.o.</code> Rebuild
+those without <code>-pg</code>.  It is possible that <code>mcount.c</code>
+<b>must</b> be built without <code>-O</code> (this was a problem once,
+at least) - so just use <code>-g</code> for that one.</p>
+
+<p>Next, you need to build new libraries for newlib and winsup that
+contain these objects.  Here's <a href="prof-script">a script</a>
+to do it.</p>
+
+<p>You will also need a standalone malloc package.
+<a href="djmalloc.c">Here's one from djgpp</a> that we
+modified to work for this context.</p>
+
+<p>Now that you have <code>libcpg.a</code>, <code>libwinpg.a</code>, and
+<code>malloc.o</code>, you can build your programs like this:</p>
+
+<pre>
+CFLAGS = -g -pg -O2
+
+D = djmalloc.o libwinpg.a libcpg.a libwinpg.a
+
+test.exe : test.c $D
+	gcc -pg -g -o test.exe test.c $D -lgdi32 -luser32
+
+gmon.out : test.exe
+	./test.exe
+
+test.gp : gmon.out
+	gprof -b test.exe > test.gp
+</pre>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Windows Clipboard integration</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"/><LINK
+REL="HOME"
+TITLE="Cygwin/X User's Guide"
+HREF="cygwin-x-ug.html"/><LINK
+REL="UP"
+TITLE="Using Cygwin/X"
+HREF="using.html"/><LINK
+REL="PREVIOUS"
+TITLE="Window managers"
+HREF="using-window-managers.html"/><LINK
+REL="NEXT"
+TITLE="Shared memory support"
+HREF="using-shared-memory.html"/><META
+HTTP-EQUIV="Content-Type"
+CONTENT="text/html;charset=utf-8"/></HEAD
+><BODY
+CLASS="sect1"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Cygwin/X User's Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-window-managers.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using Cygwin/X</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using-shared-memory.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="using-clipboard-integration"
+>Windows Clipboard integration</A
+></H1
+><P
+>The X Window System uses its own
+clipboard system that is distinct from the clipboard system used by
+Windows.  Copying and pasting text between these two clipboard
+systems requires a clipboard integration program that watches for
+updates to either clipboard and copies data between them when either
+one is updated. Cygwin/X has an internal clipboard integration program
+that is enabled by default.</P
+><P
+>&#13;The clipboard integration monitors the X PRIMARY (selected/highlighted text)
+and CLIBPOARD (cut/copied text) selections
+for changes in ownership, and makes the contents of the most recent one
+to change available to paste from the Windows clipboard.  It also monitors
+the contents of the Windows clipboard for changes, taking ownership of the
+PRIMARY and CLIPBOARD selections, and making the contents of the Windows
+clipboard available in them.
+</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+Some X clients, notably ones written in Tcl/Tk, do not re-assert ownership
+of the PRIMARY selection or update it's timestamp when it's contents change,
+which currently prevents the clipboard integration program from correctly
+noticing that the PRIMARY selection's contents have changed.
+</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note: </B
+>
+    With some X clients, it may be inconvenient that updating the PRIMARY
+    selection causes that to overwrite the Windows clipboard contents you were
+    just about to paste, so monitoring of the X PRIMARY selection can be
+    disabled using the <CODE
+CLASS="parameter"
+>-noprimary</CODE
+> option, or temporarily
+    using the "Clipboard may use PRIMARY selection" toggle on the notification
+    area icon menu.
+  </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;See <A
+HREF="configure-cygwin-x-options.html"
+>the Section called <I
+>Command line parameters</I
+> in Chapter 4</A
+>
+for more information on the <CODE
+CLASS="parameter"
+>-[no]clipboard</CODE
+> and
+<CODE
+CLASS="parameter"
+>-[no]primary</CODE
+> command-line options.
+</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"/><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-window-managers.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="cygwin-x-ug.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using-shared-memory.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Window managers</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Shared memory support</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <title>Tips for writing a .cygport file</title>
+  </head>
+
+<body>
+<!--#include virtual="/navbar.html" -->
+<div id="main">
+<!--#include virtual="/top.html" -->
+
+<h1>Tips for writing a .cygport file</h1>
+
+<ul class="spaced">
+  <li>
+    <p>
+      A cygport file is a <code>bash</code> shell script fragment, which defines
+      some variables, and (maybe)
+      the <code>src_compile()</code>, <code>src_install()</code>
+      and <code>src_test()</code> functions.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      By default, cygport assumes an autotools build system (<code>./configure
+      ${CYGCONF_ARGS}&semi; make&semi; make install DESTDIR=${D}</code>) using
+      the
+      <a href="https://cygwin.github.io/cygport/autotools_cygclass.html"><code>autotools</code></a>
+      cygclass.  See the examples there.
+    </p>
+
+    <p>
+      Those examples can also serve as a starting point for packaging small
+      source packages which have a very simple build system, e.g. only a
+      Makefile.
+    </p>
+
+    <p>
+      If the upstream sources uses a different build systems, inherit the
+      appropriate cygclass (e.g.
+      <a href="https://cygwin.github.io/cygport/cmake_cygclass.html"><code>cmake</code></a>,
+      <a href="https://cygwin.github.io/cygport/meson_cygclass.html"><code>meson</code></a>,
+      <a href="https://cygwin.github.io/cygport/waf_cygclass.html"><code>waf</code></a>)
+      to get appropriate <code>src_compile()</code>, <code>src_install()</code>
+      and <code>src_test()</code> functions.
+    </p>
+  </li>
+
+  <li>
+    Various cygclasses exist to simplify working with several large meta-projects,
+    language-specific package repositories, or languages. Refer to the full list
+    of <a href="https://cygwin.github.io/cygport/meson_build.html#Cygclasses">cygclasses</a>
+    in the reference manual.
+  </li>
+
+  <li>
+    When the upstream source is delivered directly from a VCS, rather than as an
+    archive, cygclasses exist to assist in retrieving that source (e.g.
+    <a href="https://cygwin.github.io/cygport/bzr_cygclass.html"><code>bzr</code></a>,
+    <a href="https://cygwin.github.io/cygport/cvs_cygclass.html"><code>cvs</code></a>,
+    <a href="https://cygwin.github.io/cygport/fossil_cygclass.html"><code>fossil</code></a>,
+    <a href="https://cygwin.github.io/cygport/git_cygclass.html"><code>git</code></a>,
+    <a href="https://cygwin.github.io/cygport/hg_cygclass.html"><code>hg</code></a>,
+    <a href="https://cygwin.github.io/cygport/mtn_cygclass.html"><code>mtn</code></a>,
+    <a href="https://cygwin.github.io/cygport/svn_cygclass.html"><code>svn</code></a>).
+  </li>
+
+  <li>
+    If the files in the upstream source archive are not under a
+    <code>$NAME-$VERSION</code> top-level directory,
+    define <a href="https://cygwin.github.io/cygport/src_prep_cygpart.html#SRC_DIR"><code>SRC_DIR</code></a>
+    appropriately.
+  </li>
+
+  <li>
+    If the package is arch-independent,
+    define <code><a href="https://cygwin.github.io/cygport/compilers_cygpart.html#ARCH">ARCH</a>=noarch</code>.
+  </li>
+
+  <li>
+    <p>
+      If the package is just an executable, the default of generating one
+      install package
+      called <a href="https://cygwin.github.io/cygport/syntax_cygpart.html#NAME"><code>NAME</code></a>
+      is probably all you need.
+    </p>
+
+    <p>
+      If it's a library, you'll probably want to set
+      <a href="https://cygwin.github.io/cygport/pkg_pkg_cygpart.html#PKG_NAMES"><code>PKG_NAMES</code></a>
+      to a value listing the install
+      packages: <strong>libboffo<em>N</em></strong> (where <em>N</em> is the
+      soversion) (containing the shared library
+      runtime), <strong>libboffo-devel</strong> (containing headers, link
+      libraries, pkgconfig files and tools for developing with the library),
+      maybe <strong>libboffo-doc</strong> (if there's a large amount of
+      non-manpage documentation), maybe <strong>boffo</strong> (if there's user
+      tool(s) provided with the library), and maybe more.
+    </p>
+  </li>
+
+  <li>
+    <p>
+      When packaging a versioned shared library
+      like <strong>libboffo<em>N</em></strong> (where <em>N</em> is the
+      soversion), it's best practice to describe it's contents using glob(s)
+      which explicitly match against the soversion.  At it's simplest, this
+      means something like:
+    </p>
+
+<pre>
+libboffo0_CONTENTS="
+  usr/bin/*-0.dll
+  usr/share
+"
+</pre>
+
+    <p>
+      So that if and when the soversion changes, packaging fails, rather than
+      silently ploughing on to create a <strong>libboffo0</strong> containing
+      <code>cygboffo-1.dll</code> (which would, when installed, break any
+      packages depending on <strong>libboffo0</strong> to
+      provide <code>cygboffo-0.dll</code> ).
+    </p>
+  </li>
+
+  <li>
+    <p>
+      If a library supports building as a shared or static library, usually only
+      a shared library should be built and packaged.
+    </p>
+    <p>
+      Common exceptions are:
+    </p>
+    <ul>
+      <li>
+        MinGW cross-packages should probably contain both, so that users can
+        choose to build monolithic, statically-linked executables, which can be
+        easily distributed without an installer.
+      </li>
+      <li>
+        soversion-less libraries where upstream recommends a static library,
+        e.g. because the API isn't stable.
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <p>
+      When removing a package name from
+      <a href="https://cygwin.github.io/cygport/pkg_pkg_cygpart.html#PKG_NAMES"><code>PKG_NAMES</code></a>
+      you should consider what you want to happen in Cygwin installations where
+      that package is already present.  Just remaining installed indefinitely is
+      not usually what's wanted, so a superseding or replacement package in the
+      same or a different cygport should
+      <a href="https://cygwin.github.io/cygport/pkg_pkg_cygpart.html#OBSOLETES"><code>OBSOLETES</code></a>
+      it.  Versioned shared libraries are an obvious exception to this rule.
+    </p>
+  </li>
+
+  <li>
+    Use <a href="https://cygwin.github.io/cygport/src_install_cygpart.html#make_etc_defaults"><code>make_etc_defaults</code></a>
+    on files installed into <code>/etc</code> which are expected to be
+    customized locally, so those customizations aren't lost when the package is
+    upgraded.
+  </li>
+
+  <li>
+    If the upstream source only builds in the source directory,
+    use <a href="https://cygwin.github.io/cygport/src_compile_cygpart.html#lndirs"><code>lndirs</code></a>,
+    e.g.:
+
+<pre>
+src_compile() {
+  cd ${S}
+  cygautoreconf
+  lndirs
+  cd ${B}
+  cygconf
+  cygmake
+}
+</pre>
+
+  </li>
+
+  <li>
+    <p>
+      If your package(s) install a python module
+      into <code>/usr/lib/python3.<i>N</i>/site-packages/</code>, along with a
+      python script with a <code>#!</code> line
+      containing <code>/usr/bin/python3</code> into <code>/usr/bin/</code>, you
+      might need to use
+      <a href="https://cygwin.github.io/cygport/python3_cygclass.html#python3_fix_shebang"><code>python3_fix_shebang</code></a>
+      to ensure that line is rewritten to ensure that the python version used is
+      the same one for which the module is installed.
+    </p>
+
+    <p>
+      Similar considerations may apply with other interpreted languages which
+      support parallel installation of multiple versions, e.g. see
+      <code>lua_fix_shebang</code>, <code>php_fix_shebang</code>, etc.
+    </p>
+  </li>
+
+  <li>
+    <p>If you need to programmatically generate a package name,
+      you can use <code>declare</code> to set it's contents etc., e.g.:
+    </p>
+
+<pre>
+inherit python3 meson
+...
+PKG_NAMES="foo libfoo1 libfoo-devel python3-foo python${PYTHON3_PKGVERSION}-foo"
+...
+python3_foo_SUMMARY="Python bindings for libfoo"
+python3_foo_REQUIRES="python${PYTHON3_PKGVERSION}-foo"
+python3_foo_CATEGORY="Virtual Python"
+
+declare python${PYTHON3_PKGVERSION}_foo_SUMMARY="Python ${PYTHON3_VERSION} bindings for libfoo"
+declare python${PYTHON3_PKGVERSION}_foo_CONTENTS="usr/lib/python*/"
+declare python${PYTHON3_PKGVERSION}_foo_CATEGORY="Python"
+</pre>
+
+  </li>
+
+  <li>
+    <p>
+      If your package installs shared libraries into a private directory (e.g to
+      be used as plugins by an executable in that or a different package),
+      you'll want to list that directory in
+      <a href="https://cygwin.github.io/cygport/pkg_info_cygpart.html#DEPS_PATH">DEPS_PATH</a>
+      so that they are checked for dependencies.
+    </p>
+  </li>
+
+  <li>
+    If the build generates (or even modifies!) files in the source directory,
+    those files should probably be listed
+    in <a href="https://cygwin.github.io/cygport/pkg_pkg_cygpart.html#DIFF_EXCLUDES"><code>DIFF_EXCLUDES</code></a>
+    to indicate to cygport that those changes don't need to be packaged.
+  </li>
+
+  <li>
+    A data only package probably wants a <code>src_compile</code> function which
+    does nothing, e.g.:
+
+<pre>
+src_compile() {
+  true
+}
+</pre>
+
+  </li>
+
+  <li>
+    Where you need to deviate from cygport's default behaviour, a comment in the
+    cygport file explaining why that's necessary is always helpful.
+  </li>
+
+  <li>
+    Shell code which does something other than determine the value of a variable
+    is probably suspect: It will execute every time the cygport
+    is <code>source</code>d, irrespective of what subcommand is used. If you're
+    checking something about the execution environment, or modifying files in
+    some way, that probably belongs in a <code>src_*</code> function, or in
+    some (perhaps yet to be implemented) hook.
+  </li>
+
+  <li>
+    Cygports (and the underlying build and install mechanisms) are allowed to
+    assume the filesystem is case-sensitive.  If you happen to be building one
+    of the rare ones which requires that, and your filesystem is not
+    case-sensitive (perhaps because a Windows update has reset
+    <code>obcaseinsensitive</code>), you lose, probably with a confusing error
+    message.
+  </li>
+
+  <li>
+    The lines within the .cygport file
+    defining <code>NAME</code>, <code>VERSION</code> and <code>RELEASE</code>
+    are expected to be <code>eval</code>-able on their own (so we can determine
+    the working directory name and create it, before <code>source</code>-ing the
+    cygport file itself) - so no defining these in terms of other variables or
+    by complex logic.
+  </li>
+
+  <li>
+    If you think you've found a cygport bug, use <code>cygport --debug</code> to
+    produce very, very verbose debug output.
+  </li>
+
+  <li>
+    If you don't understand something, or need help, ask on the cygwin-apps list
+    or #cygwin IRC channel.
+  </li>
+
+</ul>
+
+</div>
+</body>
+</html>

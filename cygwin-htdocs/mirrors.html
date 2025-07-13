@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US" xml:lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Cygwin Mirror Sites</title>
+  </head>
+
+<body>
+<!--#include virtual="navbar.html"-->
+<div id="main">
+<!--#include virtual="top.html"-->
+
+<h1>Mirror Sites</h1>
+
+<p>The following sites have generously agreed to mirror our Cygwin
+package repository. To save on download time, please select a mirror near you
+when using <code>setup</code>
+to <a href="install.html">install or update</a> Cygwin.</p>
+
+<p><em>Note:</em> We <em>automatically</em> poll these mirrors periodically to
+ensure that they have the latest <a href="packages">Cygwin packages</a>
+available.  The list of mirrors below reflects all of the mirrors who appear to
+have up-to-date copies of the Cygwin package repository.</p>
+
+<p>
+<b>There is <a href="#mirroradmin">more information for Mirror Administrators</a>.</b><br/>
+</p>
+
+<h2 class="cartouche" id="sitelist">Mirror site list</h2>
+
+<!-- include mirror list updated by check-cygwin-mirrors run from cygwin-admin's crontab -->
+<!--#include virtual="mirrors-list.html"-->
+
+<hr/><br/>
+<table id="mirroradmin">
+<tr><td><h2 class="center">Mirror Administrators: Read This!</h2>
+
+<p>If you would like to be added to this list of available mirrors then send
+email to the <a href="mailto:cygwin@cygwin.com">cygwin mailing list</a>. When
+you send your message, remember that this site does not accept html-formatted
+email.
+</p>
+
+<p>When asking to be added, please provide a contact email, the URL
+of the mirror, and the location of the mirror (in a similar format to that
+used for existing mirrors in the <a href="#sitelist">mirror site list</a>).
+Make sure that your mirror rsyncs directly from cygwin.com at least
+twice a day.</p>
+
+<p>You can also send an email if you would like your mirror to be removed from
+this list.</p>
+
+<p>Please do not send questions asking how to set up a mirror.  We don't
+provide technical support for setting up mirrors.  Sorry.</p>
+
+<p>The mirror list is <a href="mirrors-report.html"><b>automatically
+maintained</b></a> so that only active mirrors are listed. A mirror
+is <em>temporarily</em> removed from the list if it remains out of date for more
+than 24 hours. If your mirror was dropped from the list, do not panic. It means
+that a program has determined that the content on your mirror is not up-to-date.
+Ensure that your mirror is up-to-date. It will be added again automatically once
+it has has up-to-date content.
+<em>There is no need to contact anyone about this</em>.</p>
+
+<p>
+Mirrors which remain out-of-date for more than 28 days are manually reviewed
+(sporadically), and disabled if the owner is unresponsive.
+</p>
+
+</td></tr></table>
+
+</div>
+
+</body>
+</html>

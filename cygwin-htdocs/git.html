@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Cygwin in Git</title>
+  </head>
+
+<body>
+<!--#include virtual="navbar.html" -->
+<div id="main">
+<!--#include virtual="top.html" -->
+<h1>Cygwin in Git</h1>
+
+<p>The sources to the core Cygwin libraries and utilities (Cygwin and
+Newlib) are available via anonymous Git access.  If you don't know
+what Git is, visit the <a href="https://git-scm.com/">Git home page</a>.
+Coincidentally enough, Git comes with the Cygwin net release.</p>
+
+<p>To access the repository from your system, use one of the following
+commands:</p>
+
+<dl>
+
+<dt><b>Read-only web-based Git access</b></dt>
+<dd>
+  <p>You can view the source via <a href="/cgit/newlib-cygwin/">a web interface</a>.</p>
+</dd>
+
+<dt><b>Anonymous Git read-only access</b></dt>
+<dd>
+<pre>
+git clone https://cygwin.com/git/newlib-cygwin.git
+</pre>
+</dd>
+
+<dt><b>Git for developers with read/write access</b></dt>
+<dd>
+<pre>
+git clone ssh://cygwin.com:/git/newlib-cygwin.git
+</pre>
+</dd>
+
+<dt><b>Git-less Cygwin test releases</b></dt>
+<dd>
+  <p>Starting December 2022, regular, automated test releases are created
+  whenever a significant patch is pushed to the Cygwin git repository.
+  You can download the cygwin package test releases just like any other
+  test release for any Cygwin package using the Cygwin Setup program.
+  This allows following development even if you're not comfortable with Git.
+  </p>
+</dd>
+
+<dt><b>Git access to the website</b></dt>
+<dd>
+  <p>The cygwin.com website is under Git control, too.  You can also view the
+  website Git repo via
+  <a href="/cgit/cygwin-htdocs/">a web interface</a>.
+  </p>
+  <p>
+  Note that this is only the framework. The
+  <a href="/cgit/newlib-cygwin/tree/winsup/doc">User's Guide, API and FAQ</a>
+  are maintained as part of the aforementioned Cygwin source Git repository.
+  </p>
+</dd>
+
+</dl>
+
+<p>Please refer to the <a href="faq/faq.html#faq.programming.building-cygwin">
+FAQ</a>
+for information on building Cygwin.</p>
+<p>Hint: You need to configure and
+build in a separate directory from the source.</p>
+
+</div>
+</body>
+</html>
