@@ -26,7 +26,7 @@ to start the local server.
     cd cygwin-htdocs
     sudo apt update
     sudo apt install apache2
-    apache2 -f /workspaces/test-repo/cygwin-htdocs/httpd.conf -DFOREGROUND
+    apache2 -f /workspaces/patch-newlib-cygwin-faq/cygwin-htdocs/httpd.conf -DFOREGROUND
 ```
 
 3. A GitHub popup or notification will appear where you can open the local
